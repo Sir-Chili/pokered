@@ -1741,8 +1741,7 @@ AnimationMinimizeMon:
 
 MinimizedMonSprite:
 ; 8x5 partial tile graphic
-pusho
-opt b.X ; . = 0, X = 1
+pusho b.X ; . = 0, X = 1
 	db %...XX...
 	db %..XXXX..
 	db %.XXXXXX.
@@ -2405,7 +2404,7 @@ FallingObjects_UpdateOAMEntry:
 	sub b
 	ld [hli], a ; X
 	inc hl
-	ld a, (1 << OAM_X_FLIP)
+	ld a, 1 << OAM_X_FLIP
 .next2
 	ld [hl], a ; attribute
 	ret
