@@ -1,6 +1,6 @@
 	db DEX_PIDGEY ; pokedex id
 
-	db  40,  45,  40,  56,  35
+	db  40,  55,  40,  61,  35
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, FLYING ; type
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
-	     RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
-	     SWIFT,        SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
+	tmhm WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	     RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     SWIFT,        SKY_ATTACK,   REST,         SHADOW_BALL,  SUBSTITUTE,   FLY
 	; end
 
 	db 0 ; padding

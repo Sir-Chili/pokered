@@ -367,28 +367,13 @@ MainInBattleLoop:
 .specialMoveNotUsed
 	callfar SwitchEnemyMon
 .noLinkBattle
-	ld a, [wPlayerSelectedMove]
-	cp QUICK_ATTACK
-	jr nz, .playerDidNotUseQuickAttack
-	ld a, [wEnemySelectedMove]
-	cp QUICK_ATTACK
-	jr z, .compareSpeed  ; if both used Quick Attack
-	jp .playerMovesFirst ; if player used Quick Attack and enemy didn't
-.playerDidNotUseQuickAttack
-	ld a, [wEnemySelectedMove]
-	cp QUICK_ATTACK
-	jr z, .enemyMovesFirst ; if enemy used Quick Attack and player didn't
-	ld a, [wPlayerSelectedMove]
-	cp COUNTER
-	jr nz, .playerDidNotUseCounter
-	ld a, [wEnemySelectedMove]
-	cp COUNTER
-	jr z, .compareSpeed ; if both used Counter
-	jr .enemyMovesFirst ; if player used Counter and enemy didn't
-.playerDidNotUseCounter
-	ld a, [wEnemySelectedMove]
-	cp COUNTER
-	jr z, .playerMovesFirst ; if enemy used Counter and player didn't
+	call HandleMovePriority
+	; c = player priority, e = enemy priority
+	ld a, c
+	cp e
+	jr z, .compareSpeed
+	jr c, .enemyMovesFirst
+	jr .playerMovesFirst
 .compareSpeed
 	ld de, wBattleMonSpeed ; player speed value
 	ld hl, wEnemyMonSpeed ; enemy speed value
@@ -530,6 +515,48 @@ HandlePoisonBurnLeechSeed:
 	call DelayFrames
 	xor a
 	ret
+
+HandleMovePriority:
+; This subroutine modifies registers a, hl, bc, and de
+; The player's priority value will be stored in register c and 
+; the enemy's priority value will be stored in register e.
+; These values will be compared after the 'ret' instruction is called
+	ld a, [wPlayerSelectedMove]
+	ld b, a
+	ld hl, PriorityMovesList
+	ld c, 7           ; no priority is 7
+.playerPriorityMoveLoop
+	ld a, [hli]     ; load the move ID from priority list and 
+					; increment address to the priority value address
+	cp b			; compare with move being used
+	jr z, .playerUsingPriorityMove
+	inc a			; if at end of list: -1 + 1 = 0xFF + 0x01 = 0
+	jr z, .noPlayerPriorityMove
+	inc hl			; increment address to the next move
+	jr .playerPriorityMoveLoop
+.playerUsingPriorityMove
+	ld c, [hl]		; get new priority value 
+.noPlayerPriorityMove
+; Now check enemy priority 
+	ld a, [wEnemySelectedMove]
+	ld d, a
+	ld hl, PriorityMovesList
+	ld e, 7			; no priority is 7
+.enemyPriorityMoveLoop
+	ld a, [hli]		; load the move ID from priority list and 
+					; increment address to the priority value address
+	cp d			; compare with move being used
+	jr z, .enemyUsingPriorityMove
+	inc a			; if at end of list: -1 + 1 = 0xFF + 0x01 = 0
+	jr z, .noEnemyPriorityMove
+	inc hl			; increment address to the next move
+	jr .enemyPriorityMoveLoop
+.enemyUsingPriorityMove
+	ld e, [hl]		; get new priority value 
+.noEnemyPriorityMove
+	ret
+
+INCLUDE "data/battle/priority_moves.asm"
 
 HurtByPoisonText:
 	text_far _HurtByPoisonText
@@ -755,6 +782,7 @@ FaintEnemyPokemon:
 ; was congruent to 0 modulo 256.
 	xor a
 	ld [wPlayerBideAccumulatedDamage], a
+	ld [wPlayerBideAccumulatedDamage + 1], a
 	ld hl, wEnemyStatsToDouble ; clear enemy statuses
 	ld [hli], a
 	ld [hli], a
@@ -922,8 +950,19 @@ TrainerBattleVictory:
 .gymleader
 	ld a, [wTrainerClass]
 	cp RIVAL3 ; final battle against rival
+	jr z, .special1998
+	cp LORELEI
+	jr z, .special1998
+	cp BRUNO
+	jr z, .special1998
+	cp AGATHA
+	jr z, .special1998
+	cp LANCE
 	jr nz, .notrival
+.special1998
 	ld b, MUSIC_DEFEATED_GYM_LEADER
+	cp RIVAL3 ; final battle against rival
+	jr nz, .notrival
 	ld hl, wStatusFlags7
 	set BIT_NO_MAP_MUSIC, [hl]
 .notrival
@@ -1189,6 +1228,8 @@ SlideDownFaintedMonPic:
 	push de
 	push hl
 	ld b, 6 ; number of rows
+	xor a
+	ld [hAutoBGTransferEnabled], a
 .rowLoop
 	push bc
 	push hl
@@ -1213,6 +1254,8 @@ SlideDownFaintedMonPic:
 	add hl, bc
 	ld de, SevenSpacesText
 	call PlaceString
+	ld a, 1
+	ld [hAutoBGTransferEnabled], a
 	ld c, 2
 	call DelayFrames
 	pop hl
@@ -1238,6 +1281,8 @@ SlideTrainerPicOffScreen:
 	push bc
 	push hl
 	ld b, 7 ; number of rows
+	xor a
+	ld [hAutoBGTransferEnabled], a
 .rowLoop
 	push hl
 	ldh a, [hSlideAmount]
@@ -1263,6 +1308,8 @@ SlideTrainerPicOffScreen:
 	add hl, de
 	dec b
 	jr nz, .rowLoop
+	ld a, 1
+	ld [hAutoBGTransferEnabled], a
 	ld c, 2
 	call DelayFrames
 	pop hl
@@ -1831,15 +1878,11 @@ DrawPlayerHUDAndHPBar:
 	ld de, wLoadedMonLevel
 	ld bc, wBattleMonPP - wBattleMonLevel
 	call CopyData
-	hlcoord 14, 8
-	push hl
-	inc hl
+	hlcoord 12, 8
 	ld de, wLoadedMonStatus
 	call PrintStatusConditionNotFainted
-	pop hl
-	jr nz, .doNotPrintLevel
+	hlcoord 14, 8
 	call PrintLevel
-.doNotPrintLevel
 	ld a, [wLoadedMonSpecies]
 	ld [wCurPartySpecies], a
 	hlcoord 10, 9
@@ -1878,21 +1921,34 @@ DrawEnemyHUDAndHPBar:
 	lb bc, 4, 12
 	call ClearScreenArea
 	callfar PlaceEnemyHUDTiles
+	push hl
+	ld a, [wEnemyMonSpecies2]
+	ld [wPokedexNum], a
+	callfar IndexToPokedex
+	ld a, [wPokedexNum]
+	dec a
+	ld c, a
+	ld b, FLAG_TEST
+	ld hl, wPokedexOwned
+	predef FlagActionPredef
+	ld a, c
+	and a
+	jr z, .notOwned
+	hlcoord 1, 1
+	ld [hl], $c0 ; replace this with your Poké Ball icon or other character
+.notOwned
+	pop hl
 	ld de, wEnemyMonNick
 	hlcoord 1, 0
 	call CenterMonName
 	call PlaceString
-	hlcoord 4, 1
-	push hl
-	inc hl
+	hlcoord 2, 1
 	ld de, wEnemyMonStatus
 	call PrintStatusConditionNotFainted
-	pop hl
-	jr nz, .skipPrintLevel ; if the mon has a status condition, skip printing the level
+	hlcoord 4, 1
 	ld a, [wEnemyMonLevel]
 	ld [wLoadedMonLevel], a
 	call PrintLevel
-.skipPrintLevel
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ldh [hMultiplicand + 1], a
@@ -2742,7 +2798,7 @@ AnyMoveToSelect:
 	or c
 	jr .handleDisabledMovePPLoop
 .allMovesChecked
-	and a ; any PP left?
+	and $3f ; any PP left?
 	ret nz ; return if a move has PP left
 .noMovesLeft
 	ld hl, NoMovesLeftText
@@ -2883,6 +2939,10 @@ PrintMenuItem:
 	hlcoord 1, 9
 	ld de, TypeText
 	call PlaceString
+	hlcoord 1, 11
+	ld a, "<BOLD_P>"
+	ld [hli], a
+	ld [hl], "<BOLD_P>"
 	hlcoord 7, 11
 	ld [hl], "/"
 	hlcoord 5, 9
@@ -4614,7 +4674,6 @@ CriticalHitTest:
 	call GetMonHeader
 	ld a, [wMonHBaseSpeed]
 	ld b, a
-	srl b                        ; (effective (base speed/2))
 	ldh a, [hWhoseTurn]
 	and a
 	ld hl, wPlayerMovePower
@@ -4628,17 +4687,6 @@ CriticalHitTest:
 	ret z                        ; do nothing if zero
 	dec hl
 	ld c, [hl]                   ; read move id
-	ld a, [de]
-	bit GETTING_PUMPED, a        ; test for focus energy
-	jr nz, .focusEnergyUsed      ; bug: using focus energy causes a shift to the right instead of left,
-	                             ; resulting in 1/4 the usual crit chance
-	sla b                        ; (effective (base speed/2)*2)
-	jr nc, .noFocusEnergyUsed
-	ld b, $ff                    ; cap at 255/256
-	jr .noFocusEnergyUsed
-.focusEnergyUsed
-	srl b
-.noFocusEnergyUsed
 	ld hl, HighCriticalMoves     ; table of high critical hit moves
 .Loop
 	ld a, [hli]                  ; read move from move table
@@ -4646,23 +4694,39 @@ CriticalHitTest:
 	jr z, .HighCritical          ; if so, the move about to be used is a high critical hit ratio move
 	inc a                        ; move on to the next move, FF terminates loop
 	jr nz, .Loop                 ; check the next move in HighCriticalMoves
-	srl b                        ; /2 for regular move (effective (base speed / 2))
+	srl b                        ; /2 for regular move
 	jr .SkipHighCritical         ; continue as a normal move
 .HighCritical
 	sla b                        ; *2 for high critical hit moves
 	jr nc, .noCarry
 	ld b, $ff                    ; cap at 255/256
 .noCarry
-	sla b                        ; *4 for high critical move (effective (base speed/2)*8))
+	sla b                        ; *4 for high critical move
 	jr nc, .SkipHighCritical
 	ld b, $ff
 .SkipHighCritical
+	ld a, b
+	inc a ; optimization of "cp $ff"
+	jr z, .guaranteedCriticalHit
+	ld a, [de]
+	bit GETTING_PUMPED, a        ; test for focus energy
+	jr z, .noFocusEnergyUsed
+	sla b                        ; (effective (base speed/2))
+	jr nc, .focusEnergyUsed
+	ld b, $ff                    ; cap at 255/256
+	jr .noFocusEnergyUsed
+.focusEnergyUsed
+	sla b                        ; (effective ((base speed*2)*2))
+	jr nc, .noFocusEnergyUsed
+	ld b, $ff                    ; cap at 255/256
+.noFocusEnergyUsed
 	call BattleRandom            ; generates a random value, in "a"
 	rlc a
 	rlc a
 	rlc a
 	cp b                         ; check a against calculated crit rate
 	ret nc                       ; no critical hit if no borrow
+.guaranteedCriticalHit
 	ld a, $1
 	ld [wCriticalHitOrOHKO], a   ; set critical hit flag
 	ret
@@ -4908,8 +4972,11 @@ ApplyAttackToPlayerPokemon:
 ; loop until a random number in the range [0, b) is found
 ; this differs from the range when the player attacks, which is [1, b)
 ; it's possible for the enemy to do 0 damage with Psywave, but the player always does at least 1 damage
+; Disparity fixed, Psywave will always loop until [1, b) is found
 .loop
 	call BattleRandom
+	cp b
+	jr z, .loop
 	cp b
 	jr nc, .loop
 	ld b, a
@@ -5275,6 +5342,21 @@ AdjustDamageForMoveType:
 	ld b, a
 	ld a, [hl] ; a = damage multiplier
 	ldh [hMultiplier], a
+	and a  ; cp NO_EFFECT
+	jr z, .gotMultiplier
+	cp NOT_VERY_EFFECTIVE
+	jr nz, .nothalf
+	ld a, [wDamageMultipliers]
+	and $7f
+	srl a
+	jr .gotMultiplier
+.nothalf
+	cp SUPER_EFFECTIVE
+	jr nz, .gotMultiplier
+	ld a, [wDamageMultipliers]
+	and $7f
+	sla a
+.gotMultiplier
 	add b
 	ld [wDamageMultipliers], a
 	xor a
@@ -5377,8 +5459,7 @@ MoveHitTest:
 	ret z ; Swift never misses (this was fixed from the Japanese versions)
 	call CheckTargetSubstitute ; substitute check (note that this overwrites a)
 	jr z, .checkForDigOrFlyStatus
-; The fix for Swift broke this code. It's supposed to prevent HP draining moves from working on Substitutes.
-; Since CheckTargetSubstitute overwrites a with either $00 or $01, it never works.
+	ld a, [de]
 	cp DRAIN_HP_EFFECT
 	jp z, .moveMissed
 	cp DREAM_EATER_EFFECT
@@ -6094,8 +6175,8 @@ GetCurrentMove:
 	; Apply InitBattleVariables to TestBattle.
 	ld a, [wStatusFlags7]
 	bit BIT_TEST_BATTLE, a
-	ld a, [wTestBattlePlayerSelectedMove]
-	jr nz, .selected
+	;ld a, [wTestBattlePlayerSelectedMove]
+	;jr nz, .selected
 	ld a, [wPlayerSelectedMove]
 .selected
 	ld [wNameListIndex], a
@@ -6327,12 +6408,21 @@ SwapPlayerAndEnemyLevels:
 LoadPlayerBackPic:
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
-	ld de, RedPicBack
-	jr nz, .next
-	ld de, OldManPicBack
-.next
+	ld de, OldManPicBack   ; Load the old man back sprite preemptively
+	ld a, BANK(RedPicBack) ; Default Red back sprite will be used as a means to load in the Old Man back sprite
+	jr z, .next
+	ld a, [wPlayerGender]
+	and a
+	jr z, .RedBack
+	ld de, GreenPicBack
+	ld a, BANK(GreenPicBack) ; Load female back sprite
+	jr .next
+.RedBack
+	ld de, RedPicBack ; Load default Red back sprite
 	ld a, BANK(RedPicBack)
-	ASSERT BANK(RedPicBack) == BANK(OldManPicBack)
+.next
+	ASSERT BANK(GreenPicBack) == BANK(OldManPicBack) ; These two ASSERTs make sure to cover
+	ASSERT BANK(RedPicBack) == BANK(OldManPicBack)   ; both sprite cases
 	call UncompressSpriteFromDE
 	predef ScaleSpriteByTwo
 	ld hl, wShadowOAM
@@ -6915,8 +7005,14 @@ _LoadTrainerPic:
 	ld d, a ; de contains pointer to trainer pic
 	ld a, [wLinkState]
 	and a
-	ld a, BANK("Pics 6") ; this is where all the trainer pics are (not counting Red's)
-	jr z, .loadSprite
+	jr nz, .useRed
+	ld a, [wTrainerClass]
+	cp TRAINER_M ; first trainer class in "Trainer Pics 2"
+	ld a, BANK("Battle Engine 1")
+	jr nc, .loadSprite
+	ld a, BANK("Pics 6")
+	jr .loadSprite
+.useRed
 	ld a, BANK(RedPicFront)
 .loadSprite
 	call UncompressSpriteFromDE

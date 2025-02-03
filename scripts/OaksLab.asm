@@ -971,15 +971,83 @@ OaksLabOak1Text:
 	call CountSetBits
 	ld a, [wNumSetBits]
 	cp 2
-	jr c, .check_for_poke_balls
+	jp c, .check_for_poke_balls
 	CheckEvent EVENT_GOT_POKEDEX
-	jr z, .check_for_poke_balls
+	jp z, .check_for_poke_balls
 .already_got_poke_balls
 	ld hl, .HowIsYourPokedexComingText
 	call PrintText
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	predef DisplayDexRating
+	CheckEvent EVENT_DEFEATED_OAK
+	jr nz, .OakDefeated
+	ld hl, wPokedexOwned
+	ld b, wPokedexOwnedEnd - wPokedexOwned
+	call CountSetBits
+	ld a, [wNumSetBits]
+	sub $96 ; 150 For the full dex
+	jp c, .done
+	ld a, $0
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+	ld hl, OaksLabOakBattleBefore
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .OakRefusedFight
+	ld hl, OaksLabOakBattleAccepted
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, OaksLabOakBattleDefeat
+	ld de, OaksLabOakBattleVictory
+	call SaveEndBattleTextPointers
+	ld a, OPP_PROF_OAK
+	ld [wCurOpponent], a
+
+	; select which team to use during the encounter
+	ld a, [wRivalStarter]
+	cp STARTER2
+	jr nz, .NotStarter2
+	ld a, $2
+	jr .saveTrainerId
+.NotStarter2
+	cp STARTER3
+	jr nz, .NotStarter3
+	ld a, $3
+	jr .saveTrainerId
+.NotStarter3
+	ld a, $1
+.saveTrainerId
+	ld [wTrainerNo], a
+	xor a
+	ldh [hJoyHeld], a
+.OakDefeated
+	CheckEvent EVENT_RECEIVED_OLD_MAP
+	jp nz, .come_see_me_sometimes
+	ld a, $0
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+	SetEvent EVENT_DEFEATED_OAK
+	lb bc, OLD_SEA_MAP, 1
+	call GiveItem
+	jr nc, .BagFull
+	SetEvent EVENT_RECEIVED_OLD_MAP
+	ld hl, OaksLabPleaseAcceptThis
+	call PrintText
+	ld hl, OaksLabReceivedOldSeaMap
+	call PrintText
+	jr .GotMap
+.BagFull
+	ld hl, OaksLabBagFull
+	call PrintText
+.GotMap
+	jp .done
+.OakRefusedFight
+	ld hl, OaksLabOakBattleMaybeSomeOtherTime
+	call PrintText
 	jp .done
 .check_for_poke_balls
 	ld b, POKE_BALL
@@ -1229,4 +1297,41 @@ OaksLabScientistText:
 
 .Text:
 	text_far _OaksLabScientistText
+	text_end
+
+OaksLabOakBattleBefore:
+	text_far _OaksLabOakBattleBefore
+	text_end
+
+OaksLabOakBattleAccepted:
+	text_far _OaksLabOakBattleAccepted
+	text_end
+
+OaksLabOakBattleMaybeSomeOtherTime:
+	text_far _OaksLabOakBattleMaybeSomeOtherTime
+	text_end
+
+OaksLabOakBattleGetReady:
+	text_far _OaksLabOakBattleGetReady
+	text_end
+
+OaksLabOakBattleVictory:
+	text_far _OaksLabOakBattleVictory
+	text_end
+
+OaksLabOakBattleDefeat:
+	text_far _OaksLabOakBattleDefeat
+	text_end
+
+OaksLabPleaseAcceptThis:
+	text_far _OaksLabPleaseAcceptThis
+	text_end
+
+OaksLabBagFull:
+	text_far _OaksLabBagFull
+	text_end
+
+OaksLabReceivedOldSeaMap:
+	text_far _OaksLabReceivedOldSeaMap
+	sound_get_item_1
 	text_end

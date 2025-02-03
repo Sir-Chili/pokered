@@ -89,6 +89,7 @@ LancesRoomLanceEndBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, ResetLanceScript
+	SetEvent EVENT_BEAT_LANCES_ROOM_TRAINER_0
 	ld a, TEXT_LANCESROOM_LANCE
 	ldh [hTextID], a
 	jp DisplayTextID
@@ -138,8 +139,32 @@ LancesRoomTrainerHeader0:
 
 LancesRoomLanceText:
 	text_asm
+	CheckEvent EVENT_BEAT_LANCES_ROOM_TRAINER_0
+	jr nz, .notRematch
+	ld a, [wGameStage]
+	and a 
+	jr z, .notRematch
+	ld hl, LancesRoomLanceBeforeBattleText
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, LancesRoomLanceEndBattleText
+	ld de, LancesRoomLanceEndBattleText
+	call SaveEndBattleTextPointers
+	ld a, OPP_LANCE
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, SCRIPT_LANCESROOM_LANCE_END_BATTLE
+	ld [wLancesRoomCurScript], a
+	ld [wCurMapScript], a
+	jr .rematch
+.notRematch
 	ld hl, LancesRoomTrainerHeader0
 	call TalkToTrainer
+.rematch
 	jp TextScriptEnd
 
 LancesRoomLanceBeforeBattleText:

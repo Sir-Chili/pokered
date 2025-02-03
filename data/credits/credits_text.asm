@@ -65,6 +65,18 @@ CreditsTextPointers:
 	dw CredFukui
 	dw CredClub
 	dw CredPAAD
+	dw CredDeluxe
+	dw CredDeluxeMadeBy
+	dw CredKnownAsChuck
+	dw CredAdditionalSprites
+	dw CredOmegaZeeZ
+	dw Credyesilovenachos
+	dw CredBlueEmerald
+	dw CredChamber
+	dw CredSoloo993
+	dw CredPlaytesters
+	dw CredDarkJP04
+	dw CredHoumar95
 	assert_table_length NUM_CRED_STRINGS
 
 CredVersion:
@@ -200,3 +212,27 @@ CredClub:
 	db -9, "NCL SUPER MARIO CLUB@"
 CredPAAD:
 	db -5, "PAAD TESTING@"
+CredDeluxe:
+	db -6, "#MON DELUXE@"
+CredDeluxeMadeBy:
+	db -6, "ROMHACK MADE BY@"
+CredKnownAsChuck:
+	db -5, "KNOWNASCHUCK@"
+CredAdditionalSprites:
+	db -8, "ADDITIONAL SPRITES@"
+CredOmegaZeeZ:
+	db -4, "OMEGAZEEZ@"
+Credyesilovenachos:
+	db -5, "YESILOVENACHOS@"
+CredBlueEmerald:
+	db -5, "BLUE EMERALD@"
+CredChamber:
+	db -4, "CHAMBER@"
+CredSoloo993:
+	db -4, "SOLOO993@"
+CredPlaytesters:
+	db -5, "PLAYTESTERS@"
+CredDarkJP04:
+	db -4, "DARKJP04@"
+CredHoumar95:
+	db -4, "HOUMAR95@"

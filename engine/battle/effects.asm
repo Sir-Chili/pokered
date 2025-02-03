@@ -202,6 +202,8 @@ FreezeBurnParalyzeEffect:
 	ld a, [wEnemyMonStatus]
 	and a
 	jp nz, CheckDefrost ; can't inflict status if opponent is already statused
+	cp TRI_ATTACK_EFFECT
+	jr z, .triAttackEffect1
 	ld a, [wPlayerMoveType]
 	ld b, a
 	ld a, [wEnemyMonType1]
@@ -230,7 +232,8 @@ FreezeBurnParalyzeEffect:
 	jr z, .burn1
 	cp FREEZE_SIDE_EFFECT1
 	jr z, .freeze1
-; .paralyze1
+	jr .paralyze1
+.paralyze1
 	ld a, 1 << PAR
 	ld [wEnemyMonStatus], a
 	call QuarterSpeedDueToParalysis ; quarter speed of affected mon
@@ -253,10 +256,41 @@ FreezeBurnParalyzeEffect:
 	call PlayBattleAnimation
 	ld hl, FrozenText
 	jp PrintText
+.triAttackEffect1
+	call BattleRandom; get random 8bit value for probability test
+	ld b, 18; 6,67% Burn Check
+	cp b
+	ld a, FIRE
+	jr c, .triAttackTypeCheck1
+	ld b, 35; 6,67% Freeze Check
+	cp b
+	ld a, ICE
+	jr c, .triAttackTypeCheck1
+	ld b, 20 percent + 1; 6,67% Para Check
+	cp b
+	ld a, ELECTRIC
+	jr c, .triAttackTypeCheck1
+	ret nc; return if all fail
+.triAttackTypeCheck1
+	ld b, a
+	ld a, [wEnemyMonType1]
+	cp b ; do target type 1 and the status type?
+	ret z  ; return if they match (an ice move can't freeze an ice-type, body slam can't paralyze a normal-type, etc.)
+	ld a, [wEnemyMonType2]
+	cp b ; do target type 1 and the status type?
+	ret z  ; return if they match
+	ld a, b
+	cp FIRE
+	jr z, .burn1
+	cp ICE
+	jr z, .freeze1
+	jr .paralyze1
 .opponentAttacker
 	ld a, [wBattleMonStatus] ; mostly same as above with addresses swapped for opponent
 	and a
 	jp nz, CheckDefrost
+	cp TRI_ATTACK_EFFECT
+	jr z, .triAttackEffect2
 	ld a, [wEnemyMoveType]
 	ld b, a
 	ld a, [wBattleMonType1]
@@ -283,7 +317,8 @@ FreezeBurnParalyzeEffect:
 	jr z, .burn2
 	cp FREEZE_SIDE_EFFECT1
 	jr z, .freeze2
-; .paralyze2
+	jr .paralyze2
+.paralyze2
 	ld a, 1 << PAR
 	ld [wBattleMonStatus], a
 	call QuarterSpeedDueToParalysis
@@ -295,11 +330,40 @@ FreezeBurnParalyzeEffect:
 	ld hl, BurnedText
 	jp PrintText
 .freeze2
-; hyper beam bits aren't reseted for opponent's side
+	call ClearHyperBeam ; resets hyper beam (recharge) condition from target
 	ld a, 1 << FRZ
 	ld [wBattleMonStatus], a
 	ld hl, FrozenText
 	jp PrintText
+.triAttackEffect2
+	call BattleRandom; get random 8bit value for probability test
+	ld b, 18; 6,67% Burn Check
+	cp b
+	ld a, FIRE
+	jr c, .triAttackTypeCheck2
+	ld b, 35; 6,67% Freeze Check
+	cp b
+	ld a, ICE
+	jr c, .triAttackTypeCheck2
+	ld b, 20 percent + 1; 6,67% Para Check
+	cp b
+	ld a, ELECTRIC
+	jr c, .triAttackTypeCheck2
+	ret nc; return if all fail
+.triAttackTypeCheck2
+	ld b, a
+	ld a, [wBattleMonType1]
+	cp b ; do target type 1 and the status type?
+	ret z  ; return if they match (an ice move can't freeze an ice-type, body slam can't paralyze a normal-type, etc.)
+	ld a, [wBattleMonType2]
+	cp b ; do target type 1 and the status type?
+	ret z  ; return if they match
+	ld a, b
+	cp FIRE
+	jr z, .burn2
+	cp ICE
+	jr z, .freeze2
+	jr .paralyze2
 
 BurnedText:
 	text_far _BurnedText
@@ -546,12 +610,12 @@ StatModifierDownEffect:
 	ld hl, wPlayerMonStatMods
 	ld de, wEnemyMoveEffect
 	ld bc, wPlayerBattleStatus1
-	ld a, [wLinkState]
-	cp LINK_STATE_BATTLING
-	jr z, .statModifierDownEffect
-	call BattleRandom
-	cp 25 percent + 1 ; chance to miss by in regular battle
-	jp c, MoveMissed
+;	ld a, [wLinkState]
+;	cp LINK_STATE_BATTLING
+;	jr z, .statModifierDownEffect
+;	call BattleRandom
+;	cp 25 percent + 1 ; chance to miss by in regular battle
+;	jp c, MoveMissed
 .statModifierDownEffect
 	call CheckTargetSubstitute ; can't hit through substitute
 	jp nz, MoveMissed

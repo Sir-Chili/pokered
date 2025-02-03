@@ -67,6 +67,18 @@ SpriteSheetPointerTable:
 	overworld_sprite BrunoSprite, 12            ; SPRITE_BRUNO
 	overworld_sprite LoreleiSprite, 12          ; SPRITE_LORELEI
 	overworld_sprite SeelSprite, 12             ; SPRITE_SEEL
+	overworld_sprite BrockSprite, 12       		; SPRITE_BROCK
+	overworld_sprite MistySprite, 12            ; SPRITE_MISTY
+	overworld_sprite LtSurgeSprite, 12          ; SPRITE_LT_SURGE
+	overworld_sprite ErikaSprite, 12            ; SPRITE_ERIKA
+	overworld_sprite SabrinaSprite, 12          ; SPRITE_SABRINA
+	overworld_sprite BlaineSprite, 12           ; SPRITE_BLAINE
+	overworld_sprite ArticunoSprite, 12         ; SPRITE_ARTICUNO
+	overworld_sprite ZapdosSprite, 12           ; SPRITE_ZAPDOS
+	overworld_sprite MoltresSprite, 12          ; SPRITE_MOLTRES
+	overworld_sprite MewtwoSprite, 12           ; SPRITE_MEWTWO
+	overworld_sprite MewSprite, 12        	    ; SPRITE_MEW
+	overworld_sprite GreenSprite, 12			; SPRITE_GREEN
 	overworld_sprite PokeBallSprite, 4          ; SPRITE_POKE_BALL
 	overworld_sprite FossilSprite, 4            ; SPRITE_FOSSIL
 	overworld_sprite BoulderSprite, 4           ; SPRITE_BOULDER

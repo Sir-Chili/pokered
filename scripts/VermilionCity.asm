@@ -37,6 +37,7 @@ VermilionCity_ScriptPointers:
 	dw_const VermilionCityPlayerExitShipScript,      SCRIPT_VERMILIONCITY_PLAYER_EXIT_SHIP
 	dw_const VermilionCityPlayerMovingUp2Script,     SCRIPT_VERMILIONCITY_PLAYER_MOVING_UP2
 	dw_const VermilionCityPlayerAllowedToPassScript, SCRIPT_VERMILIONCITY_PLAYER_ALLOWED_TO_PASS
+	dw_const VermilionCitySailToFarawayIsland,		 SCRIPT_VERMILIONCITY_SAIL_TO_FARAWAY_ISLAND
 
 VermilionCityDefaultScript:
 	ld a, [wSpritePlayerStateData1FacingDirection]
@@ -122,6 +123,7 @@ VermilionCity_TextPointers:
 	dw_const VermilionCityGambler2Text,           TEXT_VERMILIONCITY_GAMBLER2
 	dw_const VermilionCityMachopText,             TEXT_VERMILIONCITY_MACHOP
 	dw_const VermilionCitySailor2Text,            TEXT_VERMILIONCITY_SAILOR2
+	dw_const VermilionCitySailor3Text,            TEXT_VERMILIONCITY_SAILOR3
 	dw_const VermilionCitySignText,               TEXT_VERMILIONCITY_SIGN
 	dw_const VermilionCityNoticeSignText,         TEXT_VERMILIONCITY_NOTICE_SIGN
 	dw_const MartSignText,                        TEXT_VERMILIONCITY_MART_SIGN
@@ -257,3 +259,79 @@ VermilionCityGymSignText:
 VermilionCityHarborSignText:
 	text_far _VermilionCityHarborSignText
 	text_end
+
+VermilionCitySailor3Text:
+	text_asm
+	CheckEvent EVENT_BEAT_MEW
+	jr nz, .already_caught_mew
+	ld hl, .IWishICouldExploreText
+	call PrintText
+	ld b, OLD_SEA_MAP
+	predef GetQuantityOfItemInBag
+	ld a, b
+	and a
+	jr z, .no_map
+	ld hl, .ReadyToLeaveText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	ld hl, .AllAboardText
+	call PrintText
+	ld a, SCRIPT_VERMILIONCITY_SAIL_TO_FARAWAY_ISLAND
+	jr .warp_to_faraway_island
+.no_map
+	ld hl, .StopPesteringMeText
+	call PrintText
+	jr .done
+.refused
+	ld hl, .RefusedText
+	call PrintText
+	jr .done
+.already_caught_mew
+	ld hl, .ThanksForTheTripText
+	call PrintText
+	jr .done
+.warp_to_faraway_island
+	ld [wVermilionCityCurScript], a
+	ld [wCurMapScript], a
+.done
+	jp TextScriptEnd
+
+.IWishICouldExploreText:
+	text_far _VermilionCitySailor3IWishICouldExploreText
+	text_end
+.StopPesteringMeText:
+	text_far _VermilionCitySailor3LeaveMeAloneKidText
+	text_end
+.RefusedText:
+	text_far _VermilionCitySailor3Refused
+	text_end
+.ReadyToLeaveText:
+	text_far _VermilionCitySailor3ReadyToLeaveText
+	text_end
+.AllAboardText:
+	text_far _VermilionCitySailor3AllAboardText
+	text_end
+.ThanksForTheTripText:
+	text_far _VermilionCitySailor3ThanksForTheTripText
+	text_end
+
+VermilionCitySailToFarawayIsland:
+	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld [wJoyIgnore], a
+	ld a, SPRITE_FACING_UP
+	ld [wSpritePlayerStateData1FacingDirection], a
+	ld a, FARAWAY_ISLAND
+	ldh [hWarpDestinationMap], a
+	ld a, $0
+	ld [wDestinationWarpID], a
+	ld a, VERMILION_CITY
+	ld [wLastMap], a
+	ld hl, wStatusFlags3
+	set BIT_WARP_FROM_CUR_SCRIPT, [hl] 
+	ld a, SCRIPT_VERMILIONCITY_DEFAULT
+	ld [wVermilionCityCurScript], a
+	ld [wCurMapScript], a
+	ret

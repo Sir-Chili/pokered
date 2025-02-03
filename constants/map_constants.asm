@@ -202,7 +202,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const SAFFRON_MART,                   4,  4 ; $B4
 	map_const SILPH_CO_1F,                   15,  9 ; $B5
 	map_const SAFFRON_POKECENTER,             7,  4 ; $B6
-	map_const MR_PSYCHICS_HOUSE,              4,  4 ; $B7
+	map_const MOVE_KIDS_HOUSE,                4,  4 ; $B7
 	map_const ROUTE_15_GATE_1F,               4,  5 ; $B8
 	map_const ROUTE_15_GATE_2F,               4,  4 ; $B9
 	map_const ROUTE_16_GATE_1F,               4,  7 ; $BA
@@ -263,7 +263,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const UNUSED_MAP_F1,                  0,  0 ; $F1
 	map_const UNUSED_MAP_F2,                  0,  0 ; $F2
 	map_const UNUSED_MAP_F3,                  0,  0 ; $F3
-	map_const UNUSED_MAP_F4,                  0,  0 ; $F4
+	map_const FARAWAY_ISLAND,                23, 19 ; $F4
 	map_const LORELEIS_ROOM,                  5,  6 ; $F5
 	map_const BRUNOS_ROOM,                    5,  6 ; $F6
 	map_const AGATHAS_ROOM,                   5,  6 ; $F7

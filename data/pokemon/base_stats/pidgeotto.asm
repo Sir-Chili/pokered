@@ -1,6 +1,6 @@
 	db DEX_PIDGEOTTO ; pokedex id
 
-	db  63,  60,  55,  71,  50
+	db  63,  80,  55,  81,  50
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, FLYING ; type
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
-	     RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
-	     SWIFT,        SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
+	tmhm WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	     RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     SWIFT,        SKY_ATTACK,   REST,         SHADOW_BALL,  SUBSTITUTE,   FLY
 	; end
 
 	db 0 ; padding

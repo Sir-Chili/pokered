@@ -2,7 +2,7 @@ TechnicalMachinePrices:
 ; In thousands (nybbles).
 	nybble_array TechnicalMachinePrices
 	nybble 3 ; TM01
-	nybble 2 ; TM02
+	nybble 4 ; TM02
 	nybble 2 ; TM03
 	nybble 1 ; TM04
 	nybble 3 ; TM05
@@ -12,7 +12,7 @@ TechnicalMachinePrices:
 	nybble 3 ; TM09
 	nybble 4 ; TM10
 	nybble 2 ; TM11
-	nybble 1 ; TM12
+	nybble 5 ; TM12
 	nybble 4 ; TM13
 	nybble 5 ; TM14
 	nybble 5 ; TM15
@@ -31,7 +31,7 @@ TechnicalMachinePrices:
 	nybble 2 ; TM28
 	nybble 4 ; TM29
 	nybble 1 ; TM30
-	nybble 2 ; TM31
+	nybble 5 ; TM31
 	nybble 1 ; TM32
 	nybble 1 ; TM33
 	nybble 2 ; TM34
@@ -51,4 +51,5 @@ TechnicalMachinePrices:
 	nybble 4 ; TM48
 	nybble 4 ; TM49
 	nybble 2 ; TM50
+	nybble 7 ; TM51
 	end_nybble_array NUM_TMS

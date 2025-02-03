@@ -184,7 +184,7 @@ MapHeaderBanks::
 	db BANK(SaffronMart_h)
 	db BANK(SilphCo1F_h)
 	db BANK(SaffronPokecenter_h)
-	db BANK(MrPsychicsHouse_h)
+	db BANK(MoveKidsHouse_h)
 	db BANK(Route15Gate1F_h)
 	db BANK(Route15Gate2F_h)
 	db BANK(Route16Gate1F_h)
@@ -245,7 +245,7 @@ MapHeaderBanks::
 	db $11 ; UNUSED_MAP_F1
 	db $11 ; UNUSED_MAP_F2
 	db $11 ; UNUSED_MAP_F3
-	db $11 ; UNUSED_MAP_F4
+	db BANK(FarawayIsland_h)
 	db BANK(LoreleisRoom_h)
 	db BANK(BrunosRoom_h)
 	db BANK(AgathasRoom_h)

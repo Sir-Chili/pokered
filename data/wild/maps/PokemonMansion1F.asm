@@ -8,7 +8,7 @@ IF DEF(_RED)
 	db 34, GROWLITHE
 	db 32, PONYTA
 	db 30, GRIMER
-	db 28, PONYTA
+	db 28, MR_MIME
 	db 37, WEEZING
 	db 39, MUK
 ENDC
@@ -20,7 +20,7 @@ IF DEF(_BLUE)
 	db 34, VULPIX
 	db 32, PONYTA
 	db 30, KOFFING
-	db 28, PONYTA
+	db 28, MR_MIME
 	db 37, MUK
 	db 39, WEEZING
 ENDC

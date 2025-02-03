@@ -60,9 +60,6 @@ HiddenObjectMaps:
 	db UNUSED_MAP_6F
 	db BILLS_HOUSE
 	db VIRIDIAN_CITY
-	db SAFARI_ZONE_WEST_REST_HOUSE
-	db SAFARI_ZONE_EAST_REST_HOUSE
-	db SAFARI_ZONE_NORTH_REST_HOUSE
 	db ROUTE_15_GATE_2F
 	db MR_FUJIS_HOUSE
 	db CELADON_MANSION_ROOF_HOUSE
@@ -149,9 +146,6 @@ HiddenObjectPointers:
 	dw Unused6FHiddenObjects
 	dw BillsHouseHiddenObjects
 	dw ViridianCityHiddenObjects
-	dw SafariZoneRestHouse2HiddenObjects
-	dw SafariZoneRestHouse3HiddenObjects
-	dw SafariZoneRestHouse4HiddenObjects
 	dw Route15GateUpstairsHiddenObjects
 	dw LavenderHouse1HiddenObjects
 	dw CeladonMansion5HiddenObjects
@@ -559,21 +553,6 @@ BillsHouseHiddenObjects:
 
 ViridianCityHiddenObjects:
 	hidden_object 14,  4, POTION, HiddenItems
-	db -1 ; end
-
-SafariZoneRestHouse2HiddenObjects:
-	hidden_object  0,  4, SPRITE_FACING_LEFT, PrintBenchGuyText
-	hidden_object 13,  3, SPRITE_FACING_UP, OpenPokemonCenterPC
-	db -1 ; end
-
-SafariZoneRestHouse3HiddenObjects:
-	hidden_object  0,  4, SPRITE_FACING_LEFT, PrintBenchGuyText
-	hidden_object 13,  3, SPRITE_FACING_UP, OpenPokemonCenterPC
-	db -1 ; end
-
-SafariZoneRestHouse4HiddenObjects:
-	hidden_object  0,  4, SPRITE_FACING_LEFT, PrintBenchGuyText
-	hidden_object 13,  3, SPRITE_FACING_UP, OpenPokemonCenterPC
 	db -1 ; end
 
 Route15GateUpstairsHiddenObjects:

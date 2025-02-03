@@ -1,6 +1,6 @@
 	db DEX_VENOMOTH ; pokedex id
 
-	db  70,  65,  60,  90,  90
+	db  85,  80,  60,  90,  90
 	;   hp  atk  def  spd  spc
 
 	db BUG, POISON ; type
@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
-	     HYPER_BEAM,   RAGE,         MEGA_DRAIN,   SOLARBEAM,    PSYCHIC_M,    \
-	     TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
-	     SWIFT,        REST,         PSYWAVE,      SUBSTITUTE
+	tmhm SLUDGE_BOMB,  WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	     HYPER_BEAM,   RAGE,         GIGA_DRAIN,   SOLARBEAM,    PSYCHIC_M,    \
+	     TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     SWIFT,        REST,         SUBSTITUTE
 	; end
 
 	db 0 ; padding

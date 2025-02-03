@@ -135,6 +135,7 @@ DEF FIRST_SE_ID EQU const_value
 	const SUBANIM_0_SAFARI_ROCK
 	const SUBANIM_0_SAFARI_BAIT
 	const SUBANIM_0_STAR_HIGH
+	const SUBANIM_0_SLICE_REVERSE
 DEF NUM_SUBANIMS EQU const_value
 
 ; types of subanimations
@@ -271,6 +272,7 @@ DEF NUM_SUBANIMS EQU const_value
 	const FRAMEBLOCK_77
 	const FRAMEBLOCK_78
 	const FRAMEBLOCK_79
+	const FRAMEBLOCK_7A
 DEF NUM_FRAMEBLOCKS EQU const_value
 
 ; base coordinates that are part of subanimations
@@ -453,6 +455,7 @@ DEF NUM_FRAMEBLOCKS EQU const_value
 	const BASECOORD_AE
 	const BASECOORD_AF
 	const BASECOORD_B0
+	const BASECOORD_B1
 DEF NUM_BASECOORDS EQU const_value
 
 ; frame block modes that are part of subanimations

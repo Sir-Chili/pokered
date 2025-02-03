@@ -345,7 +345,7 @@ CooltrainerFAI:
 	; The intended 25% chance to consider switching will not apply.
 	; Uncomment the line below to fix this.
 	cp 25 percent + 1
-	; ret nc
+	ret nc
 	ld a, 10
 	call AICheckIfHPBelowFraction
 	jp c, AIUseHyperPotion
@@ -387,7 +387,7 @@ KogaAI:
 BlaineAI:
 	cp 25 percent + 1
 	ret nc
-	jp AIUseSuperPotion
+	jp AIUseHyperPotion
 
 SabrinaAI:
 	cp 25 percent + 1
@@ -443,6 +443,15 @@ LanceAI:
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUseHyperPotion
+
+TrainerMAI:
+TrainerFAI:
+	cp 13 percent - 1
+	ret nc
+	ld a, 5
+	call AICheckIfHPBelowFraction
+	ret nc
+	jp AIUseFullRestore
 
 GenericAI:
 	and a ; clear carry

@@ -184,7 +184,7 @@ MapHeaderPointers::
 	dw SaffronMart_h
 	dw SilphCo1F_h
 	dw SaffronPokecenter_h
-	dw MrPsychicsHouse_h
+	dw MoveKidsHouse_h ;Replacing Mr Psychic's house
 	dw Route15Gate1F_h
 	dw Route15Gate2F_h
 	dw Route16Gate1F_h
@@ -245,7 +245,7 @@ MapHeaderPointers::
 	dw SilphCo2F_h ; UNUSED_MAP_F1
 	dw SilphCo2F_h ; UNUSED_MAP_F2
 	dw SilphCo2F_h ; UNUSED_MAP_F3
-	dw SilphCo2F_h ; UNUSED_MAP_F4
+	dw FarawayIsland_h
 	dw LoreleisRoom_h
 	dw BrunosRoom_h
 	dw AgathasRoom_h

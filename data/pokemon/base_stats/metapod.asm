@@ -1,6 +1,6 @@
 	db DEX_METAPOD ; pokedex id
 
-	db  50,  20,  55,  30,  25
+	db  50,  30,  75,  50,  25
 	;   hp  atk  def  spd  spc
 
 	db BUG, BUG ; type
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/metapod.pic", 0, 1 ; sprite dimensions
 	dw MetapodPicFront, MetapodPicBack
 
-	db HARDEN, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db HARDEN, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

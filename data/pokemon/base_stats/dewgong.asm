@@ -1,6 +1,6 @@
 	db DEX_DEWGONG ; pokedex id
 
-	db  90,  70,  80,  70,  95
+	db  90,  70,  90,  80,  105
 	;   hp  atk  def  spd  spc
 
 	db WATER, ICE ; type
@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        HORN_DRILL,   BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
-	     BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   \
-	     PAY_DAY,      RAGE,         MIMIC,        DOUBLE_TEAM,  BIDE,         \
+	     BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   \
+	     PAY_DAY,      RAGE,         MIMIC,        DOUBLE_TEAM,  \
 	     SKULL_BASH,   REST,         SUBSTITUTE,   SURF,         STRENGTH
 	; end
 

@@ -1211,8 +1211,8 @@ _GainedText::
 	text_end
 
 _WithExpAllText::
-	text "with EXP.ALL,"
-	cont "@"
+	text "Party gained"
+	next "@"
 	text_end
 
 _BoostedText::
@@ -1724,8 +1724,13 @@ _OakSpeechText2B::
 	line "as a profession."
 	prompt
 
+_BoyGirlText::
+    text "First, are you a"
+    line "boy or a girl?"
+    prompt
+
 _IntroducePlayerText::
-	text "First, what is"
+	text "Next, what is"
 	line "your name?"
 	prompt
 

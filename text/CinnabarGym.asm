@@ -210,3 +210,53 @@ _CinnabarGymGymGuideBeatBlaineText::
 	text "<PLAYER>! You beat"
 	line "that fire brand!"
 	done
+
+_CinnabarGymRematchPreBattle1Text::
+	text "It's true that"    
+	line "you already have"
+	cont "a VOLCANOBADGE,"
+	cont "but don't worry"
+	cont "about that -"
+	cont "let's battle!"
+
+	para "What d'you say?"
+	line "Ready to start?"
+	done
+
+_CinnabarGymPreRematchBattle2Text::
+	text "No need to be"
+	line "shy, then."
+
+	para "Step right up!"
+	done
+
+_CinnabarGymRematchRefusedText::
+	text "All righty then!"
+	done
+
+_CinnabarGymRematchDefeatedText::
+	text "Hah!"
+	line "I'm all fired up!"
+	prompt
+
+_CinnabarGymRematchVictoryText::
+	text "Yes!"
+	line "That's the way"
+	cont "to do it!"
+	prompt
+
+_CinnabarGymRematchPostBattleText::
+	text "Recently, Gym"
+	line "challengers have"
+	cont "been increasing!"
+
+	para "That just means"
+	line "more fun for me,"
+	cont "so I don't mind"
+	cont "at all!"
+	done
+
+_CinnabarGymRematchPleaseAcceptTM::
+	text "Here, you can" 
+	line "have this again!"
+	done

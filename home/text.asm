@@ -59,12 +59,15 @@ PlaceNextChar::
 	ret
 
 .NotTerminator
+	cp "<LF>" ; used on town map for names
+	jr z, .line_feed
 	cp "<NEXT>"
 	jr nz, .NotNext
 	ld bc, 2 * SCREEN_WIDTH
 	ldh a, [hUILayoutFlags]
 	bit BIT_SINGLE_SPACED_LINES, a
 	jr z, .ok
+.line_feed
 	ld bc, SCREEN_WIDTH
 .ok
 	pop hl
@@ -520,7 +523,7 @@ TextCommand_SOUND::
 	jr .loop
 
 .play
-	cp TX_SOUND_CRY_NIDORINA
+	cp TX_SOUND_CRY_NIDORINO
 	jr z, .pokemonCry
 	cp TX_SOUND_CRY_PIDGEOT
 	jr z, .pokemonCry
@@ -550,7 +553,7 @@ TextCommandSounds::
 	db TX_SOUND_GET_ITEM_2,           SFX_GET_ITEM_2
 	db TX_SOUND_GET_KEY_ITEM,         SFX_GET_KEY_ITEM
 	db TX_SOUND_DEX_PAGE_ADDED,       SFX_DEX_PAGE_ADDED
-	db TX_SOUND_CRY_NIDORINA,         NIDORINA ; used in OakSpeech
+	db TX_SOUND_CRY_NIDORINO,         NIDORINO ; used in OakSpeech
 	db TX_SOUND_CRY_PIDGEOT,          PIDGEOT  ; used in SaffronCityPidgeotText
 	db TX_SOUND_CRY_DEWGONG,          DEWGONG  ; unused
 

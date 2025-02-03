@@ -56,4 +56,6 @@ TrainerClassMoveChoiceModifications:
 	move_choices 1       ; CHANNELER
 	move_choices 1       ; AGATHA
 	move_choices 1, 3    ; LANCE
+	move_choices 1, 3    ; TRAINER_M
+	move_choices 1, 3    ; TRAINER_F
 	assert_list_length NUM_TRAINERS

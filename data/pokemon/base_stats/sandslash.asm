@@ -1,9 +1,9 @@
 	db DEX_SANDSLASH ; pokedex id
 
-	db  75, 100, 110,  65,  55
+	db  75, 100, 110,  65,  80
 	;   hp  atk  def  spd  spc
 
-	db GROUND, GROUND ; type
+	db GROUND, ICE ; type
 	db 90 ; catch rate
 	db 163 ; base exp
 
@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
+	tmhm SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  ICE_BEAM,     BLIZZARD,    \
 	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, RAGE,         EARTHQUAKE,   \
-	     FISSURE,      DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,         \
-	     SWIFT,        SKULL_BASH,   REST,         ROCK_SLIDE,   SUBSTITUTE,   \
+	     FISSURE,      DIG,          MIMIC,        DOUBLE_TEAM,  FLAMETHROWER, \
+	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         ROCK_SLIDE,   SUBSTITUTE,   \
 	     CUT,          STRENGTH
 	; end
 

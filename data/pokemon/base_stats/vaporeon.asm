@@ -1,6 +1,6 @@
 	db DEX_VAPOREON ; pokedex id
 
-	db 130,  65,  60,  65, 110
+	db 130,  65,  60,  75, 110
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
-	     WATER_GUN,    ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   RAGE,         \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         SWIFT,        \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   SURF
+	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   RAGE,         \
+	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SWIFT,        \
+	     SKULL_BASH,   REST,         SHADOW_BALL,  TRI_ATTACK,   SUBSTITUTE,   SURF
 	; end
 
 	db 0 ; padding

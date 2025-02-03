@@ -1,6 +1,6 @@
 	db DEX_POLIWHIRL ; pokedex id
 
-	db  65,  65,  65,  90,  50
+	db  65,  65,  75,  90,  50
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   CROSS_CHOP,   ICE_BEAM,     BLIZZARD,     \
 	     SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         EARTHQUAKE,   \
-	     FISSURE,      PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  BIDE,         \
-	     METRONOME,    SKULL_BASH,   REST,         PSYWAVE,      SUBSTITUTE,   \
+	     FISSURE,      PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  \
+	     METRONOME,    SKULL_BASH,   REST,         ROCK_SLIDE,   SUBSTITUTE,   \
 	     SURF,         STRENGTH
 	; end
 

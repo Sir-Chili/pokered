@@ -55,6 +55,16 @@ SubstituteEffect_:
 	call Bankswitch ; jump to routine depending on animation setting
 	ld hl, SubstituteText
 	call PrintText
+.checkRemainingHP
+   ld a, [wEnemyMonHP+1]
+   and a
+   jr nz, .done ;if there's HP left, we are done
+   ld a, [wEnemyMonHP] ;check HP high byte
+   and a
+   jr nz, .done
+   ld hl, wEnemyMonHP+1
+   set 0, [hl] ;set HP to 1.
+.done
 	jpfar DrawHUDsAndHPBars
 .alreadyHasSubstitute
 	ld hl, HasSubstituteText

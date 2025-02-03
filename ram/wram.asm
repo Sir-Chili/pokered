@@ -377,7 +377,13 @@ wSlotMachineSevenAndBarModeChance:: db
 	ds 2
 ; ROM back to return to when the player is done with the slot machine
 wSlotMachineSavedROMBank:: db
-	ds 166
+; Move Buffer stuff for Mateo's code
+wMoveBuffer::
+wRelearnableMoves::
+	ds 164
+; Try not to use this stack. 
+; A good amount of space is needed to store data for the move relearner.
+; If it's like, 2, it'll lag like crazy and show garbage from elsewhere.
 wLuckySlotHiddenObjectIndex:: db
 
 NEXTU
@@ -1979,7 +1985,7 @@ wPokemonMansion3FCurScript:: db
 wPokemonMansionB1FCurScript:: db
 wVictoryRoad2FCurScript:: db
 wVictoryRoad3FCurScript:: db
-	ds 1
+wIndigoPlateauCurScript:: db
 wFightingDojoCurScript:: db
 wSilphCo2FCurScript:: db
 wSilphCo3FCurScript:: db
@@ -2012,7 +2018,7 @@ wBillsHouseCurScript:: db
 wRoute5GateCurScript:: db
 wPowerPlantCurScript:: ; overload
 wRoute7GateCurScript:: db
-	ds 1
+wFarawayIslandCurScript:: db
 wSSAnne2FCurScript:: db
 wSeafoamIslandsB3FCurScript:: db
 wRoute23CurScript:: db
@@ -2020,8 +2026,12 @@ wSeafoamIslandsB4FCurScript:: db
 wRoute18Gate1FCurScript:: db
 	ds 78
 wGameProgressFlagsEnd::
-
-	ds 56
+wPlayerGender::
+		; $00 = male
+		; $01 = female
+			ds 1
+		; unused
+			ds 55
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
@@ -2116,7 +2126,11 @@ wCardKeyDoorX:: db
 wFirstLockTrashCanIndex:: db
 wSecondLockTrashCanIndex:: db
 
-	ds 2
+wGameStage:: db
+	; $00 = before champion fight
+	; $01 = post game
+wRematchFlag:: db
+	; each bit in order correspond to a respective gym to allow rematch and reset on Elite 4
 
 wEventFlags:: flag_array NUM_EVENTS
 

@@ -1,9 +1,9 @@
 	db DEX_RATTATA ; pokedex id
 
-	db  30,  56,  35,  72,  25
+	db  30,  60,  40,  80,  25
 	;   hp  atk  def  spd  spc
 
-	db NORMAL, NORMAL ; type
+	db NORMAL, GROUND ; type
 	db 255 ; catch rate
 	db 57 ; base exp
 
@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
-	     WATER_GUN,    BLIZZARD,     RAGE,         THUNDERBOLT,  THUNDER,      \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,         SWIFT,        \
-	     SKULL_BASH,   REST,         SUBSTITUTE
+	     BLIZZARD,     RAGE,         THUNDERBOLT,  THUNDER,      EARTHQUAKE,   \
+	     DIG,          MIMIC,        DOUBLE_TEAM,  SWIFT,        \
+	     SKULL_BASH,   REST,         SHADOW_BALL,  SUBSTITUTE
 	; end
 
 	db 0 ; padding

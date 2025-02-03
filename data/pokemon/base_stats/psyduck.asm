@@ -1,6 +1,6 @@
 	db DEX_PSYDUCK ; pokedex id
 
-	db  50,  52,  48,  55,  50
+	db  50,  57,  48,  55,  55
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   CROSS_CHOP,   ICE_BEAM,     BLIZZARD,     \
 	     PAY_DAY,      SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,         SWIFT,        \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   SURF,         STRENGTH
+	     DIG,          PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  SWIFT,        \
+	     SKULL_BASH,   REST,         SHADOW_BALL,  TRI_ATTACK,   SUBSTITUTE,   SURF,         STRENGTH
 	; end
 
 	db 0 ; padding

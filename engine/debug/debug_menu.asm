@@ -96,19 +96,32 @@ TestBattle: ; unreferenced except in _DEBUG
 	dec a
 	ld [hl], a
 
-	; Give the player a level 20 Rhydon.
-	ld a, RHYDON
+	; Give the player a level 100 Beedrill.
+	ld a, SCYTHER
 	ld [wCurPartySpecies], a
-	ld a, 20
+	ld a, 100
 	ld [wCurEnemyLevel], a
 	xor a
 	ld [wMonDataLocation], a
 	ld [wCurMap], a
 	call AddPartyMon
 
-	; Fight against a level 20 Rhydon.
-	ld a, RHYDON
+	; Specs out the Beedrill
+	ld hl, wPartyMon1Moves
+	ld a, X_SCISSOR
+	ld [hli], a
+	ld a, DUALWINGBEAT
+	ld [hli], a
+	ld a, QUICK_ATTACK
+	ld [hli], a
+	ld a, SWORDS_DANCE
+	ld [hli], a
+
+	; Fight against a level 100 Dragonite.
+	ld a, DRAGONITE
 	ld [wCurOpponent], a
+	ld a, 100
+	ld [wCurEnemyLevel], a
 
 	predef InitOpponent
 

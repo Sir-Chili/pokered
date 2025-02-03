@@ -63,7 +63,7 @@ _SaffronGymSabrinaReceivedTM46Text::
 _TM46ExplanationText::
 	text_start
 
-	para "TM46 is PSYWAVE!"
+	para "TM46 is PSYCHIC!"
 	line "It uses powerful"
 	cont "psychic waves to"
 	cont "inflict damage!"
@@ -236,4 +236,66 @@ _SaffronGymYoungster4AfterBattleText::
 	text "That's right! I"
 	line "used telepathy to"
 	cont "read your mind!"
+	done
+
+_SaffronGymRematchPreBattle1Text::
+	text "I knew you'd"   
+	line "come! I had a"
+	cont "feeling."
+
+	para "Since you wish"
+	line "it, I will show"
+	cont "you my psychic"
+	cont "powers again!"
+	done
+
+_SaffronGymPreRematchBattle2Text::
+	text "The unseen power"
+	line "that is psychic"
+	cont "force..."
+
+	para "Let us begin."
+	done
+
+_SaffronGymRematchRefusedText::
+	text "I'm a little"
+	line "disappointed..."
+	done
+
+_SaffronGymRematchDefeatedText::
+	text "Was the" 
+	line "future I saw..."
+	cont "wrong?"
+	prompt
+
+_SaffronGymRematchVictoryText::
+	text "This turned out"  
+	line "exactly as I"
+	cont "had predicted."
+	prompt
+
+_SaffronGymRematchPostBattleText::
+	text "Your power..."
+
+	para "It far exceeds"
+	line "what I foresaw."
+
+	para "Maybe it isn't"
+	line "possible to"
+	cont "fully predict"
+	cont "what the future"
+	cont "holds..."
+
+	para "Once, I was"
+	line "shocked that I"
+	cont "lost to you."
+
+	para "Now, I just want"
+	line "to live freely,"
+	cont "as you do."
+	done
+
+_SaffronGymRematchPleaseAcceptTM::
+	text "Please take this"  
+	line "TM with you."
 	done

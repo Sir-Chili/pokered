@@ -3,7 +3,7 @@
 	db  60, 110,  70, 100,  60
 	;   hp  atk  def  spd  spc
 
-	db NORMAL, FLYING ; type
+	db FIGHTING, FLYING ; type
 	db 45 ; catch rate
 	db 158 ; base exp
 
@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm WHIRLWIND,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
-	     HYPER_BEAM,   RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     BIDE,         SKULL_BASH,   SKY_ATTACK,   REST,         TRI_ATTACK,   \
+	     HYPER_BEAM,   SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     SKULL_BASH,   SKY_ATTACK,   REST,         TRI_ATTACK,   \
 	     SUBSTITUTE,   FLY
 	; end
 

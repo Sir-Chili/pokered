@@ -127,6 +127,7 @@ JynxPicBack::         INCBIN "gfx/pokemon/back/jynxb.pic"
 MoltresPicFront::     INCBIN "gfx/pokemon/front/moltres.pic"
 MoltresPicBack::      INCBIN "gfx/pokemon/back/moltresb.pic"
 
+FossilKabutopsPic::   INCBIN "gfx/pokemon/front/fossilkabutops.pic"
 
 SECTION "Pics 3", ROMX
 
@@ -199,9 +200,6 @@ KakunaPicBack::       INCBIN "gfx/pokemon/back/kakunab.pic"
 BeedrillPicFront::    INCBIN "gfx/pokemon/front/beedrill.pic"
 BeedrillPicBack::     INCBIN "gfx/pokemon/back/beedrillb.pic"
 
-FossilKabutopsPic::   INCBIN "gfx/pokemon/front/fossilkabutops.pic"
-
-
 SECTION "Pics 4", ROMX
 
 DodrioPicFront::       INCBIN "gfx/pokemon/front/dodrio.pic"
@@ -264,6 +262,7 @@ StarmiePicFront::      INCBIN "gfx/pokemon/front/starmie.pic"
 StarmiePicBack::       INCBIN "gfx/pokemon/back/starmieb.pic"
 
 RedPicBack::           INCBIN "gfx/player/redb.pic"
+GreenPicBack::         INCBIN "gfx/player/greenb.pic"
 OldManPicBack::        INCBIN "gfx/battle/oldmanb.pic"
 
 

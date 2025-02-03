@@ -1,9 +1,9 @@
 	db DEX_GOLDEEN ; pokedex id
 
-	db  45,  67,  60,  63,  50
+	db  45,  70,  60,  65,  50
 	;   hp  atk  def  spd  spc
 
-	db WATER, WATER ; type
+	db WATER, ELECTRIC ; type
 	db 225 ; catch rate
 	db 111 ; base exp
 
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        HORN_DRILL,   TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
-	     WATER_GUN,    ICE_BEAM,     BLIZZARD,     RAGE,         MIMIC,        \
-	     DOUBLE_TEAM,  BIDE,         SWIFT,        SKULL_BASH,   REST,         \
+	tmhm SWORDS_DANCE, TOXIC,        HORN_DRILL,   TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
+	     ICE_BEAM,     BLIZZARD,     RAGE,         THUNDERBOLT,  THUNDER,      MIMIC,        \
+	     DOUBLE_TEAM,  SWIFT,        SKULL_BASH,   REST,         \
 	     SUBSTITUTE,   SURF
 	; end
 

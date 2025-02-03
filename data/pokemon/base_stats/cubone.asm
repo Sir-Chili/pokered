@@ -1,6 +1,6 @@
 	db DEX_CUBONE ; pokedex id
 
-	db  50,  50,  95,  35,  40
+	db  50,  75,  95,  35,  45
 	;   hp  atk  def  spd  spc
 
 	db GROUND, GROUND ; type
@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         EARTHQUAKE,   \
-	     FISSURE,      DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,         \
-	     FIRE_BLAST,   SKULL_BASH,   REST,         SUBSTITUTE,   STRENGTH
+	     FISSURE,      DIG,          MIMIC,        DOUBLE_TEAM,  FLAMETHROWER,              \
+	     FIRE_BLAST,   SKULL_BASH,   REST,         SHADOW_BALL,  SUBSTITUTE,   STRENGTH
 	; end
 
 	db 0 ; padding

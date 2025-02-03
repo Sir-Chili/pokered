@@ -8,8 +8,14 @@ VictoryRoad3FWildMons:
 	db 45, ONIX
 	db 43, GRAVELER
 	db 41, GOLBAT
-	db 42, MACHOKE
-	db 45, MACHOKE
+IF DEF(_RED)
+	db 45, HITMONCHAN
+	db 45, HITMONLEE
+ENDC
+IF DEF(_BLUE)
+	db 45, HITMONLEE
+	db 45, HITMONCHAN
+ENDC
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

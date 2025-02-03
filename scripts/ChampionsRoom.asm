@@ -82,6 +82,16 @@ ChampionsRoomRivalReadyToBattleScript:
 .NotStarter3
 	ld a, $3
 .saveTrainerId
+	ld b, a
+	ld a, [wGameStage]
+	and a
+	jr z, .NotRematch
+	ld a, b 
+	add a, $3
+	jr .Rematch
+.NotRematch
+	ld a, b
+.Rematch
 	ld [wTrainerNo], a
 
 	xor a
@@ -96,6 +106,7 @@ ChampionsRoomRivalDefeatedScript:
 	jp z, ResetRivalScript
 	call UpdateSprites
 	SetEvent EVENT_BEAT_CHAMPION_RIVAL
+	call PostGameFlagsSet
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
 	ld a, TEXT_CHAMPIONSROOM_RIVAL
@@ -238,6 +249,15 @@ ChampionsRoom_DisplayTextID_AllowABSelectStart:
 	call DisplayTextID
 	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
+	ret
+
+PostGameFlagsSet:
+	ld a, $01
+	ld [wGameStage], a
+	ld a, $FF
+	ld [wRematchFlag], a
+	ResetEvents EVENT_GOT_TM13, EVENT_GOT_TM24, EVENT_GOT_TM34
+	ResetEvent EVENT_INDIGOPLATEAU_TRAINER
 	ret
 
 ChampionsRoom_TextPointers:

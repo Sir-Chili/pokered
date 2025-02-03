@@ -14,4 +14,5 @@ CreditsMons:
 	db OMASTAR
 	db VILEPLUME
 	db NIDOKING
+	db CHANSEY
 	db PARASECT

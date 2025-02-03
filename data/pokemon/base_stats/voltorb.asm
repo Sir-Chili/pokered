@@ -3,7 +3,7 @@
 	db  40,  30,  50, 100,  55
 	;   hp  atk  def  spd  spc
 
-	db ELECTRIC, ELECTRIC ; type
+	db ELECTRIC, GRASS ; type
 	db 190 ; catch rate
 	db 103 ; base exp
 
@@ -14,8 +14,8 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        TAKE_DOWN,    RAGE,         THUNDERBOLT,  THUNDER,      \
-	     TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
+	tmhm TOXIC,        TAKE_DOWN,    RAGE,         GIGA_DRAIN,   SOLARBEAM,    THUNDERBOLT,  THUNDER,      \
+	     TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     SELFDESTRUCT, SWIFT,        REST,         THUNDER_WAVE, EXPLOSION,    \
 	     SUBSTITUTE,   FLASH
 	; end

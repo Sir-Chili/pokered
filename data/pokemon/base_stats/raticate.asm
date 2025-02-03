@@ -1,9 +1,9 @@
 	db DEX_RATICATE ; pokedex id
 
-	db  55,  81,  60,  97,  50
+	db  55,  90,  70, 100,  50
 	;   hp  atk  def  spd  spc
 
-	db NORMAL, NORMAL ; type
+	db NORMAL, GROUND ; type
 	db 90 ; catch rate
 	db 116 ; base exp
 
@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
-	     WATER_GUN,    ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   RAGE,         \
-	     THUNDERBOLT,  THUNDER,      DIG,          MIMIC,        DOUBLE_TEAM,  \
-	     BIDE,         SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE
+	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   SUBMISSION,   RAGE,         \
+	     THUNDERBOLT,  THUNDER,      EARTHQUAKE,   DIG,          MIMIC,        DOUBLE_TEAM,  \
+	     SWIFT,        SKULL_BASH,   REST,         SHADOW_BALL,  SUBSTITUTE
 	; end
 
 	db 0 ; padding

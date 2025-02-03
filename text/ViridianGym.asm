@@ -61,25 +61,28 @@ _ViridianGymGiovanniEarthBadgeInfoText::
 	cont "LEAGUE challenge!"
 	done
 
-_ViridianGymGiovanniReceivedTM27Text::
+_ViridianGymGiovanniReceivedTM26Text::
 	text "<PLAYER> received"
-	line "TM27!@"
+	line "@"
+	text_ram wStringBuffer
+	text "!@"
 	text_end
 
-_ViridianGymGiovanniTM27ExplanationText::
+_ViridianGymGiovanniTM26ExplanationText::
 	text_start
 
-	para "TM27 is FISSURE!"
-	line "It will take out"
-	cont "#MON with just"
-	cont "one hit!"
+	para "TM26 is"
+	line "EARTHQUAKE!"
+	line "It is a powerful"
+	cont "attack. It causes"
+	cont "a massive tremor."
 
 	para "I made it when I"
 	line "ran the GYM here,"
 	cont "too long ago..."
 	done
 
-_ViridianGymGiovanniTM27NoRoomText::
+_ViridianGymGiovanniTM26NoRoomText::
 	text "You do not have"
 	line "space for this!"
 	done
@@ -237,4 +240,71 @@ _ViridianGymGuidePostBattleText::
 	text "Blow me away!"
 	line "GIOVANNI was the"
 	cont "GYM LEADER here?"
+	done
+
+_ViridianGymRematchPreBattle1Text::
+	text "I have been"
+	line "watching your"
+	cont "progress in the"
+	cont "#MON LEAGUE."
+
+	para "Congratulations"
+	line "on your victory."
+
+	para "I can't wait to"
+	line "see the talent"
+	cont "that you used"
+	cont "to win!"
+	done
+
+_ViridianGymPreRematchBattle2Text::
+	text "Now, <PLAYER>."
+	line "Let's make this"
+	cont "a valuable time"
+	cont "for both of us."
+	done
+
+_ViridianGymRematchRefusedText::
+	text "What a shame."
+	line "Maybe some"
+	cont "other time."
+	done
+
+_ViridianGymRematchDefeatedText::
+	text "I'm"
+	line "very pleased"
+	cont "by what I've"
+	cont "seen today."
+	prompt
+
+_ViridianGymRematchVictoryText::
+	text "You"   
+	line "failed as"
+	cont "soon as you"
+	cont "challenged me,"
+	cont "<PLAYER>."
+	prompt
+
+_ViridianGymRematchPostBattleText::
+	text "Let's call it"
+	line "a day."
+
+	para "I really got an"
+	line "insight into"
+	cont "what kind of"
+	cont "person you are"
+	cont "as a trainer."
+
+	para "We will meet on"
+	line "the battlefield"
+	cont "again."
+
+	para "Keep improving"
+	line "yourself!"
+	done
+
+_ViridianGymRematchPleaseAcceptTM::
+	text "You can have"
+	line "this. Hope it's"
+	cont "useful."
 	done

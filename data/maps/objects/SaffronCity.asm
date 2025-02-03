@@ -26,7 +26,7 @@ SaffronCity_Object:
 	warp_event 25, 11, SAFFRON_MART, 1
 	warp_event 18, 21, SILPH_CO_1F, 1
 	warp_event  9, 29, SAFFRON_POKECENTER, 1
-	warp_event 29, 29, MR_PSYCHICS_HOUSE, 1
+	warp_event 29, 29, MOVE_KIDS_HOUSE, 1
 
 	def_bg_events
 	bg_event 17,  5, TEXT_SAFFRONCITY_SIGN
@@ -37,7 +37,7 @@ SaffronCity_Object:
 	bg_event  5, 21, TEXT_SAFFRONCITY_TRAINER_TIPS2
 	bg_event 15, 21, TEXT_SAFFRONCITY_SILPH_CO_SIGN
 	bg_event 10, 29, TEXT_SAFFRONCITY_POKECENTER_SIGN
-	bg_event 27, 29, TEXT_SAFFRONCITY_MR_PSYCHICS_HOUSE_SIGN
+	bg_event 27, 29, TEXT_SAFFRONCITY_MOVE_KIDS_HOUSE_SIGN
 	bg_event  1, 19, TEXT_SAFFRONCITY_SILPH_CO_LATEST_PRODUCT_SIGN
 
 	def_object_events

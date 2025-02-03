@@ -136,8 +136,8 @@ _OaksLabGivePokeballsExplanationText::
 	cont "it's fair game."
 
 	para "Just throw a #"
-	line "BALL at it and try"
-	line "to catch it!"
+	line "BALL at it and"
+	line "try to catch it!"
 
 	para "This won't always"
 	line "work, though."
@@ -362,3 +362,68 @@ _OaksLabScientistText::
 	text "I study #MON as"
 	line "PROF.OAK's AIDE."
 	done
+
+_OaksLabOakBattleBefore::
+	text "Your passion"
+	line "relit the fire"
+	cont "in me, <PLAYER>."
+
+	para "If you can defeat"
+	line "me, I have a"
+	cont "prize for you!"
+	done
+
+_OaksLabOakBattleAccepted::
+	text "Oh ho! Get ready"
+	line "to battle then!"
+	prompt
+
+_OaksLabOakBattleMaybeSomeOtherTime::
+	text "Oh ho! Maybe"
+	line "some other time"
+	cont "then!"
+	done
+
+_OaksLabOakBattleGetReady::
+	text "Oh ho! Then get"
+	line "ready, <PLAYER>!"
+	done
+
+_OaksLabOakBattleVictory::
+	text "Oh ho! You have"
+	line "much more to"
+	cont "learn still!"
+	prompt
+
+_OaksLabOakBattleDefeat::
+	text "Ah! What"
+	line "an impressive"
+	cont "fight! Just like"
+	cont "I used to do"
+	cont "with AGATHA back"
+	cont "in the days!"
+	prompt
+
+_OaksLabPleaseAcceptThis::
+	text "To celebrate the"
+	line "completion of"
+	cont "your #DEX,"
+	cont "please accept"
+	cont "this item."
+
+	para "It may lead you"
+	line "to something"
+	cont "special!"
+	prompt
+
+_OaksLabBagFull::
+	text "Please, make some"
+	line "room in your bag!"
+	done
+
+_OaksLabReceivedOldSeaMap::
+	text "<PLAYER> received"
+	line "a @"
+	text_ram wNameBuffer
+	text "!@"
+	text_end

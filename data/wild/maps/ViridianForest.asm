@@ -21,7 +21,7 @@ IF DEF(_BLUE)
 	db  3, WEEDLE
 ENDC
 	db  3, PIKACHU
-	db  5, PIKACHU
+	db  5, BULBASAUR
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

@@ -42,13 +42,16 @@ CeladonGymErikaPostBattleScript:
 	jp z, CeladonGymResetScripts
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
+	ld a, [wGameStage] ; Check if player has beat the game
+    and a
+    jr nz, ErikaRematchPostBattle
 
 CeladonGymReceiveTM21:
 	ld a, TEXT_CELADONGYM_RAINBOWBADGE_INFO
 	ldh [hTextID], a
 	call DisplayTextID
 	SetEvent EVENT_BEAT_ERIKA
-	lb bc, TM_MEGA_DRAIN, 1
+	lb bc, TM_GIGA_DRAIN, 1
 	call GiveItem
 	jr nc, .BagFull
 	ld a, TEXT_CELADONGYM_RECEIVED_TM21
@@ -71,19 +74,45 @@ CeladonGymReceiveTM21:
 
 	jp CeladonGymResetScripts
 
+ErikaRematchPostBattle:
+	ld a, TEXT_CELADONGYM_REMATCH_POST_BATTLE
+	ldh [hTextID], a
+	call DisplayTextID
+	lb bc, TM_GIGA_DRAIN, 1
+	call GiveItem
+	jr nc, .BagFull
+	ld a, TEXT_CELADONGYM_PLEASE_ACCEPT_TM
+	ldh [hTextID], a
+	call DisplayTextID
+	ld a, TEXT_CELADONGYM_REMATCH_RECEIVED_TM21
+	ldh [hTextID], a
+	call DisplayTextID
+	ld hl, wRematchFlag
+	res 3, [hl]
+	jr .itemObtained
+.BagFull
+	ld a, TEXT_CELADONGYM_TM21_NO_ROOM
+	ldh [hTextID], a
+	call DisplayTextID
+.itemObtained
+	jp CeladonGymResetScripts
+
 CeladonGym_TextPointers:
 	def_text_pointers
-	dw_const CeladonGymErikaText,            TEXT_CELADONGYM_ERIKA
-	dw_const CeladonGymCooltrainerF1Text,    TEXT_CELADONGYM_COOLTRAINER_F1
-	dw_const CeladonGymBeauty1Text,          TEXT_CELADONGYM_BEAUTY1
-	dw_const CeladonGymCooltrainerF2Text,    TEXT_CELADONGYM_COOLTRAINER_F2
-	dw_const CeladonGymBeauty2Text,          TEXT_CELADONGYM_BEAUTY2
-	dw_const CeladonGymCooltrainerF3Text,    TEXT_CELADONGYM_COOLTRAINER_F3
-	dw_const CeladonGymBeauty3Text,          TEXT_CELADONGYM_BEAUTY3
-	dw_const CeladonGymCooltrainerF4Text,    TEXT_CELADONGYM_COOLTRAINER_F4
-	dw_const CeladonGymRainbowBadgeInfoText, TEXT_CELADONGYM_RAINBOWBADGE_INFO
-	dw_const CeladonGymReceivedTM21Text,     TEXT_CELADONGYM_RECEIVED_TM21
-	dw_const CeladonGymTM21NoRoomText,       TEXT_CELADONGYM_TM21_NO_ROOM
+	dw_const CeladonGymErikaText,            	TEXT_CELADONGYM_ERIKA
+	dw_const CeladonGymCooltrainerF1Text,    	TEXT_CELADONGYM_COOLTRAINER_F1
+	dw_const CeladonGymBeauty1Text,          	TEXT_CELADONGYM_BEAUTY1
+	dw_const CeladonGymCooltrainerF2Text,    	TEXT_CELADONGYM_COOLTRAINER_F2
+	dw_const CeladonGymBeauty2Text,          	TEXT_CELADONGYM_BEAUTY2
+	dw_const CeladonGymCooltrainerF3Text,    	TEXT_CELADONGYM_COOLTRAINER_F3
+	dw_const CeladonGymBeauty3Text,          	TEXT_CELADONGYM_BEAUTY3
+	dw_const CeladonGymCooltrainerF4Text,    	TEXT_CELADONGYM_COOLTRAINER_F4
+	dw_const CeladonGymRainbowBadgeInfoText, 	TEXT_CELADONGYM_RAINBOWBADGE_INFO
+	dw_const CeladonGymReceivedTM21Text,     	TEXT_CELADONGYM_RECEIVED_TM21
+	dw_const CeladonGymTM21NoRoomText,       	TEXT_CELADONGYM_TM21_NO_ROOM
+	dw_const CeladonGymRematchPostBattleText, 	TEXT_CELADONGYM_REMATCH_POST_BATTLE
+	dw_const CeladonGymRematchPleaseAcceptTM, 	TEXT_CELADONGYM_PLEASE_ACCEPT_TM
+	dw_const CeladonGymRematchReceivedTM21Text,	TEXT_CELADONGYM_REMATCH_RECEIVED_TM21
 
 CeladonGymTrainerHeaders:
 	def_trainers 2
@@ -111,11 +140,14 @@ CeladonGymErikaText:
 	jr nz, .afterBeat
 	call z, CeladonGymReceiveTM21
 	call DisableWaitingAfterTextDisplay
-	jr .done
+	jp .done
 .afterBeat
+	ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr nz, .ErikaRematch
 	ld hl, .PostBattleAdviceText
 	call PrintText
-	jr .done
+	jp .done
 .beforeBeat
 	ld hl, .PreBattleText
 	call PrintText
@@ -131,6 +163,43 @@ CeladonGymErikaText:
 	call InitBattleEnemyParameters
 	ld a, $4
 	ld [wGymLeaderNo], a
+	jr .endBattle
+.ErikaRematch
+	ld a, [wRematchFlag] ; Check if allowed to get the TM
+	and $08 			 ; Mask to only check that gym fight
+	jr z, .rematchDone
+	ld hl, CeladonGymRematchPreBattle1Text
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	ld hl, CeladonGymPreRematchBattle2Text
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, CeladonGymRematchDefeatedText
+	ld de, CeladonGymRematchVictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_ERIKA
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, $4 ; new script
+	ld [wCeladonGymCurScript], a
+	ld [wCurMapScript], a
+	jr .endBattle
+.refused
+	ld hl, CeladonGymRematchRefusedText
+	call PrintText
+	jr .done
+.rematchDone
+	ld hl, CeladonGymRematchPostBattleText
+	call PrintText
+	jr .done
+.endBattle
 	ld a, SCRIPT_CELADONGYM_ERIKA_POST_BATTLE
 	ld [wCeladonGymCurScript], a
 	ld [wCurMapScript], a
@@ -287,4 +356,37 @@ CeladonGymEndBattleText8:
 
 CeladonGymAfterBattleText8:
 	text_far _CeladonGymAfterBattleText8
+	text_end
+
+CeladonGymRematchPreBattle1Text:
+	text_far _CeladonGymRematchPreBattle1Text
+	text_end
+
+CeladonGymPreRematchBattle2Text:
+	text_far _CeladonGymPreRematchBattle2Text
+	text_end
+
+CeladonGymRematchRefusedText:
+	text_far _CeladonGymRematchRefusedText
+	text_end
+
+CeladonGymRematchDefeatedText:
+	text_far _CeladonGymRematchDefeatedText
+	text_end
+
+CeladonGymRematchVictoryText:
+	text_far _CeladonGymRematchVictoryText
+	text_end
+
+CeladonGymRematchPostBattleText:
+	text_far _CeladonGymRematchPostBattleText
+	text_end
+
+CeladonGymRematchPleaseAcceptTM:
+	text_far _CeladonGymRematchPleaseAcceptTM
+	text_end
+
+CeladonGymRematchReceivedTM21Text:
+	text_far _CeladonGymReceivedTM21Text
+	sound_get_item_1
 	text_end

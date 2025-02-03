@@ -8,6 +8,9 @@ IF DEF(_RED)
 	db 30, NIDORINO
 	db 27, EXEGGCUTE
 	db 30, NIDORINA
+	db 26, SNORLAX
+	db 28, TAUROS
+	db 32, CHANSEY
 ENDC
 IF DEF(_BLUE)
 	db 22, NIDORAN_F
@@ -17,10 +20,10 @@ IF DEF(_BLUE)
 	db 30, NIDORINA
 	db 27, EXEGGCUTE
 	db 30, NIDORINO
-ENDC
-	db 32, VENOMOTH
 	db 26, CHANSEY
 	db 28, TAUROS
+	db 32, SNORLAX
+ENDC
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

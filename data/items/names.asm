@@ -43,7 +43,7 @@ ItemNames::
 	li "DOME FOSSIL"
 	li "HELIX FOSSIL"
 	li "SECRET KEY"
-	li "?????" ; ITEM_2C
+	li "OLD SEA MAP" ; ITEM_2C
 	li "BIKE VOUCHER"
 	li "X ACCURACY"
 	li "LEAF STONE"

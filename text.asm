@@ -240,7 +240,9 @@ INCLUDE "text/SaffronPidgeyHouse.asm"
 INCLUDE "text/SaffronMart.asm"
 INCLUDE "text/SilphCo1F.asm"
 INCLUDE "text/SaffronPokecenter.asm"
-INCLUDE "text/MrPsychicsHouse.asm"
+INCLUDE "text/MoveKidsHouse.asm"
+INCLUDE "text/IndigoPlateau.asm"
+;INCLUDE "text/MrPsychicsHouse.asm"
 
 INCLUDE "data/text/text_4.asm"
 
@@ -259,6 +261,7 @@ INCLUDE "text/CeladonCity.asm"
 INCLUDE "text/FuchsiaCity.asm"
 INCLUDE "text/CinnabarIsland.asm"
 INCLUDE "text/SaffronCity.asm"
+INCLUDE "text/FarawayIsland.asm"
 
 INCLUDE "data/text/text_6.asm"
 
@@ -276,3 +279,7 @@ INCLUDE "data/pokemon/dex_text.asm"
 SECTION "Move Names", ROMX
 
 INCLUDE "data/moves/names.asm"
+
+SECTION "Item Descriptions", ROMX
+
+INCLUDE "data/text/item_descriptions.asm"

@@ -110,6 +110,7 @@ AgathasRoomAgathaEndBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, ResetAgathaScript
+	SetEvent EVENT_BEAT_AGATHAS_ROOM_TRAINER_0
 	ld a, TEXT_AGATHASROOM_AGATHA
 	ldh [hTextID], a
 	call DisplayTextID
@@ -130,8 +131,32 @@ AgathasRoomTrainerHeader0:
 
 AgathasRoomAgathaText:
 	text_asm
+	CheckEvent EVENT_BEAT_AGATHAS_ROOM_TRAINER_0
+	jr nz, .notRematch
+	ld a, [wGameStage]
+	and a 
+	jr z, .notRematch
+	ld hl, AgathaBeforeBattleText
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, AgathaEndBattleText
+	ld de, AgathaEndBattleText
+	call SaveEndBattleTextPointers
+	ld a, OPP_AGATHA
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, SCRIPT_AGATHASROOM_AGATHA_END_BATTLE
+	ld [wAgathasRoomCurScript], a
+	ld [wCurMapScript], a
+	jr .rematch
+.notRematch
 	ld hl, AgathasRoomTrainerHeader0
 	call TalkToTrainer
+.rematch
 	jp TextScriptEnd
 
 AgathaBeforeBattleText:

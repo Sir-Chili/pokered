@@ -1,6 +1,6 @@
 	db DEX_IVYSAUR ; pokedex id
 
-	db  60,  62,  63,  60,  80
+	db  60,  65,  65,  60,  80
 	;   hp  atk  def  spd  spc
 
 	db GRASS, POISON ; type
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
-	     RAGE,         MEGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  \
-	     REFLECT,      BIDE,         REST,         SUBSTITUTE,   CUT
+	tmhm SLUDGE_BOMB,  SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
+	     RAGE,         GIGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  \
+	     REFLECT,      REST,         SUBSTITUTE,   CUT
 	; end
 
 	db 0 ; padding

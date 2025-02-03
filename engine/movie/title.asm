@@ -41,13 +41,13 @@ DisplayTitleScreen:
 	call LoadFontTilePatterns
 	ld hl, NintendoCopyrightLogoGraphics
 	ld de, vTitleLogo2 tile 16
-	ld bc, 5 tiles
+	ld bc, 1 tiles
 	ld a, BANK(NintendoCopyrightLogoGraphics)
 	call FarCopyData2
-	ld hl, GameFreakLogoGraphics
-	ld de, vTitleLogo2 tile (16 + 5)
-	ld bc, 9 tiles
-	ld a, BANK(GameFreakLogoGraphics)
+	ld hl, TitleCopyrightGraphics
+	ld de, vTitleLogo2 tile (16 + 1)
+	ld bc, 14 tiles
+	ld a, BANK(TitleCopyrightGraphics)
 	call FarCopyData2
 	ld hl, PokemonLogoGraphics
 	ld de, vTitleLogo
@@ -115,7 +115,7 @@ DisplayTitleScreen:
 	jr .next
 
 .tileScreenCopyrightTiles
-	db $41,$42,$43,$42,$44,$42,$45,$46,$47,$48,$49,$4A,$4B,$4C,$4D,$4E ; ©'95.'96.'98 GAME FREAK inc.
+	db $4F,$41,$42,$43,$44,$45,$46,$47,$48,$49,$4A,$4B,$4C,$4D,$4E,$4F ; ©'95.'96.'98 GAME FREAK inc.
 
 .next
 	call SaveScreenTilesToBuffer2

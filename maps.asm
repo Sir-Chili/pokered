@@ -86,6 +86,7 @@ UndergroundPathRoute8_Blocks: INCBIN "maps/UndergroundPathRoute8.blk"
 OaksLab_Blocks: INCBIN "maps/OaksLab.blk"
 
 MrPsychicsHouse_Blocks:
+MoveKidsHouse_Blocks:
 NameRatersHouse_Blocks:
 MrFujisHouse_Blocks:
 Route16FlyHouse_Blocks:
@@ -97,6 +98,9 @@ CeruleanTradeHouse_Blocks:
 PewterNidoranHouse_Blocks:
 PewterSpeechHouse_Blocks:
 ViridianNicknameHouse_Blocks: INCBIN "maps/ViridianNicknameHouse.blk"
+; Mateo's move relearner/deleter files
+INCLUDE "engine/events/move_deleter.asm"
+INCLUDE "engine/events/move_relearner.asm"
 
 CeladonMansionRoofHouse_Blocks:
 ViridianSchoolHouse_Blocks: INCBIN "maps/ViridianSchoolHouse.blk"
@@ -186,9 +190,13 @@ INCLUDE "data/maps/headers/SaffronPidgeyHouse.asm"
 INCLUDE "scripts/SaffronPidgeyHouse.asm"
 INCLUDE "data/maps/objects/SaffronPidgeyHouse.asm"
 
-INCLUDE "data/maps/headers/MrPsychicsHouse.asm"
-INCLUDE "scripts/MrPsychicsHouse.asm"
-INCLUDE "data/maps/objects/MrPsychicsHouse.asm"
+;INCLUDE "data/maps/headers/MrPsychicsHouse.asm"
+;INCLUDE "scripts/MrPsychicsHouse.asm"
+;INCLUDE "data/maps/objects/MrPsychicsHouse.asm"
+
+INCLUDE "data/maps/headers/MoveKidsHouse.asm"
+INCLUDE "scripts/MoveKidsHouse.asm"
+INCLUDE "data/maps/objects/MoveKidsHouse.asm"
 
 INCLUDE "data/maps/headers/DiglettsCaveRoute2.asm"
 INCLUDE "scripts/DiglettsCaveRoute2.asm"
@@ -1219,3 +1227,8 @@ INCLUDE "data/maps/headers/AgathasRoom.asm"
 INCLUDE "scripts/AgathasRoom.asm"
 INCLUDE "data/maps/objects/AgathasRoom.asm"
 AgathasRoom_Blocks: INCBIN "maps/AgathasRoom.blk"
+
+INCLUDE "data/maps/headers/FarawayIsland.asm"
+INCLUDE "scripts/FarawayIsland.asm"
+INCLUDE "data/maps/objects/FarawayIsland.asm"
+FarawayIsland_Blocks: INCBIN "maps/FarawayIsland.blk"

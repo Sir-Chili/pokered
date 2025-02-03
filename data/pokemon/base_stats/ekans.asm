@@ -1,9 +1,9 @@
 	db DEX_EKANS ; pokedex id
 
-	db  35,  60,  44,  55,  40
+	db  35,  70,  49,  55,  75
 	;   hp  atk  def  spd  spc
 
-	db POISON, POISON ; type
+	db POISON, DRAGON ; type
 	db 255 ; catch rate
 	db 62 ; base exp
 
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
-	     MEGA_DRAIN,   EARTHQUAKE,   FISSURE,      DIG,          MIMIC,        \
-	     DOUBLE_TEAM,  BIDE,         SKULL_BASH,   REST,         ROCK_SLIDE,   \
+	tmhm SLUDGE_BOMB,  TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
+	     GIGA_DRAIN,   DRAGON_RAGE,  EARTHQUAKE,   FISSURE,      DIG,          MIMIC,        \
+	     DOUBLE_TEAM,  DRAGON_PULSE, SKULL_BASH,   REST,         ROCK_SLIDE,   \
 	     SUBSTITUTE,   STRENGTH
 	; end
 

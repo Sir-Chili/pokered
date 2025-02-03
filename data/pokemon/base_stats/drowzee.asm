@@ -1,9 +1,9 @@
 	db DEX_DROWZEE ; pokedex id
 
-	db  60,  48,  45,  42,  90
+	db  60,  55,  45,  45,  90
 	;   hp  atk  def  spd  spc
 
-	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type
+	db PSYCHIC_TYPE, GHOST ; type
 	db 190 ; catch rate
 	db 102 ; base exp
 
@@ -17,8 +17,8 @@
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
 	     DOUBLE_EDGE,  SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         \
 	     PSYCHIC_M,    TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     BIDE,         METRONOME,    SKULL_BASH,   DREAM_EATER,  REST,         \
-	     THUNDER_WAVE, PSYWAVE,      TRI_ATTACK,   SUBSTITUTE,   FLASH
+	     METRONOME,    SKULL_BASH,   DREAM_EATER,  REST,         \
+	     THUNDER_WAVE, SHADOW_BALL,  TRI_ATTACK,   SUBSTITUTE,   FLASH
 	; end
 
 	db 0 ; padding

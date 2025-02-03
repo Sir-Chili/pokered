@@ -1,9 +1,9 @@
 	db DEX_PARASECT ; pokedex id
 
-	db  60,  95,  80,  30,  80
+	db  75, 115,  90,  30,  85
 	;   hp  atk  def  spd  spc
 
-	db BUG, GRASS ; type
+	db BUG, GHOST ; type
 	db 75 ; catch rate
 	db 128 ; base exp
 
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
-	     HYPER_BEAM,   RAGE,         MEGA_DRAIN,   SOLARBEAM,    DIG,          \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         SKULL_BASH,   \
+	tmhm SLUDGE_BOMB,  SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
+	     HYPER_BEAM,   RAGE,         GIGA_DRAIN,   SOLARBEAM,    DIG,          \
+	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SKULL_BASH,   SHADOW_BALL,  \
 	     REST,         SUBSTITUTE,   CUT
 	; end
 

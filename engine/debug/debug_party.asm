@@ -17,15 +17,15 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 	; "Tsunekazu Ishihara: Exeggutor is my favorite. That's because I was
 	; always using this character while I was debugging the program."
 	; From https://web.archive.org/web/20000607152840/http://pocket.ign.com/news/14973.html
-	db EXEGGUTOR, 90
+	db EXEGGUTOR, 100
+	db JOLTEON, 100
+	db ARTICUNO, 100
+	db GRAVELER, 100
 IF DEF(_DEBUG)
 	db MEW, 5
 ELSE
 	db MEW, 20
 ENDC
-	db JOLTEON, 56
-	db DUGTRIO, 56
-	db ARTICUNO, 57
 IF DEF(_DEBUG)
 	db PIKACHU, 5
 ENDC
@@ -47,8 +47,84 @@ IF DEF(_DEBUG)
 
 	call SetDebugNewGameParty
 
-	; Exeggutor gets four HM moves.
+	; Exeggutor Moveset.
 	ld hl, wPartyMon1Moves
+	ld a, GIGA_DRAIN
+	ld [hli], a
+	ld a, PSYCHIC_M
+	ld [hli], a
+	ld a, DOUBLE_EDGE
+	ld [hli], a
+	ld a, SLEEP_POWDER
+	ld [hl], a
+	ld hl, wPartyMon1PP
+	ld a, 5
+	ld [hli], a
+	ld a, 10
+	ld [hli], a
+	ld a, 15
+	ld [hli], a
+	ld [hl], a
+
+	; Jolteon Moveset.
+	ld hl, wPartyMon2Moves 
+	ld a, THUNDERBOLT
+	ld [hli], a
+	ld a, SHADOW_BALL
+	ld [hli], a
+	ld a, DOUBLE_KICK
+	ld [hli], a
+	ld a, THUNDER_WAVE
+	ld [hl], a
+	ld hl, wPartyMon2PP
+	ld a, 15
+	ld [hli], a
+	ld [hli], a
+	ld a, 30
+	ld [hli], a
+	ld a, 20
+	ld [hl], a
+
+	; Articuno Moveset
+	ld hl, wPartyMon3Moves
+	ld a, BLIZZARD
+	ld [hli], a
+	ld a, SURF
+	ld [hli], a
+	ld a, DUALWINGBEAT
+	ld [hli], a
+	ld a, AGILITY
+	ld [hl], a
+	ld hl, wPartyMon3PP
+	ld a, 5
+	ld [hli], a
+	ld a, 15
+	ld [hli], a
+	ld a, 10
+	ld [hli], a
+	ld a, 30
+	ld [hl], a
+
+	; Graveler Moveset
+	ld hl, wPartyMon4Moves
+	ld a, ROCK_SLIDE
+	ld [hli], a
+	ld a, EARTHQUAKE
+	ld [hli], a
+	ld a, FIRE_BLAST
+	ld [hli], a
+	ld a, EXPLOSION
+	ld [hl], a
+	ld hl, wPartyMon4PP
+	ld a, 10
+	ld [hli], a
+	ld [hli], a
+	ld a, 5
+	ld [hli], a
+	ld [hl], a
+
+	; Mew gets four HM moves.
+	ld hl, wPartyMon5Moves
 	ld a, FLY
 	ld [hli], a
 	ld a, CUT
@@ -57,29 +133,13 @@ IF DEF(_DEBUG)
 	ld [hli], a
 	ld a, STRENGTH
 	ld [hl], a
-	ld hl, wPartyMon1PP
+	ld hl, wPartyMon5PP
 	ld a, 15
 	ld [hli], a
 	ld a, 30
 	ld [hli], a
 	ld a, 15
 	ld [hli], a
-	ld [hl], a
-
-	; Jolteon gets Thunderbolt.
-	ld hl, wPartyMon3Moves + 3
-	ld a, THUNDERBOLT
-	ld [hl], a
-	ld hl, wPartyMon3PP + 3
-	ld a, 15
-	ld [hl], a
-
-	; Articuno gets Fly.
-	ld hl, wPartyMon5Moves
-	ld a, FLY
-	ld [hl], a
-	ld hl, wPartyMon5PP
-	ld a, 15
 	ld [hl], a
 
 	; Pikachu gets Surf.
@@ -122,6 +182,19 @@ IF DEF(_DEBUG)
 	ld a, STARTER1
 	ld [hl], a
 
+	; PostGame
+	ld a, $01
+	ld [wGameStage], a
+	ret
+
+	; Rematches available
+	ld a, $FF
+	ld [wRematchFlag], a
+	ret
+
+	; Gender is girl
+	ld a, $01
+	ld [wPlayerGender], a
 	ret
 
 DebugSetPokedexEntries:
@@ -138,6 +211,8 @@ DebugItemsList:
 	db BICYCLE, 1
 	db FULL_RESTORE, 99
 	db FULL_HEAL, 99
+	db MAX_ELIXER, 99
+	db MAX_REVIVE, 99
 	db ESCAPE_ROPE, 99
 	db RARE_CANDY, 99
 	db MASTER_BALL, 99

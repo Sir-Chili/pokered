@@ -1,6 +1,6 @@
 	db DEX_CLEFAIRY ; pokedex id
 
-	db  70,  45,  48,  35,  60
+	db  70,  55,  48,  35,  70
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, NORMAL ; type
@@ -15,11 +15,11 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         SOLARBEAM,    \
 	     THUNDERBOLT,  THUNDER,      PSYCHIC_M,    TELEPORT,     MIMIC,        \
-	     DOUBLE_TEAM,  REFLECT,      BIDE,         METRONOME,    FIRE_BLAST,   \
-	     SKULL_BASH,   REST,         THUNDER_WAVE, PSYWAVE,      TRI_ATTACK,   \
+	     DOUBLE_TEAM,  REFLECT,      FLAMETHROWER, METRONOME,    FIRE_BLAST,   \
+	     SKULL_BASH,   SOFTBOILED,   REST,         THUNDER_WAVE, SHADOW_BALL,      TRI_ATTACK,   \
 	     SUBSTITUTE,   STRENGTH,     FLASH
 	; end
 

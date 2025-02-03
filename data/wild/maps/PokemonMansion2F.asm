@@ -8,7 +8,7 @@ IF DEF(_RED)
 	db 30, KOFFING
 	db 32, PONYTA
 	db 30, GRIMER
-	db 28, PONYTA
+	db 28, MR_MIME
 	db 39, WEEZING
 	db 37, MUK
 ENDC
@@ -20,7 +20,7 @@ IF DEF(_BLUE)
 	db 30, GRIMER
 	db 32, PONYTA
 	db 30, KOFFING
-	db 28, PONYTA
+	db 28, MR_MIME
 	db 39, MUK
 	db 37, WEEZING
 ENDC

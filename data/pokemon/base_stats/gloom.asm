@@ -1,9 +1,9 @@
 	db DEX_GLOOM ; pokedex id
 
-	db  60,  65,  70,  40,  85
+	db  65,  70,  70,  40,  85
 	;   hp  atk  def  spd  spc
 
-	db GRASS, POISON ; type
+	db GRASS, FIRE ; type
 	db 120 ; catch rate
 	db 132 ; base exp
 
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
-	     MEGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     BIDE,         REST,         SUBSTITUTE,   CUT
+	tmhm SLUDGE_BOMB,  SWORDS_DANCE, TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
+	     GIGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  REFLECT,      FLAMETHROWER, \
+	     FIRE_BLAST,   REST,         SUBSTITUTE,   CUT
 	; end
 
 	db 0 ; padding

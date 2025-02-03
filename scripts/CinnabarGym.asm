@@ -142,6 +142,9 @@ CinnabarGymBlainePostBattleScript:
 	jp z, CinnabarGymResetScripts
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
+	ld a, [wGameStage] ; Check if player has beat the game
+    and a
+    jr nz, BlaineRematchPostBattle
 ; fallthrough
 CinnabarGymReceiveTM38:
 	ld a, TEXT_CINNABARGYM_BLAINE_VOLCANO_BADGE_INFO
@@ -174,6 +177,29 @@ CinnabarGymReceiveTM38:
 
 	jp CinnabarGymResetScripts
 
+BlaineRematchPostBattle:
+	ld a, TEXT_CINNABARGYM_REMATCH_POST_BATTLE
+	ldh [hTextID], a
+	call DisplayTextID
+	lb bc, TM_FIRE_BLAST, 1
+	call GiveItem
+	jr nc, .BagFull
+	ld a, TEXT_CINNABARGYM_PLEASE_ACCEPT_TM
+	ldh [hTextID], a
+	call DisplayTextID
+	ld a, TEXT_CINNABARGYM_REMATCH_RECEIVED_TM38
+	ldh [hTextID], a
+	call DisplayTextID
+	ld hl, wRematchFlag
+	res 6, [hl]
+	jr .itemObtained
+.BagFull
+	ld a, TEXT_CINNABARGYM_BLAINE_TM38_NO_ROOM
+	ldh [hTextID], a
+	call DisplayTextID
+.itemObtained
+	jp CinnabarGymResetScripts
+
 CinnabarGym_TextPointers:
 	def_text_pointers
 	dw_const CinnabarGymBlaineText,                 TEXT_CINNABARGYM_BLAINE
@@ -188,6 +214,9 @@ CinnabarGym_TextPointers:
 	dw_const CinnabarGymBlaineVolcanoBadgeInfoText, TEXT_CINNABARGYM_BLAINE_VOLCANO_BADGE_INFO
 	dw_const CinnabarGymBlaineReceivedTM38Text,     TEXT_CINNABARGYM_BLAINE_RECEIVED_TM38
 	dw_const CinnabarGymBlaineTM38NoRoomText,       TEXT_CINNABARGYM_BLAINE_TM38_NO_ROOM
+	dw_const CinnabarGymRematchPostBattleText, 		TEXT_CINNABARGYM_REMATCH_POST_BATTLE
+	dw_const CinnabarGymRematchPleaseAcceptTM,  	TEXT_CINNABARGYM_PLEASE_ACCEPT_TM
+	dw_const CinnabarGymRematchReceivedTM38Text,  	TEXT_CINNABARGYM_REMATCH_RECEIVED_TM38
 
 CinnabarGymStartBattleScript:
 	ldh a, [hSpriteIndex]
@@ -202,11 +231,47 @@ CinnabarGymStartBattleScript:
 	jr z, .blaine
 	ld a, SCRIPT_CINNABARGYM_OPEN_GATE
 	jr .not_blaine
+.BlaineRematch
+	ld a, [wRematchFlag] ; Check if allowed to get the TM
+	and $40 			 ; Mask to only check that gym fight
+	jr z, .rematchDone
+	ld hl, CinnabarGymRematchPreBattle1Text
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	ld hl, CinnabarGymPreRematchBattle2Text
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, CinnabarGymRematchDefeatedText
+	ld de, CinnabarGymRematchVictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_BLAINE
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, $4 ; new script
+	ld [wCinnabarGymCurScript], a
+	ld [wCurMapScript], a
+	jr .blaine
+.refused
+	ld hl, CinnabarGymRematchRefusedText
+	call PrintText
+	jr .done
+.rematchDone
+	ld hl, CinnabarGymRematchPostBattleText
+	call PrintText
+	jr .done
 .blaine
 	ld a, SCRIPT_CINNABARGYM_BLAINE_POST_BATTLE
 .not_blaine
 	ld [wCinnabarGymCurScript], a
 	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 CinnabarGymBlaineText:
@@ -219,6 +284,9 @@ CinnabarGymBlaineText:
 	call DisableWaitingAfterTextDisplay
 	jp TextScriptEnd
 .afterBeat
+    ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr nz, CinnabarGymStartBattleScript.BlaineRematch
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jp TextScriptEnd
@@ -474,4 +542,37 @@ CinnabarGymGymGuideText:
 
 .BeatBlaineText:
 	text_far _CinnabarGymGymGuideBeatBlaineText
+	text_end
+
+CinnabarGymRematchPreBattle1Text:
+	text_far _CinnabarGymRematchPreBattle1Text
+	text_end
+
+CinnabarGymPreRematchBattle2Text:
+	text_far _CinnabarGymPreRematchBattle2Text
+	text_end
+
+CinnabarGymRematchRefusedText:
+	text_far _CinnabarGymRematchRefusedText
+	text_end
+
+CinnabarGymRematchDefeatedText:
+	text_far _CinnabarGymRematchDefeatedText
+	text_end
+
+CinnabarGymRematchVictoryText:
+	text_far _CinnabarGymRematchVictoryText
+	text_end
+
+CinnabarGymRematchPostBattleText:
+	text_far _CinnabarGymRematchPostBattleText
+	text_end
+
+CinnabarGymRematchPleaseAcceptTM:
+	text_far _CinnabarGymRematchPleaseAcceptTM
+	text_end
+
+CinnabarGymRematchReceivedTM38Text:
+	text_far _CinnabarGymBlaineReceivedTM38Text
+	sound_get_item_1
 	text_end

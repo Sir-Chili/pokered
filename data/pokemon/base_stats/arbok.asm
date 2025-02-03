@@ -1,9 +1,9 @@
 	db DEX_ARBOK ; pokedex id
 
-	db  60,  85,  69,  80,  65
+	db  60,  95,  79,  80, 105
 	;   hp  atk  def  spd  spc
 
-	db POISON, POISON ; type
+	db POISON, DRAGON ; type
 	db 90 ; catch rate
 	db 147 ; base exp
 
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  HYPER_BEAM,   \
-	     RAGE,         MEGA_DRAIN,   EARTHQUAKE,   FISSURE,      DIG,          \
-	     MIMIC,        DOUBLE_TEAM,  BIDE,         SKULL_BASH,   REST,         \
+	tmhm SLUDGE_BOMB,  TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  HYPER_BEAM,   \
+	     RAGE,         GIGA_DRAIN,   DRAGON_RAGE,  EARTHQUAKE,   FISSURE,      DIG,          \
+	     MIMIC,        DOUBLE_TEAM,  DRAGON_PULSE, SKULL_BASH,   REST,         \
 	     ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
 	; end
 

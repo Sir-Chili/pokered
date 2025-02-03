@@ -1,6 +1,6 @@
 	db DEX_POLIWRATH ; pokedex id
 
-	db  90,  85,  95,  70,  70
+	db  90,  85, 105,  90,  70
 	;   hp  atk  def  spd  spc
 
 	db WATER, FIGHTING ; type
@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   CROSS_CHOP,   ICE_BEAM,     BLIZZARD,     \
 	     HYPER_BEAM,   SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         \
 	     EARTHQUAKE,   FISSURE,      PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  \
-	     BIDE,         METRONOME,    SKULL_BASH,   REST,         PSYWAVE,      \
+	     METRONOME,    SKULL_BASH,   REST,         ROCK_SLIDE,   \
 	     SUBSTITUTE,   SURF,         STRENGTH
 	; end
 

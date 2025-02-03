@@ -1,6 +1,6 @@
 	db DEX_HORSEA ; pokedex id
 
-	db  30,  40,  70,  60,  70
+	db  35,  45,  70,  60,  70
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    \
+	tmhm TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     ICE_BEAM,     BLIZZARD,     RAGE,         MIMIC,        DOUBLE_TEAM,  \
-	     BIDE,         SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   \
+	     SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   DRAGON_PULSE, \
 	     SURF
 	; end
 

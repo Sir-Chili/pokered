@@ -11,7 +11,9 @@
 	const EVENT_GOT_TOWN_MAP
 	const EVENT_ENTERED_BLUES_HOUSE
 	const EVENT_DAISY_WALKING
-	const_skip 5
+	const_skip 3
+	const EVENT_DEFEATED_OAK
+	const EVENT_RECEIVED_OLD_MAP
 	const EVENT_FOLLOWED_OAK_INTO_LAB_2
 	const EVENT_OAK_ASKED_TO_CHOOSE_MON
 	const EVENT_GOT_STARTER
@@ -29,7 +31,7 @@
 	const EVENT_OAK_GOT_PARCEL
 	const EVENT_GOT_OAKS_PARCEL
 	const_skip 22
-	const EVENT_GOT_TM27
+	const EVENT_GOT_TM26
 	const EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	const EVENT_BEAT_VIRIDIAN_GYM_TRAINER_0
 	const EVENT_BEAT_VIRIDIAN_GYM_TRAINER_1
@@ -47,7 +49,7 @@
 	const_skip 8
 	const EVENT_BEAT_PEWTER_GYM_TRAINER_0
 	const_skip 3
-	const EVENT_GOT_TM34
+	const EVENT_GOT_TM48
 	const EVENT_BEAT_BROCK
 
 ; Cerulean City events
@@ -111,7 +113,7 @@
 	const EVENT_BEAT_VERMILION_GYM_TRAINER_1
 	const EVENT_BEAT_VERMILION_GYM_TRAINER_2
 	const_skip
-	const EVENT_GOT_TM24
+	const EVENT_GOT_TM45
 	const EVENT_BEAT_LT_SURGE
 
 ; Celadon City events
@@ -119,8 +121,8 @@
 	const EVENT_GOT_TM41
 	const_skip 11
 	const EVENT_GOT_TM13
-	const EVENT_GOT_TM48
-	const EVENT_GOT_TM49
+	const EVENT_GOT_TM34
+	const EVENT_GOT_TM24
 	const EVENT_GOT_TM18
 	const_skip 24
 	const EVENT_GOT_TM21
@@ -730,7 +732,8 @@ DEF INDIGO_PLATEAU_EVENTS_START EQU const_value
 	const EVENT_AUTOWALKED_INTO_AGATHAS_ROOM
 	const_skip 2
 	const EVENT_BEAT_LANCES_ROOM_TRAINER_0
-	const_skip 4
+	const EVENT_BEAT_LANCES_ROOM_TRAINER_1
+	const_skip 3
 	const EVENT_BEAT_LANCE
 	const EVENT_LANCES_ROOM_LOCK_DOOR
 	const_skip
@@ -738,6 +741,12 @@ DEF INDIGO_PLATEAU_EVENTS_START EQU const_value
 	const_skip 5
 	const_skip
 DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
+	const_skip
+	const EVENT_BEAT_INDIGOPLATEAU_TRAINER_0
+	const EVENT_BEAT_INDIGOPLATEAU_TRAINER_1
+	const_skip 3
+	const EVENT_INDIGOPLATEAU_TRAINER
+	const EVENT_GOT_TRAINER_MASTER_BALL
 
 ; Victory Road 1F events
 	const_next $910
@@ -771,6 +780,11 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	const EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE
 	const_skip 8
 	const EVENT_BEAT_ARTICUNO
+
+; Faraway Island events
+	const_next $9E0
+	const_skip
+	const EVENT_BEAT_MEW
 
 ; End of events
 	const_next $A00

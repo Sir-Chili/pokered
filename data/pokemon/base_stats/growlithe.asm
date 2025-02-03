@@ -3,7 +3,7 @@
 	db  55,  70,  45,  60,  50
 	;   hp  atk  def  spd  spc
 
-	db FIRE, FIRE ; type
+	db FIRE, NORMAL ; type
 	db 190 ; catch rate
 	db 91 ; base exp
 
@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
-	     DRAGON_RAGE,  DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     BIDE,         FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         \
-	     SUBSTITUTE
+	     DRAGON_RAGE,  DRAGON_RAGE,  THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     FLAMETHROWER, FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         \
+	     SUBSTITUTE,   DRAGON_PULSE
 	; end
 
 	db 0 ; padding

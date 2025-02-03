@@ -64,6 +64,19 @@
 	const CRED_FUKUI          ; $3D
 	const CRED_CLUB           ; $3E
 	const CRED_PAAD           ; $3F
+	const CRED_DELUXE		  ; $40
+	const CRED_DELUXE_MADE_BY ; $41
+	const CRED_KNOWNASCHUCK	  ; $42
+	const CRED_SPRITES		  ; $43
+	const CRED_OMEGAZEEZ	  ; $44
+	const CRED_YESILOVENACHOS ; $45
+	const CRED_BLUE_EMERALD	  ; $44
+	const CRED_CHAMBER		  ; $45
+	const CRED_SOLOO993		  ; $46
+	const CRED_PLAYTESTERS	  ; $46
+	const CRED_DARKJP04		  ; $47
+	const CRED_HOUMAR95		  ; $48
+
 DEF NUM_CRED_STRINGS EQU const_value
 
 	const_def -1, -1

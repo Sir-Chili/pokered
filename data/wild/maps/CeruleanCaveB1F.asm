@@ -17,5 +17,29 @@ ENDC
 	db 67, DITTO
 	end_grass_wildmons
 
-	def_water_wildmons 0 ; encounter rate
+	def_water_wildmons 2 ; encounter rate
+IF DEF(_RED)
+	db 30, OMANYTE
+	db 31, OMANYTE
+	db 32, OMANYTE
+	db 33, OMANYTE
+	db 30, KABUTO
+	db 31, KABUTO
+	db 32, KABUTO
+	db 33, KABUTO
+	db 40, OMASTAR
+	db 40, KABUTOPS
+ENDC
+IF DEF(_BLUE)
+	db 30, KABUTO
+	db 31, KABUTO
+	db 32, KABUTO
+	db 33, KABUTO
+	db 30, OMANYTE
+	db 31, OMANYTE
+	db 32, OMANYTE
+	db 33, OMANYTE
+	db 40, KABUTOPS
+	db 40, OMASTAR
+ENDC
 	end_water_wildmons

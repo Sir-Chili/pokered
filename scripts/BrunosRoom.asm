@@ -110,6 +110,7 @@ BrunosRoomBrunoEndBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, ResetBrunoScript
+	SetEvent EVENT_BEAT_BRUNOS_ROOM_TRAINER_0
 	ld a, TEXT_BRUNOSROOM_BRUNO
 	ldh [hTextID], a
 	jp DisplayTextID
@@ -127,8 +128,32 @@ BrunosRoomTrainerHeader0:
 
 BrunosRoomBrunoText:
 	text_asm
+	CheckEvent EVENT_BEAT_BRUNOS_ROOM_TRAINER_0
+	jr nz, .notRematch
+	ld a, [wGameStage]
+	and a 
+	jr z, .notRematch
+	ld hl, BrunoBeforeBattleText
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, BrunoEndBattleText
+	ld de, BrunoEndBattleText
+	call SaveEndBattleTextPointers
+	ld a, OPP_BRUNO
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, SCRIPT_BRUNOSROOM_BRUNO_END_BATTLE
+	ld [wBrunosRoomCurScript], a
+	ld [wCurMapScript], a
+	jr .rematch
+.notRematch
 	ld hl, BrunosRoomTrainerHeader0
 	call TalkToTrainer
+.rematch
 	jp TextScriptEnd
 
 BrunoBeforeBattleText:

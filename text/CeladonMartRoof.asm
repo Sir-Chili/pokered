@@ -44,22 +44,22 @@ _CeladonMartRoofLittleGirlYaySodaPopText::
 	line "from me!@"
 	text_end
 
-_CeladonMartRoofLittleGirlReceivedTM48Text::
+_CeladonMartRoofLittleGirlReceivedTM34Text::
 	text "<PLAYER> received"
 	line "@"
 	text_ram wStringBuffer
 	text "!@"
 	text_end
 
-_CeladonMartRoofLittleGirlTM48ExplanationText::
+_CeladonMartRoofLittleGirlTM34ExplanationText::
 	text_start
 
 	para "@"
 	text_ram wStringBuffer
 	text " contains"
-	line "ROCK SLIDE!"
+	line "FLAMETHROWER!"
 
-	para "It can spook the"
+	para "It can burn the"
 	line "target sometimes!@"
 	text_end
 
@@ -74,16 +74,19 @@ _CeladonMartRoofLittleGirlYayLemonadeText::
 	line "from me!@"
 	text_end
 
-_CeladonMartRoofLittleGirlReceivedTM49Text::
+_CeladonMartRoofLittleGirlReceivedTM24Text::
 	text "<PLAYER> received"
 	line "TM49!@"
 	text_end
 
-_CeladonMartRoofLittleGirlTM49ExplanationText::
+_CeladonMartRoofLittleGirlTM24ExplanationText::
 	text_start
 
 	para "TM49 contains"
-	line "TRI ATTACK!@"
+	line "THUNDERBOLT!@"
+
+	para "It can shock the"
+	line "target sometimes!@"
 	text_end
 
 _CeladonMartRoofLittleGirlNoRoomText::

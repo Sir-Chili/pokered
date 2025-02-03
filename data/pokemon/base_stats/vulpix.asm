@@ -3,7 +3,7 @@
 	db  38,  41,  40,  65,  65
 	;   hp  atk  def  spd  spc
 
-	db FIRE, FIRE ; type
+	db FIRE, PSYCHIC_TYPE ; type
 	db 190 ; catch rate
 	db 63 ; base exp
 
@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      BIDE,         \
-	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE
+	     DIG,          PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  REFLECT,      FLAMETHROWER, \
+	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SHADOW_BALL,  SUBSTITUTE
 	; end
 
 	db 0 ; padding

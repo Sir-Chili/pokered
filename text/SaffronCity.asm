@@ -143,6 +143,10 @@ _SaffronCityMrPsychicsHouseSignText::
 	line "HOUSE"
 	done
 
+_SaffronCityMoveKidsHouseSignText::
+	text "MOVE KIDS' HOUSE"
+	done
+
 _SaffronCitySilphCoLatestProductSignText::
 	text "SILPH's latest"
 	line "product!"

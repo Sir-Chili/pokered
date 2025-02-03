@@ -3,8 +3,7 @@ CeladonMart2F_Script:
 
 CeladonMart2F_TextPointers:
 	def_text_pointers
-	dw_const CeladonMart2FClerk1Text,           TEXT_CELADONMART2F_CLERK1
-	dw_const CeladonMart2FClerk2Text,           TEXT_CELADONMART2F_CLERK2
+	dw_const CeladonMart2FClerkText,            TEXT_CELADONMART2F_CLERK
 	dw_const CeladonMart2FMiddleAgedManText,    TEXT_CELADONMART2F_MIDDLE_AGED_MAN
 	dw_const CeladonMart2FGirlText,             TEXT_CELADONMART2F_GIRL
 	dw_const CeladonMart2FCurrentFloorSignText, TEXT_CELADONMART2F_CURRENT_FLOOR_SIGN

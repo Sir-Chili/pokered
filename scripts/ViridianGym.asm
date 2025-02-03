@@ -32,6 +32,14 @@ ViridianGym_ScriptPointers:
 	dw_const ViridianGymPlayerSpinningScript,       SCRIPT_VIRIDIANGYM_PLAYER_SPINNING
 
 ViridianGymDefaultScript:
+	ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr z, .GiovanniDidNotReturn
+	ld a, HS_VIRIDIAN_GYM_GIOVANNI
+	ld [wMissableObjectIndex], a
+	predef ShowObject
+	call UpdateSprites
+.GiovanniDidNotReturn
 	ld a, [wYCoord]
 	ld b, a
 	ld a, [wXCoord]
@@ -134,22 +142,26 @@ ViridianGymGiovanniPostBattle:
 	jp z, ViridianGymResetScripts
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
+	ld a, [wGameStage] ; Check if player has beat the game
+    and a
+    jr nz, GiovanniRematchPostBattle
 ; fallthrough
-ViridianGymReceiveTM27:
+
+ViridianGymReceiveTM26:
 	ld a, TEXT_VIRIDIANGYM_GIOVANNI_EARTH_BADGE_INFO
 	ldh [hTextID], a
 	call DisplayTextID
 	SetEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
-	lb bc, TM_FISSURE, 1
+	lb bc, TM_EARTHQUAKE, 1
 	call GiveItem
 	jr nc, .bag_full
-	ld a, TEXT_VIRIDIANGYM_GIOVANNI_RECEIVED_TM27
+	ld a, TEXT_VIRIDIANGYM_GIOVANNI_RECEIVED_TM26
 	ldh [hTextID], a
 	call DisplayTextID
-	SetEvent EVENT_GOT_TM27
+	SetEvent EVENT_GOT_TM26
 	jr .gym_victory
 .bag_full
-	ld a, TEXT_VIRIDIANGYM_GIOVANNI_TM27_NO_ROOM
+	ld a, TEXT_VIRIDIANGYM_GIOVANNI_TM26_NO_ROOM
 	ldh [hTextID], a
 	call DisplayTextID
 .gym_victory
@@ -167,6 +179,29 @@ ViridianGymReceiveTM27:
 	SetEvents EVENT_2ND_ROUTE22_RIVAL_BATTLE, EVENT_ROUTE22_RIVAL_WANTS_BATTLE
 	jp ViridianGymResetScripts
 
+GiovanniRematchPostBattle:
+	ld a, TEXT_VIRIDIANGYM_REMATCH_POST_BATTLE
+	ldh [hTextID], a
+	call DisplayTextID
+	lb bc, TM_EARTHQUAKE, 1
+	call GiveItem
+	jr nc, .BagFull
+	ld a, TEXT_VIRIDIANGYM_PLEASE_ACCEPT_TM
+	ldh [hTextID], a
+	call DisplayTextID
+	ld a, TEXT_VIRIDIANGYM_REMATCH_RECEIVED_TM26
+	ldh [hTextID], a
+	call DisplayTextID
+	ld hl, wRematchFlag
+	res 7, [hl]
+	jr .itemObtained
+.BagFull
+	ld a, TEXT_VIRIDIANGYM_GIOVANNI_TM26_NO_ROOM
+	ldh [hTextID], a
+	call DisplayTextID
+.itemObtained
+	jp ViridianGymResetScripts
+
 ViridianGym_TextPointers:
 	def_text_pointers
 	dw_const ViridianGymGiovanniText,               TEXT_VIRIDIANGYM_GIOVANNI
@@ -179,10 +214,13 @@ ViridianGym_TextPointers:
 	dw_const ViridianGymRocker2Text,                TEXT_VIRIDIANGYM_ROCKER2
 	dw_const ViridianGymCooltrainerM3Text,          TEXT_VIRIDIANGYM_COOLTRAINER_M3
 	dw_const ViridianGymGymGuideText,               TEXT_VIRIDIANGYM_GYM_GUIDE
-	dw_const PickUpItemText,                        TEXT_VIRIDIANGYM_REVIVE
+	dw_const PickUpItemText,                        TEXT_VIRIDIANGYM_TM27
 	dw_const ViridianGymGiovanniEarthBadgeInfoText, TEXT_VIRIDIANGYM_GIOVANNI_EARTH_BADGE_INFO
-	dw_const ViridianGymGiovanniReceivedTM27Text,   TEXT_VIRIDIANGYM_GIOVANNI_RECEIVED_TM27
-	dw_const ViridianGymGiovanniTM27NoRoomText,     TEXT_VIRIDIANGYM_GIOVANNI_TM27_NO_ROOM
+	dw_const ViridianGymGiovanniReceivedTM26Text,   TEXT_VIRIDIANGYM_GIOVANNI_RECEIVED_TM26
+	dw_const ViridianGymGiovanniTM26NoRoomText,     TEXT_VIRIDIANGYM_GIOVANNI_TM26_NO_ROOM
+	dw_const ViridianGymRematchPostBattleText, 		TEXT_VIRIDIANGYM_REMATCH_POST_BATTLE
+	dw_const ViridianGymRematchPleaseAcceptTM,  	TEXT_VIRIDIANGYM_PLEASE_ACCEPT_TM
+	dw_const ViridianGymRematchReceivedTM26Text,  	TEXT_VIRIDIANGYM_REMATCH_RECEIVED_TM26
 
 ViridianGymTrainerHeaders:
 	def_trainers 2
@@ -208,12 +246,15 @@ ViridianGymGiovanniText:
 	text_asm
 	CheckEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
 	jr z, .beforeBeat
-	CheckEventReuseA EVENT_GOT_TM27
+	CheckEventReuseA EVENT_GOT_TM26
 	jr nz, .afterBeat
-	call z, ViridianGymReceiveTM27
+	call z, ViridianGymReceiveTM26
 	call DisableWaitingAfterTextDisplay
-	jr .text_script_end
+	jp .text_script_end
 .afterBeat
+    ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr nz, .GiovanniRematch
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, .PostBattleAdviceText
@@ -225,7 +266,7 @@ ViridianGymGiovanniText:
 	call UpdateSprites
 	call Delay3
 	call GBFadeInFromBlack
-	jr .text_script_end
+	jp .text_script_end
 .beforeBeat
 	ld hl, .PreBattleText
 	call PrintText
@@ -241,6 +282,43 @@ ViridianGymGiovanniText:
 	call InitBattleEnemyParameters
 	ld a, $8
 	ld [wGymLeaderNo], a
+	jr .endBattle
+.GiovanniRematch
+	ld a, [wRematchFlag] ; Check if allowed to get the TM
+	and $80 			 ; Mask to only check that gym fight
+	jr z, .rematchDone
+	ld hl, ViridianGymRematchPreBattle1Text
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	ld hl, ViridianGymPreRematchBattle2Text
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, ViridianGymRematchDefeatedText
+	ld de, ViridianGymRematchVictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_GIOVANNI
+	ld [wCurOpponent], a
+	ld a, 4
+	ld [wTrainerNo], a
+	ld a, $4 ; new script
+	ld [wViridianGymCurScript], a
+	ld [wCurMapScript], a
+	jr .endBattle
+.refused
+	ld hl, ViridianGymRematchRefusedText
+	call PrintText
+	jr .text_script_end
+.rematchDone
+	ld hl, ViridianGymRematchPostBattleText
+	call PrintText
+	jr .text_script_end
+.endBattle
 	ld a, SCRIPT_VIRIDIANGYM_GIOVANNI_POST_BATTLE
 	ld [wViridianGymCurScript], a
 .text_script_end
@@ -264,16 +342,16 @@ ViridianGymGiovanniEarthBadgeInfoText:
 	text_far _ViridianGymGiovanniEarthBadgeInfoText
 	text_end
 
-ViridianGymGiovanniReceivedTM27Text:
-	text_far _ViridianGymGiovanniReceivedTM27Text
+ViridianGymGiovanniReceivedTM26Text:
+	text_far _ViridianGymGiovanniReceivedTM26Text
 	sound_get_item_1
 
-ViridianGymGiovanniTM27ExplanationText:
-	text_far _ViridianGymGiovanniTM27ExplanationText
+ViridianGymGiovanniTM26ExplanationText:
+	text_far _ViridianGymGiovanniTM26ExplanationText
 	text_end
 
-ViridianGymGiovanniTM27NoRoomText:
-	text_far _ViridianGymGiovanniTM27NoRoomText
+ViridianGymGiovanniTM26NoRoomText:
+	text_far _ViridianGymGiovanniTM26NoRoomText
 	text_end
 
 ViridianGymCooltrainerM1Text:
@@ -439,4 +517,37 @@ ViridianGymGuidePreBattleText:
 
 ViridianGymGuidePostBattleText:
 	text_far _ViridianGymGuidePostBattleText
+	text_end
+
+ViridianGymRematchPreBattle1Text:
+	text_far _ViridianGymRematchPreBattle1Text
+	text_end
+
+ViridianGymPreRematchBattle2Text:
+	text_far _ViridianGymPreRematchBattle2Text
+	text_end
+
+ViridianGymRematchRefusedText:
+	text_far _ViridianGymRematchRefusedText
+	text_end
+
+ViridianGymRematchDefeatedText:
+	text_far _ViridianGymRematchDefeatedText
+	text_end
+
+ViridianGymRematchVictoryText:
+	text_far _ViridianGymRematchVictoryText
+	text_end
+
+ViridianGymRematchPostBattleText:
+	text_far _ViridianGymRematchPostBattleText
+	text_end
+
+ViridianGymRematchPleaseAcceptTM:
+	text_far _ViridianGymRematchPleaseAcceptTM
+	text_end
+
+ViridianGymRematchReceivedTM26Text:
+	text_far _ViridianGymGiovanniReceivedTM26Text
+	sound_get_item_1
 	text_end

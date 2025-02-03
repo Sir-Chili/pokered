@@ -3,6 +3,7 @@
 ; Control characters (see home/text.asm)
 
 	charmap "<NULL>",    $00
+	charmap "<LF>",		 $1F ; "line feed", used on town map names
 	charmap "<PAGE>",    $49
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
 	charmap "<_CONT>",   $4b ; implements "<CONT>"
@@ -68,7 +69,7 @@
 
 	charmap "<to>",      $70 ; narrow "to"
 
-	charmap "『",         $72 ; Japanese opening quote, unused
+	charmap "<BOLD_P>",  $72 ; Bold P
 	charmap "<ID>",      $73
 	charmap "№",         $74
 
@@ -77,9 +78,6 @@
 	; needed for ShowPokedexDataInternal (see engine/menus/pokedex.asm)
 	charmap "′",         $60 ; gfx/pokedex/pokedex.png
 	charmap "″",         $61 ; gfx/pokedex/pokedex.png
-
-	; needed for StatusScreen (see engine/pokemon/status_screen.asm)
-	charmap "<BOLD_P>",  $72 ; gfx/font/P.1bpp
 
 	; needed for LoadTownMap_Fly (see engine/items/town_map.asm)
 	charmap "▲",         $ed ; gfx/town_map/up_arrow.1bpp
@@ -156,6 +154,20 @@
 	charmap "'s",        $bd
 	charmap "'t",        $be
 	charmap "'v",        $bf
+
+	charmap "<BALL>",    $c0
+	charmap "<PSN1>",	 $c1
+	charmap "<PSN2>",	 $c2
+	charmap "<BRN1>",	 $c3
+	charmap "<BRN2>",	 $c4
+	charmap "<FRZ1>",	 $c5
+	charmap "<FRZ2>",	 $c6
+	charmap "<PAR1>",	 $c7
+	charmap "<PAR2>",	 $c8
+	charmap "<SLP1>",	 $c9
+	charmap "<SLP2>",	 $ca
+	charmap "<FNT1>",	 $cb
+	charmap "<FNT2>",	 $cc
 
 	charmap "'",         $e0
 	charmap "<PK>",      $e1

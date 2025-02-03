@@ -44,7 +44,11 @@ FuchsiaGymKogaPostBattleScript:
 	jp z, FuchsiaGymResetScripts
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
+	ld a, [wGameStage] ; Check if player has beat the game
+    and a
+    jr nz, KogaRematchPostBattle
 ; fallthrough
+
 FuchsiaGymReceiveTM06:
 	ld a, TEXT_FUCHSIAGYM_KOGA_SOUL_BADGE_INFO
 	ldh [hTextID], a
@@ -73,19 +77,45 @@ FuchsiaGymReceiveTM06:
 
 	jp FuchsiaGymResetScripts
 
+KogaRematchPostBattle:
+	ld a, TEXT_FUCHSIAGYM_REMATCH_POST_BATTLE
+	ldh [hTextID], a
+	call DisplayTextID
+	lb bc, TM_TOXIC, 1
+	call GiveItem
+	jr nc, .BagFull
+	ld a, TEXT_FUCHSIAGYM_PLEASE_ACCEPT_TM
+	ldh [hTextID], a
+	call DisplayTextID
+	ld a, TEXT_FUCHSIAGYM_REMATCH_RECEIVED_TM06
+	ldh [hTextID], a
+	call DisplayTextID
+	ld hl, wRematchFlag
+	res 4, [hl]
+	jr .itemObtained
+.BagFull
+	ld a, TEXT_FUCHSIAGYM_KOGA_TM06_NO_ROOM
+	ldh [hTextID], a
+	call DisplayTextID
+.itemObtained
+	jp FuchsiaGymResetScripts
+
 FuchsiaGym_TextPointers:
 	def_text_pointers
-	dw_const FuchsiaGymKogaText,              TEXT_FUCHSIAGYM_KOGA
-	dw_const FuchsiaGymRocker1Text,           TEXT_FUCHSIAGYM_ROCKER1
-	dw_const FuchsiaGymRocker2Text,           TEXT_FUCHSIAGYM_ROCKER2
-	dw_const FuchsiaGymRocker3Text,           TEXT_FUCHSIAGYM_ROCKER3
-	dw_const FuchsiaGymRocker4Text,           TEXT_FUCHSIAGYM_ROCKER4
-	dw_const FuchsiaGymRocker5Text,           TEXT_FUCHSIAGYM_ROCKER5
-	dw_const FuchsiaGymRocker6Text,           TEXT_FUCHSIAGYM_ROCKER6
-	dw_const FuchsiaGymGymGuideText,          TEXT_FUCHSIAGYM_GYM_GUIDE
-	dw_const FuchsiaGymKogaSoulBadgeInfoText, TEXT_FUCHSIAGYM_KOGA_SOUL_BADGE_INFO
-	dw_const FuchsiaGymKogaReceivedTM06Text,  TEXT_FUCHSIAGYM_KOGA_RECEIVED_TM06
-	dw_const FuchsiaGymKogaTM06NoRoomText,    TEXT_FUCHSIAGYM_KOGA_TM06_NO_ROOM
+	dw_const FuchsiaGymKogaText,              	TEXT_FUCHSIAGYM_KOGA
+	dw_const FuchsiaGymRocker1Text,           	TEXT_FUCHSIAGYM_ROCKER1
+	dw_const FuchsiaGymRocker2Text,           	TEXT_FUCHSIAGYM_ROCKER2
+	dw_const FuchsiaGymRocker3Text,           	TEXT_FUCHSIAGYM_ROCKER3
+	dw_const FuchsiaGymRocker4Text,           	TEXT_FUCHSIAGYM_ROCKER4
+	dw_const FuchsiaGymRocker5Text,           	TEXT_FUCHSIAGYM_ROCKER5
+	dw_const FuchsiaGymRocker6Text,           	TEXT_FUCHSIAGYM_ROCKER6
+	dw_const FuchsiaGymGymGuideText,          	TEXT_FUCHSIAGYM_GYM_GUIDE
+	dw_const FuchsiaGymKogaSoulBadgeInfoText, 	TEXT_FUCHSIAGYM_KOGA_SOUL_BADGE_INFO
+	dw_const FuchsiaGymKogaReceivedTM06Text,  	TEXT_FUCHSIAGYM_KOGA_RECEIVED_TM06
+	dw_const FuchsiaGymKogaTM06NoRoomText,    	TEXT_FUCHSIAGYM_KOGA_TM06_NO_ROOM
+	dw_const FuchsiaGymRematchPostBattleText, 	TEXT_FUCHSIAGYM_REMATCH_POST_BATTLE
+	dw_const FuchsiaGymRematchPleaseAcceptTM,  	TEXT_FUCHSIAGYM_PLEASE_ACCEPT_TM
+	dw_const FuchsiaGymRematchReceivedTM06Text,	TEXT_FUCHSIAGYM_REMATCH_RECEIVED_TM06
 
 FuchsiaGymTrainerHeaders:
 	def_trainers 2
@@ -111,11 +141,14 @@ FuchsiaGymKogaText:
 	jr nz, .afterBeat
 	call z, FuchsiaGymReceiveTM06
 	call DisableWaitingAfterTextDisplay
-	jr .done
+	jp .done
 .afterBeat
+    ld a, [wGameStage] ; Check if player has beat the game
+	and a
+	jr nz, .KogaRematch
 	ld hl, .PostBattleAdviceText
 	call PrintText
-	jr .done
+	jp .done
 .beforeBeat
 	ld hl, .BeforeBattleText
 	call PrintText
@@ -133,6 +166,43 @@ FuchsiaGymKogaText:
 	ld [wGymLeaderNo], a
 	xor a
 	ldh [hJoyHeld], a
+	jr .endBattle
+.KogaRematch
+	ld a, [wRematchFlag] ; Check if allowed to get the TM
+	and $10 			 ; Mask to only check that gym fight
+	jr z, .rematchDone
+	ld hl, FuchsiaGymRematchPreBattle1Text
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .refused
+	ld hl, FuchsiaGymPreRematchBattle2Text
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, FuchsiaGymRematchDefeatedText
+	ld de, FuchsiaGymRematchVictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_KOGA
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, $4 ; new script
+	ld [wFuchsiaGymCurScript], a
+	ld [wCurMapScript], a
+	jr .endBattle
+.refused
+	ld hl, FuchsiaGymRematchRefusedText
+	call PrintText
+	jr .done
+.rematchDone
+	ld hl, FuchsiaGymRematchPostBattleText
+	call PrintText
+	jr .done
+.endBattle
 	ld a, SCRIPT_FUCHSIAGYM_KOGA_POST_BATTLE
 	ld [wFuchsiaGymCurScript], a
 .done
@@ -288,4 +358,37 @@ FuchsiaGymGymGuideText:
 
 .BeatKogaText:
 	text_far _FuchsiaGymGymGuideBeatKogaText
+	text_end
+
+FuchsiaGymRematchPreBattle1Text:
+	text_far _FuchsiaGymRematchPreBattle1Text
+	text_end
+
+FuchsiaGymPreRematchBattle2Text:
+	text_far _FuchsiaGymPreRematchBattle2Text
+	text_end
+
+FuchsiaGymRematchRefusedText:
+	text_far _FuchsiaGymRematchRefusedText
+	text_end
+
+FuchsiaGymRematchDefeatedText:
+	text_far _FuchsiaGymRematchDefeatedText
+	text_end
+
+FuchsiaGymRematchVictoryText:
+	text_far _FuchsiaGymRematchVictoryText
+	text_end
+
+FuchsiaGymRematchPostBattleText:
+	text_far _FuchsiaGymRematchPostBattleText
+	text_end
+
+FuchsiaGymRematchPleaseAcceptTM:
+	text_far _FuchsiaGymRematchPleaseAcceptTM
+	text_end
+
+FuchsiaGymRematchReceivedTM06Text:
+	text_far _FuchsiaGymKogaReceivedTM06Text
+	sound_get_item_1
 	text_end

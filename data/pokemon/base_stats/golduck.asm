@@ -1,6 +1,6 @@
 	db DEX_GOLDUCK ; pokedex id
 
-	db  80,  82,  78,  85,  80
+	db  80,  87,  78,  85,  85
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   CROSS_CHOP,   ICE_BEAM,     BLIZZARD,     \
 	     HYPER_BEAM,   PAY_DAY,      SUBMISSION,   COUNTER,      SEISMIC_TOSS, \
-	     RAGE,         DIG,          MIMIC,        DOUBLE_TEAM,  BIDE,         \
-	     SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   SURF,         \
+	     RAGE,         DIG,          PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  \
+	     SWIFT,        SKULL_BASH,   REST,         SHADOW_BALL,  TRI_ATTACK,   SUBSTITUTE,   SURF,         \
 	     STRENGTH
 	; end
 

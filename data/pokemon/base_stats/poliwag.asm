@@ -1,6 +1,6 @@
 	db DEX_POLIWAG ; pokedex id
 
-	db  40,  50,  40,  90,  40
+	db  40,  50,  55,  90,  40
 	;   hp  atk  def  spd  spc
 
 	db WATER, WATER ; type
@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   \
-	     WATER_GUN,    ICE_BEAM,     BLIZZARD,     RAGE,         PSYCHIC_M,    \
-	     MIMIC,        DOUBLE_TEAM,  BIDE,         SKULL_BASH,   REST,         \
-	     PSYWAVE,      SUBSTITUTE,   SURF
+	     ICE_BEAM,     BLIZZARD,     RAGE,         PSYCHIC_M,    \
+	     MIMIC,        DOUBLE_TEAM,  SKULL_BASH,   REST,         \
+	     SUBSTITUTE,   SURF
 	; end
 
 	db 0 ; padding

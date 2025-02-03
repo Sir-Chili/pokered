@@ -26,7 +26,7 @@ SaffronCity_TextPointers:
 	dw_const SaffronCityTrainerTips2Text,             TEXT_SAFFRONCITY_TRAINER_TIPS2
 	dw_const SaffronCitySilphCoSignText,              TEXT_SAFFRONCITY_SILPH_CO_SIGN
 	dw_const PokeCenterSignText,                      TEXT_SAFFRONCITY_POKECENTER_SIGN
-	dw_const SaffronCityMrPsychicsHouseSignText,      TEXT_SAFFRONCITY_MR_PSYCHICS_HOUSE_SIGN
+	dw_const SaffronCityMoveKidsHouseSignText,        TEXT_SAFFRONCITY_MOVE_KIDS_HOUSE_SIGN
 	dw_const SaffronCitySilphCoLatestProductSignText, TEXT_SAFFRONCITY_SILPH_CO_LATEST_PRODUCT_SIGN
 
 SaffronCityRocket1Text:
@@ -114,8 +114,8 @@ SaffronCitySilphCoSignText:
 	text_far _SaffronCitySilphCoSignText
 	text_end
 
-SaffronCityMrPsychicsHouseSignText:
-	text_far _SaffronCityMrPsychicsHouseSignText
+SaffronCityMoveKidsHouseSignText:
+	text_far _SaffronCityMoveKidsHouseSignText
 	text_end
 
 SaffronCitySilphCoLatestProductSignText:

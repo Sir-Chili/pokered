@@ -125,3 +125,51 @@ _VermilionCityGymSignText::
 _VermilionCityHarborSignText::
 	text "VERMILION HARBOR"
 	done
+
+_VermilionCitySailor3IWishICouldExploreText::
+	text "Yaaawn..."
+	line "I wish I could"
+	cont "go on a grand"
+	cont "trip and find"
+	cont "some riches..."
+
+	para "... Huh?"
+	prompt
+
+_VermilionCitySailor3LeaveMeAloneKidText::
+	text "Stop pestering"
+	line "me, kid!"
+	cont "I'm busy!"
+	done
+
+_VermilionCitySailor3Refused::
+	text "I see. Lemme know"
+	line "if you change"
+	cont "your mind, then!"
+	done
+
+_VermilionCitySailor3AllAboardText::
+	text "All aboard then!"
+	done
+
+_VermilionCitySailor3ReadyToLeaveText::
+	text "What is this?"
+	line "An old treasure"
+	cont "map? Let me see!"
+
+	para "..."
+
+	para "..."
+
+	para "Yeah, I can take"
+	line "you there. Lemme"
+	cont "know if you are"
+	cont "ready to leave!"
+	done
+
+_VermilionCitySailor3ThanksForTheTripText::
+	text "Thank you for"
+	line "taking me on the"
+	cont "trip of a"
+	cont "lifetime, bud!"
+	done

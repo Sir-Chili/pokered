@@ -131,3 +131,58 @@ _CeruleanGymGymGuideBeatMistyText::
 	line "we make a pretty"
 	cont "darn good team!"
 	done
+
+_CeruleanGymRematchPreBattle1Text::
+	text "I've been"
+	line "training super"
+	cont "hard since our"
+	cont "last battle."
+
+	para "Get ready to"
+	line "face a new wave"
+	cont "of all-out"
+	cont "WATER offensive!"
+	done
+
+_CeruleanGymPreRematchBattle2Text::
+	text "Perfect!"
+	line "Let's battle!"
+	done
+
+_CeruleanGymRematchRefusedText::
+	text "Aww, you're no"
+	line "fun."
+	done
+
+_CeruleanGymRematchDefeatedText::
+	text "No fair!"
+	line "I was completely"
+	cont "washed away!"
+	prompt
+
+_CeruleanGymRematchVictoryText::
+	text "All that work"
+	line "really paid off!"
+	prompt
+
+_CeruleanGymRematchPostBattleText::
+	text "You're so good!"
+
+	para "I can see how"
+	line "you became the"
+	cont "CHAMPION."
+
+	para "You and your"
+	line "#MON make a"
+	cont "pretty cute and"
+	cont "strong team!"
+
+	para "Keep on braving"
+	line "the challenges!"
+	done
+
+_CeruleanGymRematchPleaseAcceptTM::
+	text "Here, have a new"
+	line "copy of my"
+	cont "favorite TM!"
+	done

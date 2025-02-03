@@ -94,7 +94,7 @@ InternalMapEntries:
 	internal_map POKEMON_MANSION_1F,             2, 15, PokemonMansionName
 	internal_map CINNABAR_MART_COPY,             2, 15, CinnabarIslandName
 	internal_map INDIGO_PLATEAU_LOBBY,           0,  2, IndigoPlateauName
-	internal_map MR_PSYCHICS_HOUSE,             10,  5, SaffronCityName
+	internal_map MOVE_KIDS_HOUSE,               10,  5, SaffronCityName
 	internal_map ROUTE_15_GATE_2F,               9, 13, Route15Name
 	internal_map ROUTE_16_FLY_HOUSE,             4,  5, Route16Name
 	internal_map ROUTE_12_SUPER_ROD_HOUSE,      14, 10, Route12Name
@@ -115,5 +115,6 @@ InternalMapEntries:
 	internal_map CERULEAN_BADGE_HOUSE,          10,  2, CeruleanCityName
 	internal_map ROCK_TUNNEL_B1F,               14,  3, RockTunnelName
 	internal_map SILPH_CO_ELEVATOR,             10,  5, SilphCoName
+	internal_map FARAWAY_ISLAND,				15, 15, FarawyIslandName
 	internal_map AGATHAS_ROOM,                   0,  2, PokemonLeagueName
 	db -1 ; end

@@ -1,9 +1,9 @@
 	db DEX_SPEAROW ; pokedex id
 
-	db  40,  60,  30,  70,  31
+	db  40,  60,  50,  70,  41
 	;   hp  atk  def  spd  spc
 
-	db NORMAL, FLYING ; type
+	db FLYING, FLYING ; type
 	db 255 ; catch rate
 	db 58 ; base exp
 
@@ -14,8 +14,8 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
-	     RAGE,         MIMIC,        DOUBLE_TEAM,  BIDE,         SWIFT,        \
+	tmhm WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	     RAGE,         MIMIC,        DOUBLE_TEAM,  SWIFT,        \
 	     SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
 	; end
 

@@ -52,7 +52,7 @@ DEF SAFARI_ROCK EQU CASCADEBADGE ; overload
 	const DOME_FOSSIL   ; $29
 	const HELIX_FOSSIL  ; $2A
 	const SECRET_KEY    ; $2B
-	const ITEM_2C       ; $2C ; unused
+	const OLD_SEA_MAP   ; $2C ; unused ; used
 	const BIKE_VOUCHER  ; $2D
 	const X_ACCURACY    ; $2E
 	const LEAF_STONE    ; $2F
@@ -116,7 +116,7 @@ DEF NUM_FLOORS EQU const_value - 1 - NUM_ITEMS
 ; HMs are defined before TMs, so the actual number of TM definitions
 ; is not yet available. The TM quantity is hard-coded here and must
 ; match the actual number below.
-DEF NUM_TMS EQU 50
+DEF NUM_TMS EQU 51
 
 DEF __tmhm_value__ = NUM_TMS + 1
 
@@ -158,7 +158,7 @@ ENDM
 
 DEF TM01 EQU const_value
 	add_tm MEGA_PUNCH   ; $C9
-	add_tm RAZOR_WIND   ; $CA
+	add_tm SLUDGE_BOMB  ; $CA edited from RAZOR_WIND
 	add_tm SWORDS_DANCE ; $CB
 	add_tm WHIRLWIND    ; $CC
 	add_tm MEGA_KICK    ; $CD
@@ -168,7 +168,7 @@ DEF TM01 EQU const_value
 	add_tm TAKE_DOWN    ; $D1
 	add_tm DOUBLE_EDGE  ; $D2
 	add_tm BUBBLEBEAM   ; $D3
-	add_tm WATER_GUN    ; $D4
+	add_tm CROSS_CHOP   ; $D4 edited from WATER_GUN
 	add_tm ICE_BEAM     ; $D5
 	add_tm BLIZZARD     ; $D6
 	add_tm HYPER_BEAM   ; $D7
@@ -177,7 +177,7 @@ DEF TM01 EQU const_value
 	add_tm COUNTER      ; $DA
 	add_tm SEISMIC_TOSS ; $DB
 	add_tm RAGE         ; $DC
-	add_tm MEGA_DRAIN   ; $DD
+	add_tm GIGA_DRAIN   ; $DD edited from MEGA_DRAIN
 	add_tm SOLARBEAM    ; $DE
 	add_tm DRAGON_RAGE  ; $DF
 	add_tm THUNDERBOLT  ; $E0
@@ -190,7 +190,7 @@ DEF TM01 EQU const_value
 	add_tm MIMIC        ; $E7
 	add_tm DOUBLE_TEAM  ; $E8
 	add_tm REFLECT      ; $E9
-	add_tm BIDE         ; $EA
+	add_tm FLAMETHROWER ; $EA edited from BIDE
 	add_tm METRONOME    ; $EB
 	add_tm SELFDESTRUCT ; $EC
 	add_tm EGG_BOMB     ; $ED
@@ -202,17 +202,19 @@ DEF TM01 EQU const_value
 	add_tm SKY_ATTACK   ; $F3
 	add_tm REST         ; $F4
 	add_tm THUNDER_WAVE ; $F5
-	add_tm PSYWAVE      ; $F6
+	add_tm SHADOW_BALL  ; $F6 edited from PSYWAVE
 	add_tm EXPLOSION    ; $F7
 	add_tm ROCK_SLIDE   ; $F8
 	add_tm TRI_ATTACK   ; $F9
 	add_tm SUBSTITUTE   ; $FA
+	add_tm DRAGON_PULSE ; $FB new TM
 ASSERT NUM_TMS == const_value - TM01, "NUM_TMS ({d:NUM_TMS}) does not match the number of add_tm definitions"
 
 DEF NUM_TM_HM EQU NUM_TMS + NUM_HMS
 
 ; 50 TMs + 5 HMs = 55 learnable TM/HM flags per Pokémon.
 ; These fit in 7 bytes, with one unused bit left over.
+; Leftover bit used for TM 51
 DEF __tmhm_value__ = NUM_TM_HM + 1
 DEF UNUSED_TMNUM EQU __tmhm_value__
 

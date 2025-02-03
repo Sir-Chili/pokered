@@ -1,6 +1,6 @@
 	db DEX_DIGLETT ; pokedex id
 
-	db  10,  55,  25,  95,  45
+	db  10,  75,  25,  95,  45
 	;   hp  atk  def  spd  spc
 
 	db GROUND, GROUND ; type
@@ -16,7 +16,7 @@
 	; tm/hm learnset
 	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
 	     EARTHQUAKE,   FISSURE,      DIG,          MIMIC,        DOUBLE_TEAM,  \
-	     BIDE,         REST,         ROCK_SLIDE,   SUBSTITUTE
+	     REST,         ROCK_SLIDE,   SUBSTITUTE
 	; end
 
 	db 0 ; padding

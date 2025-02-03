@@ -1,6 +1,6 @@
 	db DEX_MANKEY ; pokedex id
 
-	db  40,  80,  35,  70,  35
+	db  40,  80,  35,  75,  35
 	;   hp  atk  def  spd  spc
 
 	db FIGHTING, FIGHTING ; type
@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  PAY_DAY,      SUBMISSION,   COUNTER,      SEISMIC_TOSS, \
+	     DOUBLE_EDGE,  CROSS_CHOP,   PAY_DAY,      SUBMISSION,   COUNTER,      SEISMIC_TOSS, \
 	     RAGE,         THUNDERBOLT,  THUNDER,      DIG,          MIMIC,        \
-	     DOUBLE_TEAM,  BIDE,         METRONOME,    SWIFT,        SKULL_BASH,   \
-	     REST,         ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
+	     DOUBLE_TEAM,  METRONOME,    SWIFT,        SKULL_BASH,   \
+	     REST,         SHADOW_BALL,  ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
 	; end
 
 	db 0 ; padding

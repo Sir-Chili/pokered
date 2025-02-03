@@ -60,7 +60,7 @@ ItemUsePtrTable:
 	dw UnusableItem      ; DOME_FOSSIL
 	dw UnusableItem      ; HELIX_FOSSIL
 	dw UnusableItem      ; SECRET_KEY
-	dw UnusableItem      ; ITEM_2C
+	dw UnusableItem      ; OLD_SEA_MAP
 	dw UnusableItem      ; BIKE_VOUCHER
 	dw ItemUseXAccuracy  ; X_ACCURACY
 	dw ItemUseEvoStone   ; LEAF_STONE
@@ -1283,7 +1283,7 @@ ItemUseMedicine:
 	ld a, 10
 	ld b, a
 	ld a, [hl] ; a = MSB of stat experience of the appropriate stat
-	cp 100 ; is there already at least 25600 (256 * 100) stat experience?
+	cp 255 ; is there already at least 25600 (256 * 100) stat experience? ; Changed to 65280 to "uncap" vitamins
 	jr nc, .vitaminNoEffect ; if so, vitamins can't add any more
 	add b ; add 2560 (256 * 10) stat experience
 	jr nc, .noCarry3 ; a carry should be impossible here, so this will always jump
@@ -2077,10 +2077,7 @@ ItemUsePPRestore:
 	ret
 .fullyRestorePP
 	ld a, [hl] ; move PP
-; Note that this code has a bug. It doesn't mask out the upper two bits, which
-; are used to count how many PP Ups have been used on the move. So, Max Ethers
-; and Max Elixirs will not be detected as having no effect on a move with full
-; PP if the move has had any PP Ups used on it.
+	and %00111111 ; lower 6 bits store current PP
 	cp b ; does current PP equal max PP?
 	ret z
 	jr .storeNewAmount

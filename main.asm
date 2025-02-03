@@ -189,10 +189,11 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/cries.asm"
 INCLUDE "engine/battle/unused_stats_functions.asm"
 INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
-INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "gfx/trade.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
+INCLUDE "engine/battle/init_battle_variables.asm"
+INCLUDE "engine/battle/move_effects/paralyze.asm"
 INCLUDE "engine/battle/move_effects/heal.asm"
 INCLUDE "engine/battle/move_effects/transform.asm"
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
@@ -235,9 +236,7 @@ INCLUDE "engine/predefs.asm"
 
 SECTION "Battle Engine 8", ROMX
 
-INCLUDE "engine/battle/init_battle_variables.asm"
-INCLUDE "engine/battle/move_effects/paralyze.asm"
-
+INCLUDE "engine/battle/trainer_ai.asm"
 
 SECTION "Hidden Objects 2", ROMX
 
@@ -268,6 +267,7 @@ SECTION "Battle Engine 10", ROMX
 INCLUDE "engine/battle/common_text.asm"
 INCLUDE "engine/pokemon/experience.asm"
 INCLUDE "engine/events/oaks_aide.asm"
+
 
 
 SECTION "Saffron Guards", ROMX
@@ -340,17 +340,20 @@ SECTION "Itemfinder 2", ROMX
 
 INCLUDE "engine/menus/league_pc.asm"
 INCLUDE "engine/events/hidden_items.asm"
-
+INCLUDE "gfx/fishing.asm"
+INCLUDE "engine/movie/evolution.asm"
+INCLUDE "engine/overworld/elevator.asm"
+INCLUDE "engine/items/tm_prices.asm"
 
 SECTION "bank1E", ROMX
 
 INCLUDE "engine/battle/animations.asm"
 INCLUDE "engine/overworld/cut2.asm"
 INCLUDE "engine/overworld/dust_smoke.asm"
-INCLUDE "gfx/fishing.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "data/battle_anims/subanimations.asm"
 INCLUDE "data/battle_anims/frame_blocks.asm"
-INCLUDE "engine/movie/evolution.asm"
-INCLUDE "engine/overworld/elevator.asm"
-INCLUDE "engine/items/tm_prices.asm"
+
+SECTION "Engine Extras", ROMX
+
+INCLUDE "engine/menus/item_descriptions.asm"

@@ -1,6 +1,6 @@
 	db DEX_NIDORAN_M ; pokedex id
 
-	db  46,  57,  40,  50,  40
+	db  45,  62,  40,  50,  45
 	;   hp  atk  def  spd  spc
 
 	db POISON, POISON ; type
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        HORN_DRILL,   BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
+	tmhm SLUDGE_BOMB,  TOXIC,        HORN_DRILL,   BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
 	     BLIZZARD,     RAGE,         THUNDERBOLT,  THUNDER,      MIMIC,        \
-	     DOUBLE_TEAM,  REFLECT,      BIDE,         SKULL_BASH,   REST,         \
+	     DOUBLE_TEAM,  REFLECT,      SKULL_BASH,   REST,         \
 	     SUBSTITUTE
 	; end
 

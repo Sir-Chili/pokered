@@ -3,7 +3,7 @@
 	db  65, 125, 100,  85,  55
 	;   hp  atk  def  spd  spc
 
-	db BUG, BUG ; type
+	db BUG, FIGHTING ; type
 	db 45 ; catch rate
 	db 200 ; base exp
 
@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  \
-	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, RAGE,         MIMIC,        \
-	     DOUBLE_TEAM,  BIDE,         REST,         SUBSTITUTE,   CUT,          \
+	     CROSS_CHOP,   HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, RAGE,         EARTHQUAKE,  MIMIC,        \
+	     DOUBLE_TEAM,  REST,         ROCK_SLIDE,   SUBSTITUTE,   CUT,          \
 	     STRENGTH
 	; end
 

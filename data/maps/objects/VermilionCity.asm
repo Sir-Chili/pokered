@@ -5,6 +5,7 @@
 	const_export VERMILIONCITY_GAMBLER2
 	const_export VERMILIONCITY_MACHOP
 	const_export VERMILIONCITY_SAILOR2
+	const_export VERMILIONCITY_SAILOR3
 
 VermilionCity_Object:
 	db $43 ; border block
@@ -19,6 +20,7 @@ VermilionCity_Object:
 	warp_event 19, 31, VERMILION_DOCK, 1
 	warp_event 15, 13, VERMILION_TRADE_HOUSE, 1
 	warp_event  7,  3, VERMILION_OLD_ROD_HOUSE, 1
+	warp_event 19, 26, FARAWAY_ISLAND, 1
 
 	def_bg_events
 	bg_event 27,  3, TEXT_VERMILIONCITY_SIGN
@@ -36,5 +38,6 @@ VermilionCity_Object:
 	object_event 30,  7, SPRITE_GAMBLER, STAY, NONE, TEXT_VERMILIONCITY_GAMBLER2
 	object_event 29,  9, SPRITE_MONSTER, WALK, UP_DOWN, TEXT_VERMILIONCITY_MACHOP
 	object_event 25, 27, SPRITE_SAILOR, WALK, LEFT_RIGHT, TEXT_VERMILIONCITY_SAILOR2
+	object_event 18, 26, SPRITE_SAILOR, STAY, LEFT, TEXT_VERMILIONCITY_SAILOR3
 
 	def_warps_to VERMILION_CITY

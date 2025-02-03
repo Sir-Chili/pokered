@@ -446,12 +446,24 @@ ShowPokedexDataInternal:
 	ld de, PokedexDataDividerLine
 	call PlaceString ; draw horizontal divider line
 
-	hlcoord 9, 6
-	ld de, HeightWeightText
+	hlcoord 9, 3
+	ld de, TypeDexText
+	call PlaceString
+
+	hlcoord 10, 4
+	ld de, TypeDexEmptyText
+	call PlaceString
+
+	hlcoord 9, 7
+	ld de, HeightText
+	call PlaceString
+
+	hlcoord 9, 8
+	ld de, WeightText
 	call PlaceString
 
 	call GetMonName
-	hlcoord 9, 2
+	hlcoord 9, 1
 	call PlaceString
 
 	ld hl, PokedexEntryPointers
@@ -465,7 +477,7 @@ ShowPokedexDataInternal:
 	ld e, a
 	ld d, [hl] ; de = address of pokedex entry
 
-	hlcoord 9, 4
+	hlcoord 9, 2
 	call PlaceString ; print species name
 
 	ld h, b
@@ -515,14 +527,14 @@ ShowPokedexDataInternal:
 	jp z, .waitForButtonPress ; if the pokemon has not been owned, don't print the height, weight, or description
 	inc de ; de = address of feet (height)
 	ld a, [de] ; reads feet, but a is overwritten without being used
-	hlcoord 12, 6
+	hlcoord 12, 7
 	lb bc, 1, 2
 	call PrintNumber ; print feet (height)
 	ld a, "′"
 	ld [hl], a
 	inc de
 	inc de ; de = address of inches (height)
-	hlcoord 15, 6
+	hlcoord 15, 7
 	lb bc, LEADING_ZEROES | 1, 2
 	call PrintNumber ; print inches (height)
 	ld a, "″"
@@ -563,6 +575,8 @@ ShowPokedexDataInternal:
 	ldh [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
 	pop af
 	ldh [hDexWeight], a ; restore original value of [hDexWeight]
+	hlcoord 10, 4
+	predef PrintMonType
 	pop hl
 	inc hl ; hl = address of pokedex description text
 	bccoord 1, 11
@@ -589,9 +603,19 @@ ShowPokedexDataInternal:
 	ldh [rNR50], a
 	ret
 
-HeightWeightText:
-	db   "HT  ?′??″"
-	next "WT   ???lb@"
+HeightText:
+	db   "HT  ?′??″@"
+
+WeightText:
+	db "WT   ???lb@"
+
+TypeDexText:
+	db   "TYPE1/"
+	next "TYPE2/@"
+
+TypeDexEmptyText:
+	db   "???"
+	next "???@"
 
 ; XXX does anything point to this?
 PokeText:

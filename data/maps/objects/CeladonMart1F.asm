@@ -18,5 +18,6 @@ CeladonMart1F_Object:
 
 	def_object_events
 	object_event  8,  3, SPRITE_LINK_RECEPTIONIST, STAY, DOWN, TEXT_CELADONMART1F_RECEPTIONIST
+	object_event 19,  4, SPRITE_MOM,               STAY, LEFT, TEXT_CELADONMART1F_TRADER
 
 	def_warps_to CELADON_MART_1F

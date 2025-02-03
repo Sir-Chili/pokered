@@ -1,6 +1,6 @@
 	db DEX_KANGASKHAN ; pokedex id
 
-	db 105,  95,  80,  90,  40
+	db 105,  95,  80,  90,  80
 	;   hp  atk  def  spd  spc
 
 	db NORMAL, NORMAL ; type
@@ -15,11 +15,11 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    TOXIC,        BODY_SLAM,    TAKE_DOWN,    \
-	     DOUBLE_EDGE,  BUBBLEBEAM,   WATER_GUN,    ICE_BEAM,     BLIZZARD,     \
+	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     HYPER_BEAM,   SUBMISSION,   COUNTER,      SEISMIC_TOSS, RAGE,         \
 	     THUNDERBOLT,  THUNDER,      EARTHQUAKE,   FISSURE,      MIMIC,        \
-	     DOUBLE_TEAM,  BIDE,         FIRE_BLAST,   SKULL_BASH,   REST,         \
-	     ROCK_SLIDE,   SUBSTITUTE,   SURF,         STRENGTH
+	     DOUBLE_TEAM,  FLAMETHROWER, FIRE_BLAST,   SKULL_BASH,   REST,         \
+	     SHADOW_BALL,  ROCK_SLIDE,   SUBSTITUTE,   SURF,         STRENGTH
 	; end
 
 	db 0 ; padding

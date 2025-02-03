@@ -606,7 +606,7 @@ CopySGBBorderTiles:
 ; SGB tile data is stored in a 4BPP planar format.
 ; Each tile is 32 bytes. The first 16 bytes contain bit planes 1 and 2, while
 ; the second 16 bytes contain bit planes 3 and 4.
-; This function converts 2BPP planar data into this format by mapping
+; This function converts  planar data into this format by mapping
 ; 2BPP colors 0-3 to 4BPP colors 0-3. 4BPP colors 4-15 are not used.
 	ld b, 128
 .tileLoop

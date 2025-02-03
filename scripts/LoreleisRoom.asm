@@ -112,6 +112,7 @@ LoreleisRoomLoreleiEndBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, ResetLoreleiScript
+	SetEvent EVENT_BEAT_LORELEIS_ROOM_TRAINER_0
 	ld a, TEXT_LORELEISROOM_LORELEI
 	ldh [hTextID], a
 	jp DisplayTextID
@@ -129,8 +130,32 @@ LoreleisRoomTrainerHeader0:
 
 LoreleisRoomLoreleiText:
 	text_asm
+	CheckEvent EVENT_BEAT_LORELEIS_ROOM_TRAINER_0
+	jr nz, .notRematch
+	ld a, [wGameStage]
+	and a 
+	jr z, .notRematch
+	ld hl, LoreleisRoomLoreleiBeforeBattleText
+	call PrintText
+	call Delay3
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, LoreleisRoomLoreleiEndBattleText
+	ld de, LoreleisRoomLoreleiEndBattleText
+	call SaveEndBattleTextPointers
+	ld a, OPP_LORELEI
+	ld [wCurOpponent], a
+	ld a, 2
+	ld [wTrainerNo], a
+	ld a, SCRIPT_LORELEISROOM_LORELEI_END_BATTLE
+	ld [wLoreleisRoomCurScript], a
+	ld [wCurMapScript], a
+	jr .rematch
+.notRematch
 	ld hl, LoreleisRoomTrainerHeader0
 	call TalkToTrainer
+.rematch
 	jp TextScriptEnd
 
 LoreleisRoomLoreleiBeforeBattleText:

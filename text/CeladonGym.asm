@@ -72,7 +72,7 @@ _TM21ExplanationText::
 	text_start
 
 	para "TM21 contains"
-	line "MEGA DRAIN."
+	line "GIGA DRAIN."
 
 	para "Half the damage"
 	line "it inflicts is"
@@ -217,4 +217,61 @@ _CeladonGymAfterBattleText8::
 
 	para "Wait 'til next"
 	line "time!"
+	done
+
+_CeladonGymRematchPreBattle1Text::
+	text "Hello. How are"
+	line "you? It's good"
+	cont "to see you"
+	cont "again!"
+
+	para "Fancy a rematch?"
+	line "I have been"
+	cont "training with"
+	cont "my #MON."
+	done
+
+_CeladonGymPreRematchBattle2Text::
+	text "Don't go easy on"
+	line "me. Give me"
+	cont "everything"
+	cont "you've got!"
+	done
+
+_CeladonGymRematchRefusedText::
+	text "Maybe some other"
+	line "time."
+	done
+
+_CeladonGymRematchDefeatedText::
+	text "You"
+	line "have grown"
+	cont "even stronger..."
+	prompt
+
+_CeladonGymRematchVictoryText::
+	text "Thank you for"
+	line "bearing with me."
+	prompt
+
+_CeladonGymRematchPostBattleText::
+	text "Oh my..."
+
+	para "So you are"
+	line "cataloging"
+	cont "the #MON"
+	cont "you catch?"
+
+	para "I must say I'm"
+	line "impressed."
+
+	para "I would never"
+	line "catch a #MON"
+	cont "if it were not"
+	cont "beautiful."
+	done
+
+_CeladonGymRematchPleaseAcceptTM::
+	text "Please, take a"
+	line "copy of this TM."
 	done
