@@ -13,9 +13,16 @@ PrintMonType:
 	ld a, [wMonHType2]
 	cp b
 	pop hl
-	jr z, EraseType2Text
+	jr nz, .noErase
+	call EraseType2Text
+	call EraseType2TypeLineText
+	jr .erase
+.noErase
 	ld bc, SCREEN_WIDTH * 2
 	add hl, bc
+	call PrintType
+.erase
+	ret
 
 ; a = type
 ; hl = dest addr
@@ -29,6 +36,13 @@ EraseType2Text:
 	ld bc, $13
 	add hl, bc
 	ld bc, $6
+	jp FillMemory
+
+EraseType2TypeLineText:
+	ld a, " "
+	ld bc, $0F
+	add hl, bc
+	ld bc, $8
 	jp FillMemory
 
 PrintMoveType:

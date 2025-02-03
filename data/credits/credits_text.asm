@@ -77,6 +77,7 @@ CreditsTextPointers:
 	dw CredPlaytesters
 	dw CredDarkJP04
 	dw CredHoumar95
+	dw CredBoomwater
 	assert_table_length NUM_CRED_STRINGS
 
 CredVersion:
@@ -236,3 +237,5 @@ CredDarkJP04:
 	db -4, "DARKJP04@"
 CredHoumar95:
 	db -4, "HOUMAR95@"
+CredBoomwater:
+	db -4, "BOOMWATER@"

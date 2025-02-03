@@ -76,6 +76,7 @@
 	const CRED_PLAYTESTERS	  ; $46
 	const CRED_DARKJP04		  ; $47
 	const CRED_HOUMAR95		  ; $48
+	const CRED_BOOMWATER	  ; $48
 
 DEF NUM_CRED_STRINGS EQU const_value
 
