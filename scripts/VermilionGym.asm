@@ -70,7 +70,7 @@ VermilionGymLTSurgeReceiveTM45Script:
 	ldh [hTextID], a
 	call DisplayTextID
 	SetEvent EVENT_BEAT_LT_SURGE
-	lb bc, TM_THUNDERBOLT, 1
+	lb bc, TM_THUNDER_WAVE, 1
 	call GiveItem
 	jr nc, .bag_full
 	ld a, TEXT_VERMILIONGYM_LT_SURGE_RECEIVED_TM45
@@ -97,7 +97,7 @@ LtSurgeRematchPostBattle:
 	ld a, TEXT_VERMILIONGYM_REMATCH_POST_BATTLE
 	ldh [hTextID], a
 	call DisplayTextID
-	lb bc, TM_THUNDERBOLT, 1
+	lb bc, TM_THUNDER_WAVE, 1
 	call GiveItem
 	jr nc, .BagFull
 	ld a, TEXT_VERMILIONGYM_PLEASE_ACCEPT_TM

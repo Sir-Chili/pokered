@@ -34,7 +34,7 @@ _TM45ExplanationText::
 	text_start
 
 	para "TM24 contains"
-	line "THUNDERBOLT!"
+	line "THUNDER WAVE!"
 
 	para "Teach it to an"
 	line "electric #MON!"
