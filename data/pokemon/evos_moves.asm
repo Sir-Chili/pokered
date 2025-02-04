@@ -644,6 +644,7 @@ PidgeyEvosMoves:
 	db 0
 ; Learnset
 	db 5, SAND_ATTACK
+	db 8, GUST
 	db 12, QUICK_ATTACK
 	db 15, WING_ATTACK
 	db 19, WHIRLWIND
@@ -1521,9 +1522,9 @@ BeedrillEvosMoves:
 ; Learnset
 	db 12, FURY_ATTACK
 	db 16, FOCUS_ENERGY
-	db 20, TWINEEDLE
+	db 20, PIN_MISSILE
 	db 25, RAGE
-	db 30, PIN_MISSILE
+	db 30, TWINEEDLE
 	db 35, AGILITY
 	db 41, DRILL_RUN
 	db 101, POISON_STING
@@ -1894,6 +1895,7 @@ PidgeottoEvosMoves:
 	db 0
 ; Learnset
 	db 5, SAND_ATTACK
+	db 8, GUST
 	db 12, QUICK_ATTACK
 	db 17, WING_ATTACK
 	db 21, WHIRLWIND
@@ -1907,6 +1909,7 @@ PidgeotEvosMoves:
 	db 0
 ; Learnset
 	db 5, SAND_ATTACK
+	db 8, GUST
 	db 12, QUICK_ATTACK
 	db 17, WING_ATTACK
 	db 21, WHIRLWIND

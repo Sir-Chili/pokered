@@ -33,8 +33,8 @@ _VermilionGymLTSurgeReceivedTM45Text::
 _TM45ExplanationText::
 	text_start
 
-	para "TM45 contains"
-	line "THUNDER WAVE!"
+	para "TM24 contains"
+	line "THUNDERBOLT!"
 
 	para "Teach it to an"
 	line "electric #MON!"

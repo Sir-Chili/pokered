@@ -47,6 +47,11 @@ TrainerNames::
 	li "CHANNELER"
 	li "AGATHA"
 	li "LANCE"
+IF DEF(_BLUE)
 	li "RED"
+ENDC
+IF DEF(_RED)
+	li "BLUE"
+ENDC
 	li "GREEN"
 	assert_list_length NUM_TRAINERS
