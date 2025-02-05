@@ -76,14 +76,16 @@ _CeladonMartRoofLittleGirlYayLemonadeText::
 
 _CeladonMartRoofLittleGirlReceivedTM24Text::
 	text "<PLAYER> received"
-	line "TM49!@"
+	line "TM24!@"
 	text_end
 
 _CeladonMartRoofLittleGirlTM24ExplanationText::
 	text_start
 
-	para "TM49 contains"
-	line "THUNDERBOLT!@"
+	para "@"
+	text_ram wStringBuffer
+	text " contains"
+	line "THUNDERBOLT!"
 
 	para "It can shock the"
 	line "target sometimes!@"

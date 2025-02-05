@@ -44,7 +44,7 @@ IndigoPlateauEndBattleScript:
 	ld a, HS_INDIGOPLATEAU_TRAINERF
 	ld [wMissableObjectIndex], a
 	predef HideObject
-	ld a, HS_INDIGOPLATEAU_MASTER_BALL
+	ld a, HS_INDIGOPLATEAU_PP_UP
 	ld [wMissableObjectIndex], a
 	predef ShowObject
 	SetEvent EVENT_INDIGOPLATEAU_TRAINER
@@ -57,7 +57,7 @@ IndigoPlateau_TextPointers:
 	def_text_pointers
 	dw_const IndigoPlateauTrainerMText, TEXT_INDIGOPLATEAU_TRAINERM
 	dw_const IndigoPlateauTrainerFText, TEXT_INDIGOPLATEAU_TRAINERF
-	dw_const PickUpItemText, 			TEXT_INDIGOPLATEAU_MASTER_BALL
+	dw_const PickUpItemText, 			TEXT_INDIGOPLATEAU_PP_UP
 	dw_const PickUpItemText, 			TEXT_INDIGOPLATEAU_MAX_ELIXER
 
 IndigoPlateauTrainerHeaders:
