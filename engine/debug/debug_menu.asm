@@ -109,16 +109,16 @@ TestBattle: ; unreferenced except in _DEBUG
 	; Specs out the Beedrill
 	ld hl, wPartyMon1Moves
 	ld a, X_SCISSOR
-	ld [hli], a
+	ld [hli], a 
 	ld a, DUALWINGBEAT
 	ld [hli], a
-	ld a, QUICK_ATTACK
+	ld a, TRI_ATTACK
 	ld [hli], a
 	ld a, SWORDS_DANCE
 	ld [hli], a
 
 	; Fight against a level 100 Dragonite.
-	ld a, DRAGONITE
+	ld a, ONIX
 	ld [wCurOpponent], a
 	ld a, 100
 	ld [wCurEnemyLevel], a

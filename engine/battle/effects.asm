@@ -202,6 +202,7 @@ FreezeBurnParalyzeEffect:
 	ld a, [wEnemyMonStatus]
 	and a
 	jp nz, CheckDefrost ; can't inflict status if opponent is already statused
+	ld a, [wPlayerMoveEffect]
 	cp TRI_ATTACK_EFFECT
 	jr z, .triAttackEffect1
 	ld a, [wPlayerMoveType]
@@ -258,21 +259,20 @@ FreezeBurnParalyzeEffect:
 	jp PrintText
 .triAttackEffect1
 	call BattleRandom; get random 8bit value for probability test
-	ld b, 18; 6,67% Burn Check
+	ld b, 18 ; 6,67% Burn Check
 	cp b
-	ld a, FIRE
+	ld b, FIRE
 	jr c, .triAttackTypeCheck1
-	ld b, 35; 6,67% Freeze Check
+	ld b, 35 ; 6,67% Freeze Check
 	cp b
-	ld a, ICE
+	ld b, ICE
 	jr c, .triAttackTypeCheck1
-	ld b, 20 percent + 1; 6,67% Para Check
+	ld b, 20 percent + 1 ; 6,67% Para Check
 	cp b
-	ld a, ELECTRIC
+	ld b, ELECTRIC
 	jr c, .triAttackTypeCheck1
-	ret nc; return if all fail
+	ret ; return if all fail
 .triAttackTypeCheck1
-	ld b, a
 	ld a, [wEnemyMonType1]
 	cp b ; do target type 1 and the status type?
 	ret z  ; return if they match (an ice move can't freeze an ice-type, body slam can't paralyze a normal-type, etc.)
@@ -289,6 +289,7 @@ FreezeBurnParalyzeEffect:
 	ld a, [wBattleMonStatus] ; mostly same as above with addresses swapped for opponent
 	and a
 	jp nz, CheckDefrost
+	ld a, [wEnemyMoveEffect]
 	cp TRI_ATTACK_EFFECT
 	jr z, .triAttackEffect2
 	ld a, [wEnemyMoveType]
@@ -337,19 +338,19 @@ FreezeBurnParalyzeEffect:
 	jp PrintText
 .triAttackEffect2
 	call BattleRandom; get random 8bit value for probability test
-	ld b, 18; 6,67% Burn Check
+	ld b, 18 ; 6,67% Burn Check
 	cp b
 	ld a, FIRE
 	jr c, .triAttackTypeCheck2
-	ld b, 35; 6,67% Freeze Check
+	ld b, 35 ; 6,67% Freeze Check
 	cp b
 	ld a, ICE
 	jr c, .triAttackTypeCheck2
-	ld b, 20 percent + 1; 6,67% Para Check
+	ld b, 20 percent + 1 ; 6,67% Para Check
 	cp b
 	ld a, ELECTRIC
 	jr c, .triAttackTypeCheck2
-	ret nc; return if all fail
+	ret ; return if all fail
 .triAttackTypeCheck2
 	ld b, a
 	ld a, [wBattleMonType1]
