@@ -37,7 +37,7 @@ TrainerAIPointers:
 	dbw 2, CooltrainerMAI ; cooltrainerm
 	dbw 1, CooltrainerFAI ; cooltrainerf
 	dbw 2, BrunoAI ; bruno
-	dbw 5, BrockAI ; brock
+	dbw 2, BrockAI ; brock
 	dbw 1, MistyAI ; misty
 	dbw 1, LtSurgeAI ; surge
 	dbw 1, ErikaAI ; erika
