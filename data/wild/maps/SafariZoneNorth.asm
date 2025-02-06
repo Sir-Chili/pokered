@@ -8,9 +8,9 @@ IF DEF(_RED)
 	db 30, NIDORINO
 	db 27, EXEGGCUTE
 	db 30, NIDORINA
-	db 26, SNORLAX
-	db 28, TAUROS
-	db 32, CHANSEY
+	db 26, TAUROS
+	db 28, CHANSEY
+	db 32, SNORLAX
 ENDC
 IF DEF(_BLUE)
 	db 22, NIDORAN_F
@@ -20,9 +20,9 @@ IF DEF(_BLUE)
 	db 30, NIDORINA
 	db 27, EXEGGCUTE
 	db 30, NIDORINO
-	db 26, CHANSEY
-	db 28, TAUROS
-	db 32, SNORLAX
+	db 26, TAUROS
+	db 28, SNORLAX
+	db 32, CHANSEY
 ENDC
 	end_grass_wildmons
 
