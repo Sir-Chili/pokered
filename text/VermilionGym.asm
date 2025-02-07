@@ -46,8 +46,9 @@ _VermilionGymRematchRefusedText::
 	done
 
 _VermilionGymRematchDefeatedText::
-	text "Arrrgh! OK kid,"
-	line "you are strong!"
+	text "Arrrgh!"
+	line "OK kid, you are"
+	cont "strong!"
 	prompt
 
 _VermilionGymRematchVictoryText::

@@ -10,15 +10,14 @@ IF DEF(_RED)
 	db 32, MAGNETON
 	db 35, MAGNETON
 	db 23, VOLTORB
-	db 30, PORYGON
 ENDC
 IF DEF(_BLUE)
 	db 23, VOLTORB
 	db 32, MAGNETON
 	db 35, MAGNETON
 	db 33, ELECTABUZZ
-	db 30, PORYGON
 ENDC
+	db 30, PORYGON
 	end_grass_wildmons
 
 	def_water_wildmons 0 ; encounter rate

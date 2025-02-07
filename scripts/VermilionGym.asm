@@ -199,7 +199,7 @@ VermilionGymLTSurgeText:
 	ld a, 2
 	ld [wTrainerNo], a
 	ld a, $4 ; new script
-	ld [wPewterGymCurScript], a
+	ld [wVermilionGymCurScript], a
 	ld [wCurMapScript], a
 	jr .endBattle
 .refused
