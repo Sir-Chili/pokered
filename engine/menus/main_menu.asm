@@ -668,7 +668,7 @@ SetCursorPositionsFromOptions:
 	hlcoord 0, 8
 	call .placeUnfilledRightArrow
 	sla c
-	ld a, 10 ; Change to start on SET
+	ld a, 1 ; Change to start on SET
 	jr nc, .storeBattleStyleCursorX
 	ld a, 10
 .storeBattleStyleCursorX

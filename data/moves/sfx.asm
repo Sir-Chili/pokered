@@ -177,6 +177,7 @@ MoveSoundTable:
 	db SFX_BATTLE_31,          $ff, $40 ; ASTONISH
 	db SFX_BATTLE_12,          $00, $c0 ; TWISTER
 	db SFX_BATTLE_25,          $00, $10 ; EXTREMESPEED
+	db SFX_BATTLE_1B,          $01, $a0 ; MUD_SHOT
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

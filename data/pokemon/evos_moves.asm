@@ -233,7 +233,8 @@ NidoranMEvosMoves:
 ; Learnset
 	db 8, HORN_ATTACK
 	db 14, POISON_STING
-	db 21, FOCUS_ENERGY
+	db 19, FOCUS_ENERGY
+	db 24, MUD_SHOT
 	db 29, FURY_ATTACK
 	db 32, DRILL_RUN
 	db 36, HORN_DRILL
@@ -259,8 +260,9 @@ SpearowEvosMoves:
 	db 0
 ; Learnset
 	db 9, LEER
-	db 15, FURY_ATTACK
-	db 22, MIRROR_MOVE
+	db 13, FURY_ATTACK
+	db 18, MUD_SHOT
+	db 23, MIRROR_MOVE
 	db 29, DRILL_PECK
 	db 36, AGILITY
 	db 40, DRILL_RUN
@@ -287,6 +289,7 @@ NidokingEvosMoves:
 	db 8, HORN_ATTACK
 	db 14, POISON_STING
 	db 23, THRASH
+	db 33, MUD_SHOT
 	db 44, DRILL_RUN
 	db 101, FOCUS_ENERGY
 	db 101, FURY_ATTACK
@@ -388,7 +391,8 @@ NidoranFEvosMoves:
 ; Learnset
 	db 8, SCRATCH
 	db 14, POISON_STING
-	db 21, TAIL_WHIP
+	db 19, TAIL_WHIP
+	db 24, MUD_SHOT
 	db 29, BITE
 	db 32, DRILL_RUN
 	db 36, FURY_SWIPES
@@ -402,6 +406,7 @@ NidoqueenEvosMoves:
 	db 8, SCRATCH
 	db 14, POISON_STING
 	db 23, BODY_SLAM
+	db 33, MUD_SHOT
 	db 44, DRILL_RUN
 	db 101, TAIL_WHIP
 	db 101, BITE
@@ -554,9 +559,10 @@ BlastoiseEvosMoves:
 	db 0
 ; Learnset
 	db 8, BUBBLE
-	db 15, WATER_GUN
-	db 24, BITE
-	db 31, WITHDRAW
+	db 14, WATER_GUN
+	db 22, BITE
+	db 28, MUD_SHOT
+	db 32, WITHDRAW
 	db 42, SKULL_BASH
 	db 52, HYDRO_PUMP
 	db 0
@@ -631,8 +637,9 @@ FearowEvosMoves:
 	db 0
 ; Learnset
 	db 9, LEER
-	db 15, FURY_ATTACK
-	db 25, MIRROR_MOVE
+	db 13, FURY_ATTACK
+	db 18, MUD_SHOT
+	db 26, MIRROR_MOVE
 	db 34, DRILL_PECK
 	db 43, AGILITY
 	db 49, DRILL_RUN
@@ -1284,7 +1291,8 @@ SandshrewEvosMoves:
 	db 0
 ; Learnset
 	db 10, SAND_ATTACK
-	db 17, SLASH
+	db 14, MUD_SHOT
+	db 19, SLASH
 	db 24, POISON_STING
 	db 27, DRILL_RUN
 	db 31, SWIFT
@@ -1298,7 +1306,8 @@ SandslashEvosMoves:
 	db 0
 ; Learnset
 	db 10, SAND_ATTACK
-	db 17, SLASH
+	db 14, MUD_SHOT
+	db 19, SLASH
 	db 27, POISON_STING
 	db 31, DRILL_RUN
 	db 36, SWIFT
@@ -2067,6 +2076,7 @@ RattataEvosMoves:
 ; Learnset
 	db 7, QUICK_ATTACK
 	db 14, HYPER_FANG
+	db 18, MUD_SHOT
 	db 23, FOCUS_ENERGY
 	db 34, SUPER_FANG
 	db 0
@@ -2077,6 +2087,7 @@ RaticateEvosMoves:
 ; Learnset
 	db 7, QUICK_ATTACK
 	db 14, HYPER_FANG
+	db 18, MUD_SHOT
 	db 27, FOCUS_ENERGY
 	db 41, SUPER_FANG
 	db 0
@@ -2088,7 +2099,8 @@ NidorinoEvosMoves:
 ; Learnset
 	db 8, HORN_ATTACK
 	db 14, POISON_STING
-	db 23, FOCUS_ENERGY
+	db 20, FOCUS_ENERGY
+	db 26, MUD_SHOT
 	db 32, FURY_ATTACK
 	db 36, DRILL_RUN
 	db 41, HORN_DRILL
@@ -2102,7 +2114,8 @@ NidorinaEvosMoves:
 ; Learnset
 	db 8, SCRATCH
 	db 14, POISON_STING
-	db 23, TAIL_WHIP
+	db 20, TAIL_WHIP
+	db 26, MUD_SHOT
 	db 32, BITE
 	db 36, DRILL_RUN
 	db 41, FURY_SWIPES
@@ -2198,9 +2211,10 @@ SquirtleEvosMoves:
 	db 0
 ; Learnset
 	db 8, BUBBLE
-	db 15, WATER_GUN
-	db 22, BITE
-	db 28, WITHDRAW
+	db 14, WATER_GUN
+	db 19, BITE
+	db 24, MUD_SHOT
+	db 29, WITHDRAW
 	db 35, SKULL_BASH
 	db 42, HYDRO_PUMP
 	db 0
@@ -2225,9 +2239,10 @@ WartortleEvosMoves:
 	db 0
 ; Learnset
 	db 8, BUBBLE
-	db 15, WATER_GUN
-	db 24, BITE
-	db 31, WITHDRAW
+	db 14, WATER_GUN
+	db 22, BITE
+	db 28, MUD_SHOT
+	db 32, WITHDRAW
 	db 39, SKULL_BASH
 	db 47, HYDRO_PUMP
 	db 0

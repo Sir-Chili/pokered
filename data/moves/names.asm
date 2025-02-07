@@ -176,5 +176,6 @@ MoveNames::
 	li "ASTONISH"
 	li "TWISTER"
 	li "EXTREMESPEED"
+	li "MUD SHOT"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

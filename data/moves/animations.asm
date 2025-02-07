@@ -176,6 +176,7 @@ AttackAnimationPointers:
 	dw AstonishAnim
 	dw TwisterAnim
 	dw ExtremeSpeedAnim
+	dw MudShotAnim
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
@@ -1253,6 +1254,11 @@ ExtremeSpeedAnim:
 	battle_anim EXTREMESPEED, SE_SLIDE_MON_OFF
 	battle_anim NO_MOVE, SUBANIM_0_SLICE, 0, 4
 	battle_anim NO_MOVE, SE_SHOW_MON_PIC
+	db -1 ; end
+
+MudShotAnim:
+	battle_anim MUD_SHOT, SUBANIM_1_SAND, 1, 6
+	battle_anim TOXIC, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
 	db -1 ; end
 
 BallTossAnim:

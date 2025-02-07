@@ -97,7 +97,7 @@ TestBattle: ; unreferenced except in _DEBUG
 	ld [hl], a
 
 	; Give the player a level 100 Beedrill.
-	ld a, SCYTHER
+	ld a, TANGELA
 	ld [wCurPartySpecies], a
 	ld a, 100
 	ld [wCurEnemyLevel], a
@@ -110,7 +110,7 @@ TestBattle: ; unreferenced except in _DEBUG
 	ld hl, wPartyMon1Moves
 	ld a, X_SCISSOR
 	ld [hli], a 
-	ld a, DUALWINGBEAT
+	ld a, MUD_SHOT
 	ld [hli], a
 	ld a, TRI_ATTACK
 	ld [hli], a
@@ -118,7 +118,7 @@ TestBattle: ; unreferenced except in _DEBUG
 	ld [hli], a
 
 	; Fight against a level 100 Dragonite.
-	ld a, ONIX
+	ld a, NIDOKING
 	ld [wCurOpponent], a
 	ld a, 100
 	ld [wCurEnemyLevel], a

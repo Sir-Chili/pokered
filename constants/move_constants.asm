@@ -182,7 +182,8 @@
 	const ASTONISH	   ; ae
 	const TWISTER	   ; af
 	const EXTREMESPEED ; b0
-	const STRUGGLE     ; b1
+	const MUD_SHOT	   ; b1
+	const STRUGGLE     ; b2
 DEF NUM_ATTACKS EQU const_value - 1
 
 	; Moves do double duty as animation identifiers.
