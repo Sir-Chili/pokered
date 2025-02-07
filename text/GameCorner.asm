@@ -44,6 +44,23 @@ _GameCornerClerk1DontHaveCoinCaseText::
 	line "COIN CASE!"
 	done
 
+_GameCornerClerk3DoYouNeedSomeGameCoinsText::
+	text "Welcome to ROCKET"
+	line "GAME CORNER!"
+
+	para "Do you need some"
+	line "game coins?"
+
+	para "It's ¥10000 for"
+	line "500 coins. Would"
+	cont "you like some?"
+	done
+
+_GameCornerClerk3ThanksHereAre50CoinsText::
+	text "Thanks! Here are"
+	line "your 500 coins!"
+	done
+
 _GameCornerMiddleAgedMan1Text::
 	text "Keep this quiet."
 

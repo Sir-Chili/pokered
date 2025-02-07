@@ -121,6 +121,7 @@ GameCorner_TextPointers:
 	def_text_pointers
 	dw_const GameCornerBeauty1Text,           TEXT_GAMECORNER_BEAUTY1
 	dw_const GameCornerClerk1Text,            TEXT_GAMECORNER_CLERK1
+	dw_const GameCornerClerk3Text,            TEXT_GAMECORNER_CLERK3
 	dw_const GameCornerMiddleAgedMan1Text,    TEXT_GAMECORNER_MIDDLE_AGED_MAN1
 	dw_const GameCornerBeauty2Text,           TEXT_GAMECORNER_BEAUTY2
 	dw_const GameCornerFishingGuruText,       TEXT_GAMECORNER_FISHING_GURU
@@ -208,6 +209,95 @@ GameCornerClerk1Text:
 
 .ThanksHereAre50Coins:
 	text_far _GameCornerClerk1ThanksHereAre50CoinsText
+	text_end
+
+.PleaseComePlaySometime:
+	text_far _GameCornerClerk1PleaseComePlaySometimeText
+	text_end
+
+.CantAffordTheCoins:
+	text_far _GameCornerClerk1CantAffordTheCoinsText
+	text_end
+
+.CoinCaseIsFull:
+	text_far _GameCornerClerk1CoinCaseIsFullText
+	text_end
+
+.DontHaveCoinCase:
+	text_far _GameCornerClerk1DontHaveCoinCaseText
+	text_end
+
+GameCornerClerk3Text:
+	text_asm
+	; Show player's coins
+	call GameCornerDrawCoinBox
+	ld hl, .DoYouNeedSomeGameCoins
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .declined
+	; Can only get more coins if you
+	; - have the Coin Case
+	ld b, COIN_CASE
+	call IsItemInBag
+	jr z, .no_coin_case
+	; - have room in the Coin Case for at least 9 coins
+	call Has9990Coins
+	jr nc, .coin_case_full
+	; - have at least 10000 yen
+	xor a
+	ldh [hMoney + 1], a
+	ldh [hMoney + 2], a
+	ld a, $1
+	ldh [hMoney], a
+	call HasEnoughMoney
+	jr nc, .buy_coins
+	ld hl, .CantAffordTheCoins
+	jr .print_ret
+.buy_coins
+	; Spend 10000 yen
+	xor a
+	ldh [hMoney + 1], a
+	ldh [hMoney + 2], a
+	ld a, $1
+	ldh [hMoney], a
+	ld hl, hMoney + 2
+	ld de, wPlayerMoney + 2
+	ld c, $3
+	predef SubBCDPredef
+	; Receive 500 coins
+	xor a
+	ldh [hUnusedCoinsByte], a
+	ldh [hCoins + 1], a
+	ld a, $5
+	ldh [hCoins], a
+	ld de, wPlayerCoins + 1
+	ld hl, hCoins + 1
+	ld c, $2
+	predef AddBCDPredef
+	; Update display
+	call GameCornerDrawCoinBox
+	ld hl, .ThanksHereAre500Coins
+	jr .print_ret
+.declined
+	ld hl, .PleaseComePlaySometime
+	jr .print_ret
+.coin_case_full
+	ld hl, .CoinCaseIsFull
+	jr .print_ret
+.no_coin_case
+	ld hl, .DontHaveCoinCase
+.print_ret
+	call PrintText
+	jp TextScriptEnd
+
+.DoYouNeedSomeGameCoins:
+	text_far _GameCornerClerk3DoYouNeedSomeGameCoinsText
+	text_end
+
+.ThanksHereAre500Coins:
+	text_far _GameCornerClerk3ThanksHereAre50CoinsText
 	text_end
 
 .PleaseComePlaySometime:
