@@ -1211,7 +1211,7 @@ _GainedText::
 	text_end
 
 _WithExpAllText::
-	text "Party gained"
+	text "Party each gained"
 	next "@"
 	text_end
 
