@@ -874,6 +874,7 @@ FaintEnemyPokemon:
 ; half of the total stat exp and normal exp will divided evenly amongst every party member
 	ld a, TRUE
 	ld [wBoostExpByExpAll], a
+	ld [wExpAllTextShown], a
 	ld a, [wPartyCount]
 	ld b, 0
 .gainExpFlagsLoop

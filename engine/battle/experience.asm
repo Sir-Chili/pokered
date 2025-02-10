@@ -148,8 +148,17 @@ GainExperience:
 	call GetPartyMonName
 	ld a, [wBoostExpByExpAll] ; get using ExpAll flag
 	and a ; check the flag
-	jr nz, .skipExpText ; if there's EXP. all, skip showing any text
+	jr z, .noExpShareText ; if there's no EXP. all, skip to regular text
+	ld a, [wExpAllTextShown]
+	and a
+	jr z, .skipExpText
+	ld a, FALSE
+	ld [wExpAllTextShown], a
+	ld hl, WithExpAllText ; this is preparing the text to show
+	jr .printText
+.noExpShareText
 	ld hl, GainedText ;there's no EXP. all, load the text to show
+.printText
 	call PrintText
 .skipExpText
 	xor a ; PLAYER_PARTY_DATA
@@ -280,12 +289,6 @@ GainExperience:
 	call AddNTimes
 	jp .partyMonLoop
 .done
-	ld a, [wBoostExpByExpAll] ;load in a if the EXP All is being used
-	ld hl, WithExpAllText ; this is preparing the text to show
-	and a ;check wBoostExpByExpAll value
-	jr z, .skipExpAll ; if wBoostExpByExpAll is zero, we are not using it, so we don't show anything and keep going on
-	call PrintText ; if the code reaches this point it means we have the Exp.All, so show the message
-.skipExpAll
 	ld hl, wPartyGainExpFlags
 	xor a
 	ld [hl], a ; clear gain exp flags

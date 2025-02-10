@@ -407,8 +407,9 @@ wSimulatedJoypadStatesEnd::
 NEXTU
 wUnusedFlag::
 wBoostExpByExpAll:: db
+wExpAllTextShown:: db
 
-	ds 59
+	ds 58
 
 wNPCMovementDirections2:: ds 10
 ; used in Pallet Town scripted movement
