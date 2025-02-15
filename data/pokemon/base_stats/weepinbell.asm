@@ -3,7 +3,7 @@
 	db  65,  90,  50,  55,  85
 	;   hp  atk  def  spd  spc
 
-	db GRASS, POISON ; type
+	db GRASS, WATER ; type
 	db 120 ; catch rate
 	db 151 ; base exp
 
@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm SLUDGE_BOMB,  SWORDS_DANCE, TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  RAGE,         \
+	tmhm SLUDGE_BOMB,  SWORDS_DANCE, TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  BUBBLEBEAM,   RAGE,         \
 	     GIGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     REST,         SUBSTITUTE,   CUT
+	     REST,         SUBSTITUTE,   CUT,          SURF
 	; end
 
 	db 0 ; padding

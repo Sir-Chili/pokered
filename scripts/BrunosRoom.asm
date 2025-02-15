@@ -133,7 +133,7 @@ BrunosRoomBrunoText:
 	ld a, [wGameStage]
 	and a 
 	jr z, .notRematch
-	ld hl, BrunoBeforeBattleText
+	ld hl, BrunoBeforeBattleRematchText
 	call PrintText
 	call Delay3
 	ld hl, wStatusFlags3
@@ -158,6 +158,10 @@ BrunosRoomBrunoText:
 
 BrunoBeforeBattleText:
 	text_far _BrunoBeforeBattleText
+	text_end
+
+BrunoBeforeBattleRematchText:
+	text_far _BrunoBeforeBattleRematchText
 	text_end
 
 BrunoEndBattleText:

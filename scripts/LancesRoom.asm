@@ -139,12 +139,12 @@ LancesRoomTrainerHeader0:
 
 LancesRoomLanceText:
 	text_asm
-	CheckEvent EVENT_BEAT_LANCES_ROOM_TRAINER_0
-	jr nz, .notRematch
 	ld a, [wGameStage]
 	and a 
 	jr z, .notRematch
-	ld hl, LancesRoomLanceBeforeBattleText
+	CheckEvent EVENT_BEAT_LANCES_ROOM_TRAINER_0
+	jr nz, .beaten
+	ld hl, LancesRoomLanceBeforeBattleRematchText
 	call PrintText
 	call Delay3
 	ld hl, wStatusFlags3
@@ -161,6 +161,10 @@ LancesRoomLanceText:
 	ld [wLancesRoomCurScript], a
 	ld [wCurMapScript], a
 	jr .rematch
+.beaten
+	ld hl, LancesRoomLanceAfterBattleRematchText
+	call PrintText
+	jr .rematch
 .notRematch
 	ld hl, LancesRoomTrainerHeader0
 	call TalkToTrainer
@@ -171,12 +175,22 @@ LancesRoomLanceBeforeBattleText:
 	text_far _LancesRoomLanceBeforeBattleText
 	text_end
 
+LancesRoomLanceBeforeBattleRematchText:
+	text_far _LancesRoomLanceBeforeBattleRematchText
+	text_end
+
 LancesRoomLanceEndBattleText:
 	text_far _LancesRoomLanceEndBattleText
 	text_end
 
 LancesRoomLanceAfterBattleText:
 	text_far _LancesRoomLanceAfterBattleText
+	text_asm
+	SetEvent EVENT_BEAT_LANCE
+	jp TextScriptEnd
+
+LancesRoomLanceAfterBattleRematchText:
+	text_far _LancesRoomLanceAfterBattleRematchText
 	text_asm
 	SetEvent EVENT_BEAT_LANCE
 	jp TextScriptEnd

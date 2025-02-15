@@ -136,7 +136,7 @@ AgathasRoomAgathaText:
 	ld a, [wGameStage]
 	and a 
 	jr z, .notRematch
-	ld hl, AgathaBeforeBattleText
+	ld hl, AgathaBeforeBattleRematchText
 	call PrintText
 	call Delay3
 	ld hl, wStatusFlags3
@@ -161,6 +161,10 @@ AgathasRoomAgathaText:
 
 AgathaBeforeBattleText:
 	text_far _AgathaBeforeBattleText
+	text_end
+
+AgathaBeforeBattleRematchText:
+	text_far _AgathaBeforeBattleRematchText
 	text_end
 
 AgathaEndBattleText:

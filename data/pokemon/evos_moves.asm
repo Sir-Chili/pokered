@@ -625,7 +625,7 @@ OnixEvosMoves:
 ; Learnset
 	db 15, BIND
 	db 18, ROCK_THROW
-	db 21, TWISTER
+	db 21, VINE_WHIP
 	db 25, RAGE
 	db 28, DRILL_RUN
 	db 33, SLAM
@@ -2332,12 +2332,14 @@ BellsproutEvosMoves:
 	db 0
 ; Learnset
 	db 13, WRAP
-	db 15, POISONPOWDER
-	db 18, SLEEP_POWDER
+	db 15, BUBBLE
+	db 17, POISONPOWDER
+	db 19, SLEEP_POWDER
 	db 21, STUN_SPORE
 	db 26, ACID
 	db 33, RAZOR_LEAF
-	db 42, SLAM
+	db 37, SLAM
+	db 41, HYDRO_PUMP
 	db 0
 
 WeepinbellEvosMoves:
@@ -2346,12 +2348,14 @@ WeepinbellEvosMoves:
 	db 0
 ; Learnset
 	db 13, WRAP
-	db 15, POISONPOWDER
-	db 18, SLEEP_POWDER
+	db 15, BUBBLE
+	db 17, POISONPOWDER
+	db 19, SLEEP_POWDER
 	db 23, STUN_SPORE
 	db 29, ACID
 	db 38, RAZOR_LEAF
-	db 49, SLAM
+	db 43, SLAM
+	db 49, HYDRO_PUMP
 	db 0
 
 VictreebelEvosMoves:
@@ -2359,10 +2363,13 @@ VictreebelEvosMoves:
 	db 0
 ; Learnset
 	db 13, WRAP
-	db 15, POISONPOWDER
-	db 18, SLEEP_POWDER
+	db 15, BUBBLE
+	db 17, POISONPOWDER
+	db 19, SLEEP_POWDER
+	db 101, VINE_WHIP
 	db 101, STUN_SPORE
 	db 101, ACID
 	db 101, RAZOR_LEAF
 	db 101, SLAM
+	db 101, HYDRO_PUMP
 	db 0

@@ -22,6 +22,18 @@ _AgathaBeforeBattleText::
 	cont "trainer fights!"
 	done
 
+_AgathaBeforeBattleRematchText::
+	text "So you've come!"
+	
+	para "It's not in my"
+	line "character to lose"
+	cont "over and over."
+	
+	para "Give this battle"
+	line "everything you've"
+	cont "got!"
+	done
+
 _AgathaEndBattleText::
 	text "Oh ho!"
 	line "You're something"

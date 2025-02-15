@@ -135,7 +135,7 @@ LoreleisRoomLoreleiText:
 	ld a, [wGameStage]
 	and a 
 	jr z, .notRematch
-	ld hl, LoreleisRoomLoreleiBeforeBattleText
+	ld hl, LoreleisRoomLoreleiBeforeBattleRematchText
 	call PrintText
 	call Delay3
 	ld hl, wStatusFlags3
@@ -160,6 +160,10 @@ LoreleisRoomLoreleiText:
 
 LoreleisRoomLoreleiBeforeBattleText:
 	text_far _LoreleisRoomLoreleiBeforeBattleText
+	text_end
+
+LoreleisRoomLoreleiBeforeBattleRematchText:
+	text_far _LoreleisRoomLoreleiBeforeBattleRematchText
 	text_end
 
 LoreleisRoomLoreleiEndBattleText:

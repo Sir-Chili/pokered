@@ -82,15 +82,15 @@ ChampionsRoomRivalReadyToBattleScript:
 .NotStarter3
 	ld a, $3
 .saveTrainerId
-	ld b, a
+	push af
 	ld a, [wGameStage]
 	and a
 	jr z, .NotRematch
-	ld a, b 
+	pop af
 	add a, $3
 	jr .Rematch
 .NotRematch
-	ld a, b
+	pop af
 .Rematch
 	ld [wTrainerNo], a
 

@@ -27,6 +27,24 @@ _LancesRoomLanceBeforeBattleText::
 	cont "with me, <PLAYER>!"
 	done
 
+_LancesRoomLanceBeforeBattleRematchText::
+	text "Ah! Welcome back,"
+	line "<PLAYER>!"
+
+	para "I lead the ELITE"
+	line "FOUR!"
+
+	para "I'm glad you've"
+	line "come back."
+	
+	para "I'd feel ashamed"
+	line "to call myself"
+	cont "LANCE the dragon"
+	cont "trainer if I"
+	cont "didn't challenge"
+	cont "you to a battle!"
+	done
+
 _LancesRoomLanceEndBattleText::
 	text "That's it!"
 
@@ -62,3 +80,23 @@ _LancesRoomLanceAfterBattleText::
 	line "#MON LEAGUE"
 	cont "champion!@"
 	text_end
+
+_LancesRoomLanceAfterBattleRematchText::
+	text "There's no way my"
+	line "dragon brigade is"
+	cont "weak..."
+	
+	para "That means your"
+	line "strength is truly"
+	cont "incredible!"
+	
+	para "Now, <PLAYER>!"
+	line "You know what's"
+	cont "next, don't you?" 
+	
+	para "That's right!"
+
+	para "Your final fight"
+	line "awaits in the"
+	cont "next room! Go on!"
+	done

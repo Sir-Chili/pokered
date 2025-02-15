@@ -1,5 +1,5 @@
 _LoreleisRoomLoreleiBeforeBattleText::
-	text "Welcome to"
+	text "Welcome to the"
 	line "#MON LEAGUE!"
 
 	para "I am LORELEI of"
@@ -19,6 +19,22 @@ _LoreleisRoomLoreleiBeforeBattleText::
 
 	para "Hahaha!"
 	line "Are you ready?"
+	done
+
+_LoreleisRoomLoreleiBeforeBattleRematchText::
+	text "Welcome to the"
+	line "#MON LEAGUE!" 
+	
+	para "Fantastic timing!"
+
+	para "I was just"
+	line "thinking how I"
+	cont "would like to"
+	cont "battle you again."
+	
+	para "I hope you're"
+	line "ready for a"
+	cont "rematch!"
 	done
 
 _LoreleisRoomLoreleiEndBattleText::

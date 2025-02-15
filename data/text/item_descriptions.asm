@@ -388,8 +388,8 @@ _TM07Description::
 	prompt
 
 _TM08Description::
-	text "An attack that may"
-	next "cause paralysis."
+	text "Full-body slam."
+	next "Can paralyze."
 	prompt
 
 _TM09Description::
@@ -398,8 +398,8 @@ _TM09Description::
 	prompt
 
 _TM10Description::
-	text "A tackle that also"
-	next "hurts the user."
+	text "A reckless tackle."
+	next "Hurts the user."
 	prompt
 
 _TM11Description::
@@ -418,7 +418,7 @@ _TM13Description::
 	prompt
 
 _TM14Description::
-	text "An attack that may"
+	text "Glacial wind. May"
 	next "freeze the foe."
 	prompt
 
@@ -473,7 +473,7 @@ _TM24Description::
 	prompt
 
 _TM25Description::
-	text "An attack that may"
+	text "Strong shock. May"
 	next "cause paralysis."
 	prompt
 
@@ -518,8 +518,8 @@ _TM33Description::
 	prompt
 
 _TM34Description::
-	text "Powerful flames"
-	next "that can burn."
+	text "An attack that"
+	next "may cause a burn."
 	prompt
 
 _TM35Description::
@@ -538,8 +538,8 @@ _TM37Description::
 	prompt
 
 _TM38Description::
-	text "An attack that"
-	next "may cause a burn."
+	text "Powerful flames."
+	next "Can cause a burn."
 	prompt
 
 _TM39Description::

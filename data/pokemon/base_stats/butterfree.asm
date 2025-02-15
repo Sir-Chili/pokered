@@ -1,6 +1,6 @@
 	db DEX_BUTTERFREE ; pokedex id
 
-	db  80,  65,  50,  75,  110
+	db  80,  65,  50,  75,  100
 	;   hp  atk  def  spd  spc
 
 	db BUG, PSYCHIC_TYPE ; type
@@ -17,7 +17,7 @@
 	tmhm WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  ICE_BEAM,     BLIZZARD,     \
 	     HYPER_BEAM,   RAGE,         GIGA_DRAIN,   SOLARBEAM,    PSYCHIC_M,    \
 	     TELEPORT,     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     SWIFT,        REST,         SHADOW_BALL,  SUBSTITUTE
+	     SWIFT,        REST,         DREAM_EATER,  SHADOW_BALL,  SUBSTITUTE
 	; end
 
 	db 0 ; padding
