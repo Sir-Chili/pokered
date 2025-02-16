@@ -294,11 +294,11 @@ SpecialTrainerMoves:
 	db 2, 3, CROSS_CHOP
 	db 3, 2, SWORDS_DANCE
 	db 3, 4, SHADOW_BALL
-	db 4, 1, SHADOW_BALL
-	db 4, 2, TOXIC
-	db 5, 1, TOXIC
-	db 5, 2, CROSS_CHOP
-	db 5, 3, SHADOW_BALL
+	db 4, 1, TOXIC
+	db 4, 2, CROSS_CHOP
+	db 4, 3, SHADOW_BALL
+	db 5, 1, SHADOW_BALL
+	db 5, 2, TOXIC
 	db 6, 1, GIGA_DRAIN
 	db 6, 2, THUNDERBOLT
 	db 6, 4, PSYCHIC_M

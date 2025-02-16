@@ -30,6 +30,7 @@ OaksLab_ScriptPointers:
 	dw_const OaksLabOakGivesPokedexScript,           SCRIPT_OAKSLAB_OAK_GIVES_POKEDEX
 	dw_const OaksLabRivalLeavesWithPokedexScript,    SCRIPT_OAKSLAB_RIVAL_LEAVES_WITH_POKEDEX
 	dw_const OaksLabNoopScript,                      SCRIPT_OAKSLAB_NOOP
+	dw_const OaksLabProfOakEndBattle,    			 SCRIPT_OAKSLAB_PROF_OAK_END_BATTLE
 
 OaksLabDefaultScript:
 	CheckEvent EVENT_OAK_APPEARED_IN_PALLET
@@ -648,6 +649,40 @@ OaksLabRivalLeavesWithPokedexScript:
 	ld [wOaksLabCurScript], a
 	ret
 
+OaksLabProfOakEndBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jp z, ResetOakScript
+	SetEvent EVENT_DEFEATED_OAK
+	ld a, TEXT_OAKSLAB_OAK_PLEASE_ACCEPT_THIS
+	ldh [hTextID], a
+	jp DisplayTextID
+
+ResetOakScript:
+	ld a, SCRIPT_OAKSLAB_NOOP
+	ld [wOaksLabCurScript], a
+
+OaksLabOakPleaseAcceptThis:
+	text_asm
+	ld a, $0
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+	lb bc, OLD_SEA_MAP, 1
+	call GiveItem
+	jr nc, .BagFull
+	SetEvent EVENT_RECEIVED_OLD_MAP
+	ld hl, OaksLabPleaseAcceptThis
+	call PrintText
+	ld hl, OaksLabReceivedOldSeaMap
+	call PrintText
+	jr .GotMap
+.BagFull
+	ld hl, OaksLabBagFull
+	call PrintText
+.GotMap
+	ld a, SCRIPT_OAKSLAB_NOOP
+	ld [wOaksLabCurScript], a
+	jp TextScriptEnd
+
 OaksLabNoopScript:
 	ret
 
@@ -749,6 +784,7 @@ OaksLab_TextPointers:
 	dw_const OaksLabOakGotPokedexText,            TEXT_OAKSLAB_OAK_GOT_POKEDEX
 	dw_const OaksLabOakThatWasMyDreamText,        TEXT_OAKSLAB_OAK_THAT_WAS_MY_DREAM
 	dw_const OaksLabRivalLeaveItAllToMeText,      TEXT_OAKSLAB_RIVAL_LEAVE_IT_ALL_TO_ME
+	dw_const OaksLabOakPleaseAcceptThis,		  TEXT_OAKSLAB_OAK_PLEASE_ACCEPT_THIS
 
 OaksLab_TextPointers2:
 	dw OaksLabRivalText
@@ -988,8 +1024,6 @@ OaksLabOak1Text:
 	ld a, [wNumSetBits]
 	sub $96 ; 150 For the full dex
 	jp c, .done
-	ld a, $0
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, OaksLabOakBattleBefore
 	call PrintText
 	call YesNoChoice
@@ -999,6 +1033,7 @@ OaksLabOak1Text:
 	ld hl, OaksLabOakBattleAccepted
 	call PrintText
 	call Delay3
+	call InitBattleEnemyParameters
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
@@ -1025,27 +1060,20 @@ OaksLabOak1Text:
 	ld [wTrainerNo], a
 	xor a
 	ldh [hJoyHeld], a
+	ld a, SCRIPT_OAKSLAB_PROF_OAK_END_BATTLE
+	ld [wOaksLabCurScript], a
+	ld [wCurMapScript], a
+	jp .done
 .OakDefeated
 	CheckEvent EVENT_RECEIVED_OLD_MAP
 	jp nz, .come_see_me_sometimes
-	ld a, $0
-	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	SetEvent EVENT_DEFEATED_OAK
-	lb bc, OLD_SEA_MAP, 1
-	call GiveItem
-	jr nc, .BagFull
-	SetEvent EVENT_RECEIVED_OLD_MAP
-	ld hl, OaksLabPleaseAcceptThis
-	call PrintText
-	ld hl, OaksLabReceivedOldSeaMap
-	call PrintText
-	jr .GotMap
-.BagFull
-	ld hl, OaksLabBagFull
-	call PrintText
-.GotMap
+	ld a, TEXT_OAKSLAB_OAK_PLEASE_ACCEPT_THIS
+	ldh [hTextID], a
+	jp DisplayTextID
 	jp .done
 .OakRefusedFight
+	ld a, $0
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, OaksLabOakBattleMaybeSomeOtherTime
 	call PrintText
 	jp .done

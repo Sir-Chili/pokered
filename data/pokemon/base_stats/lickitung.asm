@@ -3,7 +3,7 @@
 	db  90,  75,  85,  30,  75
 	;   hp  atk  def  spd  spc
 
-	db NORMAL, NORMAL ; type
+	db NORMAL, WATER ; type
 	db 45 ; catch rate
 	db 127 ; base exp
 
